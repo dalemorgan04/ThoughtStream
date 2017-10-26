@@ -1,0 +1,32 @@
+﻿@using System.Web.UI.WebControls
+@model Tasks.ViewModels.Thoughts.AddThoughtViewModel
+
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            
+            <h4>Add a thought</h4>
+
+            @using (Html.BeginForm("Create", "Thoughts", FormMethod.Post, new {id = "addThoughtForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label"})
+                
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control", PlaceHolder = "Add a thought here"})
+                        <span class="input-group-btn">
+                            <button id="btnAddThought" type="submit" value="Create" class="btn btn-default">Spill</button>
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+            

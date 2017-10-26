@@ -1,0 +1,23 @@
+﻿@using Tasks.ViewModels.Thoughts
+
+@model ThoughtsViewModel
+
+@{
+    ViewBag.Heading = "Inbox";    
+}
+
+<!--Heading-->
+<h1>@ViewBag.Heading</h1>
+
+@Html.Partial("_AddThought", Model.NewThought);
+
+<!--Table of Tasks-->
+<h3>Tasks</h3>
+<div id="thoughtResultsTable">
+    @Html.Partial("_ThoughtsTable",Model);    
+</div>
+
+
+
+
+
