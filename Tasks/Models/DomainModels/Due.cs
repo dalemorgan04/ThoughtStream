@@ -15,6 +15,5 @@ namespace Tasks.Models.DomainModels
         public virtual DateTime WeekCommencing { get; set; }
         public virtual int Month { get; set; }
         public virtual  int Year { get; set; }
- 
     }
 }
