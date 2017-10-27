@@ -7,13 +7,12 @@
 
             <table class="table table-striped table-hover ">
                 <tbody id="thoughtResultsTableBody">
-                @foreach (TaskDto task in Model.TaskList.OrderBy(x => x.SortId))
+                @foreach (TaskDto task in Model.TaskList)
                 {
-                    
-                    <tr data-thoughtid ="@thought.Id" data-sortid ="@thought.SortId">
-                        <td class="col-xs-9">@thought.Description</td>
+                    <tr data-thoughtid ="@task.Id">
+                        <td class="col-xs-9">@task.Description</td>
                         <td class="col-xs-3">
-                            @thought.DateCreated.ToString("ddd dd MMM")
+                            @task.DateCreated.ToString("ddd dd MMM")
                             <span>
                                 <button type="button" class ="close" aria-hidden="true" id="btnFunnel"><img src="~/Images/funnel.png"/></button>
                             </span>
