@@ -179,6 +179,8 @@
     <Compile Include="Models\DomainModels\Task.cs" />
     <Compile Include="Models\DomainModels\Thought.cs" />
     <Compile Include="Models\DomainModels\Due.cs" />
+    <Compile Include="Models\DomainModels\TimeFrame.cs" />
+    <Compile Include="Models\DomainModels\TimeFrameType.cs" />
     <Compile Include="Models\DomainModels\User.cs" />
     <Compile Include="NHibernate\INHUnitOfWork.cs" />
     <Compile Include="NHibernate\NHRepository.cs" />

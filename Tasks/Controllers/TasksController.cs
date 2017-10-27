@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Tasks.Service.Tasks;
 using Tasks.Service.Tasks.Dto;
+using Tasks.ViewModels.Tasks;
 
 namespace Tasks.Controllers
 {
@@ -20,8 +21,10 @@ namespace Tasks.Controllers
         
         public ActionResult Index()
         {
-            List<TaskDto> taskList = new List<TaskDto>();
-            return View();
+            TasksViewModel viewModel = new TasksViewModel();
+            List<TaskDto> taskList = taskService.GetTasks().ToList();
+            viewModel.TaskList = taskList;
+            return View("Index",viewModel);
         }
     }
 }

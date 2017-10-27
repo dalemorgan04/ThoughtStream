@@ -32,8 +32,6 @@ namespace Tasks.NHibernate
         public IEnumerable<TEntity> GetAll()
         {
             return session.CreateCriteria(typeof(TEntity)).List<TEntity>();
-            
-            //return this.session.Query<TEntity>();
         }
 
         public void Remove(TIdentity id)

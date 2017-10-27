@@ -20,11 +20,7 @@ namespace Tasks.Repository
             Component(x => x.Due, m =>
             {
                 m.Map(x => x.Id).Column("TimeFrameId");
-                m.Map(x => x.Time);
-                m.Map(x => x.Date);
-                m.Map(x => x.WeekCommencing);
-                m.Map(x => x.Month);
-                m.Map(x => x.Year);
+                m.Map(x => x.DateTime);
             });
         }
     }
