@@ -49,10 +49,12 @@ namespace Tasks.Controllers
         [HttpPost]
         public bool Create(AddThoughtViewModel viewModel)
         {
-            ThoughtDto thought = new ThoughtDto();
-            thought.Description = viewModel.Description;
-            thought.DateCreated = DateTime.Now;
-            thought.User = Mapper.Map<UserDto, User>(userService.GetUser(1));
+            ThoughtDto thought = new ThoughtDto
+            {
+                Description = viewModel.Description,
+                DateCreated = DateTime.Now,
+                User = Mapper.Map<UserDto, User>(userService.GetUser(1))
+            };
             thoughtService.Save(thought);
             return true;
         }

@@ -10,12 +10,10 @@ var pubsub = {
     },
 
     applyBindings: function () {
-        //$(document).on('click', '.input[type = "submit"]', this.SaveTask);
+        $(document).on('click', '.input[type = "submit"]', this.SaveTask);
         $(document).on('click', '#AddTask', this.showAddTask);
         $(document).on('click', '#btnClose', this.closePopup);
     },
-
-
 
     showAddTask: function (e) {
         $.post(pubsub.urls.GetAddTaskPopup, pubsub.showPopup);

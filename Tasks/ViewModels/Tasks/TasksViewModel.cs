@@ -9,5 +9,6 @@ namespace Tasks.ViewModels.Tasks
     public class TasksViewModel
     {
         public List<TaskDto> TaskList { get; set; }
+        public TaskEditViewModel EditViewModel { get; set; }
     }
 }

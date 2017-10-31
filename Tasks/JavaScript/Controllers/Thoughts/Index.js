@@ -25,7 +25,7 @@ var pubsub = {
                 var moveToSortId = 0;
                 /*
                     If the line is dragged upwards then the previous line method returns +1 more than you'd expect
-                    For thsi reason we need to work out the sortid differently depending on if the line is moving
+                    For this reason we need to work out the sortid differently depending on if the line is moving
                     upwards and downwards
                 */
                 if (prevRow != null) {

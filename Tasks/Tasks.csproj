@@ -240,6 +240,7 @@
     <Content Include="Images\Icons\S\cup.png" />
     <Content Include="Images\Icons\XS\cup.png" />
     <Content Include="JavaScript\Controllers\Shelved.js" />
+    <Content Include="JavaScript\Controllers\Tasks\Index.js" />
     <Content Include="JavaScript\Controllers\Thoughts\Index.js" />
     <Content Include="JavaScript\Controllers\Utils\Core.js" />
     <Content Include="JavaScript\Framework\bootstrap.js" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\_TasksTable.cshtml" />
+    <Content Include="Views\Tasks\_AddTask.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
