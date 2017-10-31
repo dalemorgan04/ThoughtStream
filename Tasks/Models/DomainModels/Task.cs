@@ -9,11 +9,8 @@ namespace Tasks.Models.DomainModels
         public virtual User User { get; set; }
         public virtual string Description { get; set; }
         public virtual Priority Priority { get; set; }
-
-        public virtual Due Due
-        {
-            get => new Due((TimeFrameType)Id, );
-            set;
-        }
+        public virtual Timeframe Timeframe { get; set; }
+        public virtual DateTime DateTime { get; set; } //Held in Timeframe object
     }
 }
+

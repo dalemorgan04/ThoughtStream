@@ -1,9 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Tasks.Models;
 using Tasks.Models.DomainModels;
 
 namespace Tasks.Repository
@@ -17,9 +12,10 @@ namespace Tasks.Repository
             References(x => x.User).Column("UserId");                
             Map(x => x.Description);
             References(x => x.Priority).Column("PriorityId");
-            Component(x => x.Due, m =>
+            //Timeframe
+            Component(x => x.Timeframe, m =>
             {
-                m.Map(x => x.Id).Column("TimeFrameId");
+                m.Map(x => x.TimeFrameId);
                 m.Map(x => x.DateTime);
             });
         }

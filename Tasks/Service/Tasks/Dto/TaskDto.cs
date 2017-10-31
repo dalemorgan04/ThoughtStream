@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using Tasks.Models.DomainModels;
 
 namespace Tasks.Service.Tasks.Dto
@@ -9,6 +10,6 @@ namespace Tasks.Service.Tasks.Dto
         public User User { get; set; }
         public string Description { get; set; }
         public Priority Priority { get; set; }
-        public Due Due { get; set; }
+        public Timeframe TimeFrame { get; set; }
     }
 }
