@@ -3,38 +3,61 @@
 <div class="modal" id="addTaskModal">
     <div class="modal-dialog">
         <div class="modal-content">
+            
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Add a task</h4>
             </div>
+
             <div class="modal-body">
-            
-                @using (Html.BeginForm("Create", "Thoughts", FormMethod.Post, new { id = "addTaskForm" }))
+
+                @using (Html.BeginForm("Create", "Tasks", FormMethod.Post, new {id = "addTaskForm"}))
                 {
                     @Html.AntiForgeryToken()
                     <div class="form-group">
-                    
-                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control", PlaceHolder = "Task description" })
-                        
+
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new {@class = "control-label"})
+                        @Html.TextBoxFor(model => model.Description, new {@class = "form-control", PlaceHolder = "Task description"})
+
                         <label>Priority</label>
-                        @Html.TextBoxFor(model => model.PriorityId, new { @class = "form-control"})
-                        
-                        <label>Timeframe</label>
-                        <label>Window:</label>
-                        @Html.LabelFor(model => model.TimeFrameId, htmlAttributes: new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.TimeFrameId, new { @class = "form-control"})
-                    
-                        @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.DateTime, new { @class = "form-control", PlaceHolder = "Date due" })
-                    
+                        @Html.TextBoxFor(model => model.PriorityId, new {@class = "form-control"})
+
+                        <label>Timeframe Window</label>
+
+                        <div class="form-group">
+
+                            @Html.RadioButtonFor(m => m.TimeFrameId, 1, new {@class = "tgl tgl-flip", id = "window-time", name = "window"})
+                            <label class='tgl-btn' data-tg-off='Time' data-tg-on='Time & Day' for='window-time'></label>
+
+                            @Html.RadioButtonFor(m => m.TimeFrameId, 2, new {@class = "tgl tgl-flip", id = "window-day", name = "window"})
+                            <label class='tgl-btn' data-tg-off='Day' data-tg-on='Day' for='window-day'></label>
+
+                            @Html.RadioButtonFor(m => m.TimeFrameId, 3, new {@class = "tgl tgl-flip", id = "window-week", name = "window"})
+                            <label class='tgl-btn' data-tg-off='Week' data-tg-on='Week' for='window-week'></label>
+
+                            @Html.RadioButtonFor(m => m.TimeFrameId, 4, new {@class = "tgl tgl-flip", id = "window-month", name = "window"})
+                            <label class='tgl-btn' data-tg-off='Month' data-tg-on='Month' for='window-month'></label>
+
+                            @Html.RadioButtonFor(m => m.TimeFrameId, 5, new {@class = "tgl tgl-flip", id = "window-year", name = "window"})
+                            <label class='tgl-btn' data-tg-off='Year' data-tg-on='Year' for='window-year'></label>
+
+                            @Html.RadioButtonFor(m => m.TimeFrameId, 6, new {@class = "tgl tgl-flip", id = "window-someday", name = "window"})
+                            <label class='tgl-btn' data-tg-off='Someday' data-tg-on='Someday' for='window-someday'></label>
+
+                        </div>
+
+                        <label>Expected to be done by</label>
+                        @Html.TextBoxFor(model => model.DateTime, new {@class = "form-control"})
+
                     </div>
                 }
-            
+
             </div>
+
             <div class="modal-footer">
                 <button id="btnAddTask" type="submit" value="Create" class="btn btn-default">Add</button>
             </div>
+
         </div>
     </div>
 </div>

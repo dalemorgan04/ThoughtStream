@@ -17,7 +17,8 @@ var pubsub = {
     },
 
     applyBindings: function() {
-        $(document).on('click', '#btnAddTask', this.ShowAddTaskPopup);
+        $(document).on('click', '#btnShowAddTask', this.ShowAddTaskPopup);
+        $(document).on('click', '#btnAddTask', this.saveTask);
     },
 
     getTasksTable: function() {
