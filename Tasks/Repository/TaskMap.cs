@@ -12,12 +12,8 @@ namespace Tasks.Repository
             References(x => x.User).Column("UserId");                
             Map(x => x.Description);
             References(x => x.Priority).Column("PriorityId");
-            //Timeframe
-            Component(x => x.Timeframe, m =>
-            {
-                m.Map(x => x.TimeFrameId);
-                m.Map(x => x.DateTime);
-            });
+            Map(x => x.TimeFrameId);
+            Map( x => x.DateTime);
         }
     }
 }

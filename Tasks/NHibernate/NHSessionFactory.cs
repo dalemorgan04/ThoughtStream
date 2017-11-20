@@ -48,11 +48,11 @@ namespace Tasks.NHibernate
             string connectionString = ConfigurationManager.ConnectionStrings["Local"].ConnectionString;
 
             fluentConfig = Fluently.Configure().Database(MsSqlConfiguration.MsSql2005.ConnectionString(connectionString))
-                            .Mappings(m => m.FluentMappings
-                                            .AddFromAssembly(Assembly.GetAssembly(typeof(ThoughtMap)))
-                                            .AddFromAssembly(Assembly.GetAssembly(typeof(TaskMap)))
-                                            .AddFromAssembly(Assembly.GetAssembly(typeof(UserMap)))
-                                            .AddFromAssembly(Assembly.GetAssembly(typeof(PriorityMap)))
+                            .Mappings(m => m.FluentMappings                                                
+                                                .AddFromAssembly(Assembly.GetAssembly(typeof(ThoughtMap)))
+                                                .AddFromAssembly(Assembly.GetAssembly(typeof(TaskMap)))                                                
+                                                .AddFromAssembly(Assembly.GetAssembly(typeof(UserMap)))
+                                                .AddFromAssembly(Assembly.GetAssembly(typeof(PriorityMap)))
                             );
         }
         private static ISessionFactory buildSessionFactory()

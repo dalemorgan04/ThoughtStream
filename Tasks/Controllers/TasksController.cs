@@ -52,8 +52,8 @@ namespace Tasks.Controllers
             taskDto.User = new User(){Id = 1};
             taskDto.Description = viewModel.Description;
             taskDto.Priority.Id = viewModel.PriorityId;
-            taskDto.TimeFrame.TimeFrameId = viewModel.TimeFrameId;
-            taskDto.TimeFrame.DateTime = viewModel.DateTime;
+            //taskDto.TimeFrame.Id= viewModel.TimeFrameId;
+            taskDto.DateTime = viewModel.DateTime;
             taskService.Save(taskDto);
             return true;
         }

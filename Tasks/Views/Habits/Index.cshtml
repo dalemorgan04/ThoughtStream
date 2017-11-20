@@ -1,0 +1,16 @@
+﻿@using Tasks.ViewModels.Habits
+@model HabitsViewModel
+
+@{
+    ViewBag.Heading = "Habits";
+}
+
+<h1>@ViewBag.Heading</h1>
+
+<div id="addTaskContainer">
+
+</div>
+
+<div id="taskResultsTable">
+    @Html.Partial("_HabitsTable", Model)
+</div>

@@ -9,6 +9,8 @@ using Tasks.Repository.Thoughts;
 using Tasks.Service.Tasks;
 using Tasks.Service.Thoughts;
 using Tasks.Service.Users;
+using Tasks.Repository.Habits;
+using Tasks.Service.Habits;
 
 namespace Tasks
 {
@@ -22,10 +24,13 @@ namespace Tasks
         }
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            //Domain
+
             //Services
             container.Register(Component.For<IThoughtService>().ImplementedBy<ThoughtService>().LifeStyle.Transient);
             container.Register(Component.For<ITaskService>().ImplementedBy<TaskService>().LifeStyle.Transient);
-            container.Register(Component.For<IUserService>().ImplementedBy<UserService>().LifeStyle.Transient);
+            container.Register(Component.For<IHabitService>().ImplementedBy<HabitService>().LifeStyle.Transient);
+            container.Register(Component.For<IUserService>().ImplementedBy<UserService>().LifeStyle.Transient);           
 
             //SQL 
             var dependencies = new {connectionString = this.connectionString };
@@ -33,6 +38,12 @@ namespace Tasks
             container.Register(Component
                 .For<IThoughtRepository>()
                 .ImplementedBy<ThoughtRepository>()
+                .LifeStyle.Transient
+                .DependsOn(dependencies));
+
+            container.Register(Component
+                .For<IHabitRepository>()
+                .ImplementedBy<HabitRepository>()
                 .LifeStyle.Transient
                 .DependsOn(dependencies));
 

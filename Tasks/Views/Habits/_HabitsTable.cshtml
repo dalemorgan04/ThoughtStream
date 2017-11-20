@@ -1,0 +1,25 @@
+﻿@using Tasks.Service.Habits.Dto
+@using Tasks.ViewModels.Habits
+@model HabitsViewModel
+
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <table class="table table-striped table-hover ">
+                <tbody id="habitResultsTableBody">
+                    @foreach (HabitDto habit in Model.HabitList)
+                    {
+                        <tr data-habitid="@habit.Id">
+                            <td>@habit.Id</td>
+                            <td>@habit.Description</td>
+                            <td>@habit.TimeFrame.Due</td>                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
