@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using NHibernate;
 using Tasks.Models;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 
 namespace Tasks.NHibernate
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 using Tasks.Models.DomainModels.Habits.Entity;
 
 namespace Tasks.Repository.Habits

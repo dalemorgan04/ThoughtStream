@@ -1,9 +1,7 @@
-﻿using System.Linq.Expressions;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Tasks.Models.Core;
 using Tasks.NHibernate;
 using Tasks.Repository.Thoughts;
 using Tasks.Service.Tasks;
@@ -11,6 +9,8 @@ using Tasks.Service.Thoughts;
 using Tasks.Service.Users;
 using Tasks.Repository.Habits;
 using Tasks.Service.Habits;
+using Tasks.Service.Projects;
+using Tasks.Repository.Core;
 
 namespace Tasks
 {
@@ -30,7 +30,8 @@ namespace Tasks
             container.Register(Component.For<IThoughtService>().ImplementedBy<ThoughtService>().LifeStyle.Transient);
             container.Register(Component.For<ITaskService>().ImplementedBy<TaskService>().LifeStyle.Transient);
             container.Register(Component.For<IHabitService>().ImplementedBy<HabitService>().LifeStyle.Transient);
-            container.Register(Component.For<IUserService>().ImplementedBy<UserService>().LifeStyle.Transient);           
+            container.Register(Component.For<IProjectService>().ImplementedBy<ProjectService>().LifeStyle.Transient);
+            container.Register(Component.For<IUserService>().ImplementedBy<UserService>().LifeStyle.Transient);
 
             //SQL 
             var dependencies = new {connectionString = this.connectionString };

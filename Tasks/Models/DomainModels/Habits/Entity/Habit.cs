@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 
 namespace Tasks.Models.DomainModels.Habits.Entity
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 
 namespace Tasks.Repository.Thoughts
 {

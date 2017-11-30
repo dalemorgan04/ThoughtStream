@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 using Tasks.Models.DomainModels;
 using Tasks.Repository.Thoughts;
 using Tasks.Service.Thoughts.Dto;

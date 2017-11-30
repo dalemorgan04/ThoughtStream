@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 using Tasks.Models.DomainModels.Habits.Entity;
 using Tasks.Repository.Habits;
 using Tasks.Service.Habits.Dto;

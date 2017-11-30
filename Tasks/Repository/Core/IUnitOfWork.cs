@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tasks.Models.Core
+namespace Tasks.Repository.Core
 {
     public interface IUnitOfWork : IDisposable
     {

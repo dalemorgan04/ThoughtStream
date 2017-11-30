@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Tasks.Models.Core;
+using Tasks.Repository.Core;
 using Tasks.Models.DomainModels;
 using Tasks.Service.Tasks.Dto;
 
@@ -20,7 +20,7 @@ namespace Tasks.Service.Tasks
         }
         public TaskDto GetTaskById(int taskId)
         {
-            var task = this.taskRepository.Get(taskId);
+            Task task = this.taskRepository.Get(taskId);
             return Mapper.Map<Task, TaskDto>(task);
         }
         public IList<TaskDto> GetTasks()

@@ -1,4 +1,4 @@
-﻿using Tasks.Models.Core;
+﻿using Tasks.Repository.Core;
 
 namespace Tasks.Models.DomainModels
 {

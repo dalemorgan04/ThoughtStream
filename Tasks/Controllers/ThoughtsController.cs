@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Tasks.Models.Core;
 using Tasks.Models.DomainModels;
-using Tasks.Repository.Thoughts;
 using Tasks.Service.Tasks;
-using Tasks.Service.Tasks.Dto;
 using Tasks.Service.Thoughts;
 using Tasks.Service.Thoughts.Dto;
 using Tasks.Service.Users;

@@ -165,6 +165,7 @@
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HabitsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\ThoughtsController.cs" />
     <Compile Include="Controllers\JavascriptController.cs" />
@@ -172,27 +173,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
+    <Compile Include="Models\DomainModels\Habits\Entity\HabitGoal.cs" />
+    <Compile Include="Models\DomainModels\Projects\Entity\Project.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\Habit.cs" />
-    <Compile Include="Models\Core\IDomainEntity.cs" />
-    <Compile Include="Models\Core\ISpecificationRepository.cs" />
-    <Compile Include="Models\Core\IUnitOfWork.cs" />
+    <Compile Include="Models\DomainModels\Projects\Spec\ProjectChildrenSpec.cs" />
+    <Compile Include="Models\DomainModels\Projects\Spec\ProjectRootSpec.cs" />
+    <Compile Include="NHibernate\NHRepositoryOfEntity.cs" />
+    <Compile Include="Repository\Core\ExpressionSpecificationBase.cs" />
+    <Compile Include="Repository\Core\IDomainEntity.cs" />
+    <Compile Include="Repository\Core\IExpressionSpecification.cs" />
+    <Compile Include="Repository\Core\ISpecification.cs" />
+    <Compile Include="Repository\Core\ISpecificationRepository.cs" />
+    <Compile Include="Repository\Core\IUnitOfWork.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\HabitException.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\HabitList.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\HabitRecurrence.cs" />
     <Compile Include="Models\DomainModels\Priority.cs" />
-    <Compile Include="Models\DomainModels\Task.cs" />
+    <Compile Include="Models\DomainModels\Tasks\Entity\Task.cs" />
     <Compile Include="Models\DomainModels\Thought.cs" />
     <Compile Include="Models\DomainModels\TimeFrame.cs" />
     <Compile Include="Models\DomainModels\Enum\TimeFrameType.cs" />
     <Compile Include="Models\DomainModels\User.cs" />
     <Compile Include="Models\DomainModels\Enum\IntervalType.cs" />
     <Compile Include="NHibernate\INHUnitOfWork.cs" />
-    <Compile Include="NHibernate\NHRepository.cs" />
+    <Compile Include="NHibernate\NHRepositoryOfEntityIdentity.cs" />
     <Compile Include="NHibernate\NHSessionFactory.cs" />
     <Compile Include="NHibernate\NHUnitOfWork.cs" />
     <Compile Include="NHibernate\WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Core\DataAccess.cs" />
+    <Compile Include="Repository\Core\DataAccess.cs" />
+    <Compile Include="Repository\Habits\HabitGoalMap.cs" />
+    <Compile Include="Repository\Projects\ProjectMap.cs" />
     <Compile Include="Repository\Habits\HabitMap.cs" />
     <Compile Include="Repository\Habits\HabitRecurrenceMap.cs" />
     <Compile Include="Repository\Habits\HabitRepository.cs" />
@@ -204,6 +215,10 @@
     <Compile Include="Repository\Thoughts\ThoughtMap.cs" />
     <Compile Include="Repository\Thoughts\ThoughtRepository.cs" />
     <Compile Include="Repository\UserMap.cs" />
+    <Compile Include="Service\Projects\Dto\ProjectDto.cs" />
+    <Compile Include="Service\Projects\Dto\ProjectItemDto.cs" />
+    <Compile Include="Service\Projects\ProjectService.cs" />
+    <Compile Include="Service\Projects\IProjectService.cs" />
     <Compile Include="Service\Habits\Dto\HabitDto.cs" />
     <Compile Include="Service\Habits\HabitService.cs" />
     <Compile Include="Service\Habits\IHabitService.cs" />
@@ -221,6 +236,7 @@
     <Compile Include="Service\Users\UserDtoMap.cs" />
     <Compile Include="Service\Users\UserService.cs" />
     <Compile Include="ViewModels\Habits\HabitsViewModel.cs" />
+    <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TaskEditViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TasksViewModel.cs" />
     <Compile Include="ViewModels\Thoughts\AddThoughtViewModel.cs" />
@@ -240,10 +256,13 @@
     <Content Include="CSS\Global\jquery-ui.css" />
     <Content Include="CSS\Modules\header.css" />
     <Content Include="CSS\Modules\menu.css" />
+    <Content Include="CSS\Modules\split.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="CSS\Global\global.css" />
     <Content Include="Images\funnel.png" />
+    <Content Include="Images\Icons\Split\horizontal.png" />
+    <Content Include="Images\Icons\Split\vertical.png" />
     <Content Include="Images\Icons\S\calendar.png" />
     <Content Include="Images\Icons\S\clipboard.png" />
     <Content Include="Images\Icons\S\hourglass.png" />
@@ -280,6 +299,8 @@
     <Content Include="JavaScript\Framework\modernizr-2.6.2.js" />
     <Content Include="JavaScript\Framework\respond.js" />
     <Content Include="JavaScript\Framework\respond.min.js" />
+    <Content Include="JavaScript\Framework\split.js" />
+    <Content Include="JavaScript\Framework\split.min.js" />
     <Content Include="JavaScript\Menu.js" />
     <Content Include="NHibernate\hibernateCfgOld.xml">
       <SubType>Designer</SubType>
@@ -307,6 +328,8 @@
     <Content Include="Views\Tasks\_AddTask.cshtml" />
     <Content Include="Views\Habits\Index.cshtml" />
     <Content Include="Views\Habits\_HabitsTable.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\_ProjectsTable.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

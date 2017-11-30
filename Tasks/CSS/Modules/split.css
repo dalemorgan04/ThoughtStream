@@ -1,0 +1,32 @@
+﻿.split p, .split-flex p {
+    padding: 20px;
+}
+
+.split, .split-flex {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gutter {
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+    .gutter.gutter-horizontal {        
+        background-image: url('../../Images/Icons/Split/horizontal.png');
+        cursor: ew-resize;
+    }
+
+    .gutter.gutter-vertical {
+        background-image: url('../../Images/Icons/Split/vertical.png');
+        cursor: ns-resize;
+    }
+
+    .split.split-horizontal, .gutter.gutter-horizontal {
+        height: 100%;
+        float: left;
+    }

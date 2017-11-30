@@ -14,6 +14,7 @@ namespace Tasks.Repository
             References(x => x.Priority).Column("PriorityId");
             Map(x => x.TimeFrameId);
             Map( x => x.DateTime);
+            References(x => x.Project).Column("ProjectId");
         }
     }
 }
