@@ -9,6 +9,7 @@ namespace Tasks.Service.Habits
 {
     public interface IHabitService
     {
-        List<HabitDto> GetHabitOccurrencesOnDate(DateTime date);
+        List<HabitDto> GetHabits();
+        List<HabitDto> GetHabitsOnDay(DateTime date);
     }
 }

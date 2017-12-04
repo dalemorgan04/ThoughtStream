@@ -131,3 +131,25 @@ a, a:hover, a:focus {
     -webkit-transform: rotateY(20deg);
     transform: rotateY(20deg);
 }
+
+/*Horizontal Scrolling box for weekplan*/
+.plan-container{
+    display:flex;
+    border: 3px solid blue;
+    height: 80%;
+    width: 80%;
+}
+
+.plan-item {
+    border: 2px solid red;
+    display: flex;    
+    flex-grow: 1;
+    justify-content: space-around;
+    min-width:200px;
+}
+.plan-week {
+    overflow-x: scroll;     
+}
+.plan-panel{
+    min-width: 300px;    
+}

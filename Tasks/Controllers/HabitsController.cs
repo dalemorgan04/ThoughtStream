@@ -10,7 +10,7 @@ namespace Tasks.Controllers
 {
     public class HabitsController : Controller
     {
-        private readonly IHabitService habitService;
+        private readonly IHabitService habitService;        
 
         public HabitsController(
             IHabitService habitService)
@@ -19,8 +19,8 @@ namespace Tasks.Controllers
         }
         public ActionResult Index()
         {
-            habitService.GetHabitOccurrencesOnDate(DateTime.Now);
-            return View();
+            HabitsViewModel viewModel = new HabitsViewModel() { HabitList = habitService.GetHabits() };
+            return View("Index", viewModel);
         }
     }
 }

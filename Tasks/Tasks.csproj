@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HabitsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\PlanWeekController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\ThoughtsController.cs" />
     <Compile Include="Controllers\JavascriptController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Models\DomainModels\Habits\Entity\Habit.cs" />
     <Compile Include="Models\DomainModels\Projects\Spec\ProjectChildrenSpec.cs" />
     <Compile Include="Models\DomainModels\Projects\Spec\ProjectRootSpec.cs" />
+    <Compile Include="Models\DomainModels\Tasks\Spec\TaskOnDaySpec.cs" />
     <Compile Include="NHibernate\NHRepositoryOfEntity.cs" />
     <Compile Include="Repository\Core\ExpressionSpecificationBase.cs" />
     <Compile Include="Repository\Core\IDomainEntity.cs" />
@@ -215,6 +217,12 @@
     <Compile Include="Repository\Thoughts\ThoughtMap.cs" />
     <Compile Include="Repository\Thoughts\ThoughtRepository.cs" />
     <Compile Include="Repository\UserMap.cs" />
+    <Compile Include="Service\Habits\HabitDtoMap.cs" />
+    <Compile Include="Service\PlanWeek\Dto\DayPlanDto.cs" />
+    <Compile Include="Service\PlanWeek\Dto\DayPlanItemDto.cs" />
+    <Compile Include="Service\PlanWeek\Dto\WeekPlanDto.cs" />
+    <Compile Include="Service\PlanWeek\IPlanWeekService.cs" />
+    <Compile Include="Service\PlanWeek\PlanWeekService.cs" />
     <Compile Include="Service\Projects\Dto\ProjectDto.cs" />
     <Compile Include="Service\Projects\Dto\ProjectItemDto.cs" />
     <Compile Include="Service\Projects\ProjectService.cs" />
@@ -236,6 +244,7 @@
     <Compile Include="Service\Users\UserDtoMap.cs" />
     <Compile Include="Service\Users\UserService.cs" />
     <Compile Include="ViewModels\Habits\HabitsViewModel.cs" />
+    <Compile Include="ViewModels\PlanWeek\PlanWeekViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TaskEditViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TasksViewModel.cs" />
@@ -272,6 +281,7 @@
     <Content Include="Images\Icons\S\share.png" />
     <Content Include="Images\Icons\S\cup.png" />
     <Content Include="Images\Icons\XS\cup.png" />
+    <Content Include="JavaScript\Controllers\PlanWeek\Index.js" />
     <Content Include="JavaScript\Controllers\Shelved.js" />
     <Content Include="JavaScript\Controllers\Tasks\Index.js" />
     <Content Include="JavaScript\Controllers\Thoughts\Index.js" />
@@ -330,8 +340,12 @@
     <Content Include="Views\Habits\_HabitsTable.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\_ProjectsTable.cshtml" />
+    <Content Include="Views\PlanWeek\Index.cshtml" />
+    <Content Include="Views\PlanWeek\_WeekPlanTable.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\ScheduleWeek\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

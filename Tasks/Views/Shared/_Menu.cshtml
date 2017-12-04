@@ -7,39 +7,32 @@
             </a>
         </li>
         <li class="active">
-            <a id="#btn-menu-thoughts" data-toggle="collapse" aria-expanded="false">
-                <i>
-                    <img src="~/Images/Icons/S/idea.png" />
-                    @Html.ActionLink("Thoughts", "Index", "Thoughts")
-                </i>
+            <a id="#btn-menu-thoughts" data-toggle="collapse" aria-expanded="false">                
+                <img src="~/Images/Icons/S/idea.png" />@Html.ActionLink("Thoughts", "Index", "Thoughts")                
             </a>
         </li>
         <li>
-            <a href="#">
-                <i>
+            <a href="#">                
                     <img src="~/Images/Icons/S/clipboard.png" />
-                    @Html.ActionLink("Tasks", "Index", "Tasks")
-                </i>
+                    @Html.ActionLink("Tasks", "Index", "Tasks")                
             </a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                <i>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">                
                     <img src="~/Images/Icons/S/loop.png" />
-                    @Html.ActionLink("Habits", "Index", "Habits")
-                </i>
+                    @Html.ActionLink("Habits", "Index", "Habits")                
             </a>
         </li>
         <li>
             <a href="#">
-                <i><img src="~/Images/Icons/S/cup.png"/></i>
-                Projects
+                <img src="~/Images/Icons/S/cup.png"/>
+                @Html.ActionLink("Projects", "Index", "Projects")
             </a>
         </li>
         <li>
             <a href="#">
-                <i><img src="~/Images/Icons/S/calendar.png"/></i>
-                Schedule
+                <img src="~/Images/Icons/S/calendar.png"/>
+                @Html.ActionLink("PlanWeek", "Index", "PlanWeek")
             </a>
         </li>
 

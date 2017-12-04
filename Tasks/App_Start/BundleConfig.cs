@@ -23,15 +23,17 @@ namespace Tasks
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/JavaScript/Framework/bootstrap.js",
-                      "~/JavaScript/Framework/respond.js"));
+                      "~/JavaScript/Framework/respond.js",
+                      "~/JavaScript/Framework/split.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/core").Include(
-                      "~/JavaScript/Controllers/Utils/Core.js",
+                      "~/JavaScript/Controllers/Utils/Core.js",                      
                       "~/JavaScript/Menu.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(                                            
                       "~/CSS/Global/bootstrap.css",
                       "~/CSS/Global/jquery-ui.css",
+                      "~/CSS/Modules/split.css",
                       "~/CSS/Modules/menu.css",
                       "~/CSS/Modules/header.css",
                       "~/CSS/Global/global.css"));

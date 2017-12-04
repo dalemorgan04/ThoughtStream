@@ -11,6 +11,7 @@ using Tasks.Repository.Habits;
 using Tasks.Service.Habits;
 using Tasks.Service.Projects;
 using Tasks.Repository.Core;
+using Tasks.Service.PlanWeek;
 
 namespace Tasks
 {
@@ -31,6 +32,7 @@ namespace Tasks
             container.Register(Component.For<ITaskService>().ImplementedBy<TaskService>().LifeStyle.Transient);
             container.Register(Component.For<IHabitService>().ImplementedBy<HabitService>().LifeStyle.Transient);
             container.Register(Component.For<IProjectService>().ImplementedBy<ProjectService>().LifeStyle.Transient);
+            container.Register(Component.For<IPlanWeekService>().ImplementedBy<PlanWeekService>().LifeStyle.Transient);
             container.Register(Component.For<IUserService>().ImplementedBy<UserService>().LifeStyle.Transient);
 
             //SQL 

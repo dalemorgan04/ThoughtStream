@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tasks.Service.Habits;
 using Tasks.Service.Tasks;
 using Tasks.Service.Thoughts;
 using Tasks.Service.Users;
@@ -17,6 +18,7 @@ namespace Tasks
                 cfg.AddProfile(new TaskDtoMap());
                 cfg.AddProfile(new UserDtoMap());
                 cfg.AddProfile(new ThoughtDtoMap());
+                cfg.AddProfile(new HabitDtoMap());
 
             });
         }

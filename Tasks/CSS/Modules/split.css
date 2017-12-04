@@ -1,4 +1,38 @@
-﻿.split p, .split-flex p {
+﻿.example-1{
+    height: 100%;
+}
+
+.example-2, .example-3, .example-4, .example-5, .example-6 {
+    height: 250px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.example-flex {
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+.example-flex-reverse {
+    flex-direction: row-reverse;
+}
+
+#one, #two {
+    padding: 20px;
+}
+
+    #one p {
+        padding: 0;
+    }
+
+.example-4, .example-5 {
+    height: 400px;
+}
+
+.split p, .split-flex p {
     padding: 20px;
 }
 
@@ -16,13 +50,13 @@
     background-position: 50%;
 }
 
-    .gutter.gutter-horizontal {        
-        background-image: url('../../Images/Icons/Split/horizontal.png');
+    .gutter.gutter-horizontal {
+        background-image: url('../../Images/Icons/Split/vertical.png');
         cursor: ew-resize;
     }
 
     .gutter.gutter-vertical {
-        background-image: url('../../Images/Icons/Split/vertical.png');
+        background-image: url('../../Images/Icons/Split/horizontal.png');
         cursor: ns-resize;
     }
 
