@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -261,10 +262,11 @@
     <Content Include="Content\hack-extended.min.css" />
     <Content Include="Content\hack.css" />
     <Content Include="Content\hack.min.css" />
+    <Content Include="CSS\Controllers\Thoughts.css" />
     <Content Include="CSS\Global\bootstrap.css" />
+    <Content Include="CSS\Global\content.css" />
     <Content Include="CSS\Global\jquery-ui.css" />
-    <Content Include="CSS\Modules\header.css" />
-    <Content Include="CSS\Modules\menu.css" />
+    <Content Include="CSS\Global\layout.css" />
     <Content Include="CSS\Modules\split.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -281,13 +283,12 @@
     <Content Include="Images\Icons\S\share.png" />
     <Content Include="Images\Icons\S\cup.png" />
     <Content Include="Images\Icons\XS\cup.png" />
+    <Content Include="Images\SVG\leftArrow.svg" />
+    <Content Include="Images\SVG\rightArrow.svg" />
     <Content Include="JavaScript\Controllers\PlanWeek\Index.js" />
-    <Content Include="JavaScript\Controllers\Shelved.js" />
     <Content Include="JavaScript\Controllers\Tasks\Index.js" />
     <Content Include="JavaScript\Controllers\Thoughts\Index.js" />
     <Content Include="JavaScript\Controllers\Utils\Core.js" />
-    <Content Include="JavaScript\Framework\bootstrap.js" />
-    <Content Include="JavaScript\Framework\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -311,7 +312,10 @@
     <Content Include="JavaScript\Framework\respond.min.js" />
     <Content Include="JavaScript\Framework\split.js" />
     <Content Include="JavaScript\Framework\split.min.js" />
-    <Content Include="JavaScript\Menu.js" />
+    <Content Include="JavaScript\Framework\velocity.min.js" />
+    <Content Include="JavaScript\Framework\velocity.ui.js" />
+    <Content Include="JavaScript\Framework\velocity.ui.min.js" />
+    <Content Include="JavaScript\Framework\Layout.js" />
     <Content Include="NHibernate\hibernateCfgOld.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -331,7 +335,6 @@
     <Content Include="Views\Thoughts\Index.cshtml" />
     <Content Include="Views\Thoughts\_AddThought.cshtml" />
     <Content Include="Views\Thoughts\_ThoughtsTable.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\_TasksTable.cshtml" />

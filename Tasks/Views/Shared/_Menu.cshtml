@@ -1,61 +1,30 @@
-﻿<nav id="sidebar">
-    
-    <ul class="list-unstyled components">
-        <li>
-            <a href="#">
-                Plan
-            </a>
-        </li>
+﻿
+    <ul>
+        <li><a href="#">Plan</a></li>
         <li class="active">
-            <a id="#btn-menu-thoughts" data-toggle="collapse" aria-expanded="false">                
-                <img src="~/Images/Icons/S/idea.png" />@Html.ActionLink("Thoughts", "Index", "Thoughts")                
+            <a href="#">                
+                @Html.ActionLink("Thoughts", "Index", "Thoughts")
             </a>
         </li>
         <li>
             <a href="#">                
-                    <img src="~/Images/Icons/S/clipboard.png" />
-                    @Html.ActionLink("Tasks", "Index", "Tasks")                
+                @Html.ActionLink("Tasks", "Index", "Tasks")
             </a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">                
-                    <img src="~/Images/Icons/S/loop.png" />
-                    @Html.ActionLink("Habits", "Index", "Habits")                
+            <a href="#">                
+                @Html.ActionLink("Habits", "Index", "Habits")
             </a>
         </li>
         <li>
-            <a href="#">
-                <img src="~/Images/Icons/S/cup.png"/>
+            <a href="#">                
                 @Html.ActionLink("Projects", "Index", "Projects")
             </a>
         </li>
         <li>
-            <a href="#">
-                <img src="~/Images/Icons/S/calendar.png"/>
+            <a href="#">                
                 @Html.ActionLink("PlanWeek", "Index", "PlanWeek")
             </a>
         </li>
-
-        <li>
-            <a href="#">
-                Do
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                Review
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i><img src="~/Images/Icons/S/hourglass.png"/></i>
-                History
-            </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Milestones</a></li>
-                <li><a href="#">Timeline</a></li>
-            </ul>
-        </li>
     </ul>
-</nav>
+

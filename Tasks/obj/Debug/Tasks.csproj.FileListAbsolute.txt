@@ -56,3 +56,4 @@ D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks\bin\Syste
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks\obj\Debug\Tasks.dll
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks\obj\Debug\Tasks.pdb
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks\obj\Debug\Tasks.csprojResolveAssemblyReference.cache
+D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks\obj\Debug\Tasks.csproj.CoreCompileInputs.cache

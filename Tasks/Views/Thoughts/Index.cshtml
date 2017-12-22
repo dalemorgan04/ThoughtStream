@@ -3,18 +3,17 @@
 @model ThoughtsViewModel
 
 @{
-    ViewBag.Heading = "Inbox";    
+    ViewBag.Heading = "Thoughts Inbox";    
 }
 
 <!--Heading-->
 <h1>@ViewBag.Heading</h1>
 
-@Html.Partial("_AddThought", Model.NewThought);
-
+@Html.Partial("_AddThought", Model.NewThought)
+<br />
 <!--Table of Tasks-->
-<h3>Tasks</h3>
 <div id="thoughtResultsTable">
-    @Html.Partial("_ThoughtsTable",Model);    
+    @Html.Partial("_ThoughtsTable",Model)
 </div>
 
 

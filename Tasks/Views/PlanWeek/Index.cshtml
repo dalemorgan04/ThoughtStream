@@ -5,44 +5,26 @@
     ViewBag.Heading = "Plan Week";
 }
 
-<h1>@ViewBag.Heading</h1>
+<div class="plan-container debug">
 
+    <div class="plan-pane-left debug">
+        Draggable content
+    </div>
+
+    <!--Weekly tasks-->    
+    <div id="weekPlanTable" class="plan-pane-middle debug">
+        @Html.Partial("_WeekPlanTable", Model)
+    </div>
 
     
-<div class="plan-container">
+    <!--End of Weekly Tasks -->
 
-        <!--Weekly tasks-->
-        <div class="plan-item">
-            
-            
-
-                <div class="plan-item">
-                    <div class="panel plan-panel">
-                        <div class="panel-body">
-                            Test two
-                        </div>
-                    </div>
-                </div>
-
-
-                <!--Days-->
-                <div class="plan-item">
-                    <div id="weekPlanTable" class="plan-item plan-week">
-                        @Html.Partial("_WeekPlanTable", Model)
-                    </div>
-                </div>
-        </div>
-
-        <!--End of Weekly Tasks -->
-        <!--Side panel with draggable items-->
-        <div class="plan-item">
-            <div class="panel plan-panel">
-                <div class="panel-body">
-                    Draggable content
-                </div>
-            </div>
-        </div>
-        <!--End of Side panel-->
-    
+    <div class="plan-pane-right debug">
+        Draggable content
+    </div>
 
 </div>
+
+        <!--Side panel with draggable items-->
+
+<!--End of Side panel-->

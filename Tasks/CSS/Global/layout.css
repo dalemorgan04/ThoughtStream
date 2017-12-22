@@ -1,0 +1,513 @@
+﻿/******************************************
+*
+*        Developed by Dale Morgan
+*         dalemoragn04@gmail.com
+*
+*******************************************/
+
+
+/*
+* ==================== GLOBAL VARIABLES ====================
+*/
+
+:root {
+    /* --- Global themes --- */
+    --theme-green: #16e280;
+    --theme-green-light: #30ff9b;
+    --theme-green-xlight: #7fffc1;
+    --theme-green-dark: #15d87a;
+    --theme-blue-light: #00ffed;
+    --theme-blue: #00E5D6;
+    --theme-blue-dark: #00D8CA;
+    --theme-white: #f7f7f7;
+    --theme-grey: #e5e9ec;
+    --theme-grey-dark: #626466;
+    --theme-black: #363537;
+    --theme-red: #ee6055;
+    --theme-font-text: 'Scope One', serif;
+    --theme-font-heading: 'Spectral SC', serif;
+    /* --- Layout Specific Themes --- */
+    /*Site*/
+    --card-bg-color: var(--theme-white);
+    --text-color: var(--theme-black);
+    --text-font: var(--theme-font-text);
+    /*Header*/
+    --header-font: var(--theme-font-heading);
+    --header-font-color: var(--theme-green-dark);
+    --header-logo-font-color: var(--theme-grey-dark);
+    /*Footer*/
+    --footer-text-color: var(--theme-grey-dark);
+    /*Nav*/
+    --nav-bg-color: var(--theme-white);
+    --nav-inactive-color: var(--theme-grey-dark);
+    --nav-active-color: var(--theme-blue-dark);
+    --nav-active-font: var(--theme-font-heading);
+    --nav-tab-inactive-bg-color: var(--theme-blue-light);
+    --nav-tab-active-bg-color: var(--theme-blue-dark);
+    --nav-tab-hover-bg-color: var(--theme-blue);
+    /*Aside*/
+    --aside-bg-color: var(--theme-white);
+    --aside-tab-inactive-bg-color: var(--theme-green-light);
+    --aside-tab-active-bg-color: var(--theme-white);
+    --aside-tab-hover-bg-color: var(--theme-green-dark);
+    /*Article*/
+    --article-bg-color: var(--theme-grey);
+    /*Shadow*/
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-header: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-active-tab: -3px 5px 5px -3px rgba(0,0,0,0.16), -3px 5px 5px -3px rgba(0,0,0,0.23);
+}
+
+
+/*
+* ==================== LAYOUT GRID ====================
+*/
+html, body {
+    /*Fill view height and width*/
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0; /*Body has default margins on all browsers*/
+    text-align: center;
+    background: var(--article-bg-color);
+    color: var(--text-color);
+    font-family: var(--text-font);
+    font-size: 12px;
+    min-width: 450px;    
+}
+
+h1 {
+    font-family: var(--header-font);
+    color: var(--header-logo-font-color);
+    text-decoration: underline;
+}
+
+h2, h3 {
+    font-family: var(--header-font);
+    color: var(--header-font-color);
+}
+
+#body-grid {
+    /*Set up grid*/
+    display: grid;
+    margin: 0;
+    /*Column and row sizes*/
+    grid-template-columns: 200px auto 250px;
+    grid-template-rows: 60px auto auto;
+    /*Fill view height and width*/
+    width: 100%;
+    height: 100%;
+    /*Named grid layout*/
+    grid-template-areas: "header header header" "nav article aside" "nav footer aside";
+}
+
+header {
+    /*Grid name*/
+    grid-area: header;
+    /* Start on Row 1 */
+    grid-row: 1;
+}
+
+/*Left sidebar*/
+nav {
+    /*Gid name*/
+    grid-area: nav;
+    /* Start on Row 2 */
+    grid-row: 2 / 3;
+    /* Start on the first column line and stop at the next column line */
+    grid-column: 1 / 2;
+}
+
+article {
+    /*Grid name*/
+    grid-area: article;
+    /* Start on Row 2 */
+    grid-row: 2;
+    /* Start on the second column line and stop at the third column line */
+    grid-column: 2 / 3;
+}
+
+/*Right sidebar*/
+aside {
+    /*Gid name*/
+    grid-area: aside;
+    /* Start on Row 2 */
+    grid-row: 2 / 3;
+    /* Start on the third column line and stop at the last column line */
+    grid-column: 3 / 4;
+}
+
+footer {
+    /*Grid name*/
+    grid-area: footer;
+    /* Start on Row 3, the last row */
+    grid-row: 3;
+}
+
+header, footer {
+    /*Span both across screen width*/
+    grid-column: 1 / 4;
+}
+
+
+/*
+* ==================== STYLING ====================
+*/
+
+
+/*
+* ---------- Article ----------
+*/
+
+article {
+    background: var(--article-bg-color);
+    z-index: 10;
+}
+
+
+/*
+* ---------- Header ----------
+*/
+
+header {
+    z-index: 30;
+    min-width: 450px;
+    /*Shadow maximium height*/
+    -moz-box-shadow: var(--shadow-header);
+    -webkit-box-shadow: var(--shadow-header);
+    box-shadow: var(--shadow-header);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00ffed+0,30ff9b+50,16e280+100 */
+    background: #00ffed; /* Old browsers */
+    background: -moz-linear-gradient(left, #00ffed 0%, #30ff9b 50%, #16e280 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #00ffed 0%,#30ff9b 50%,#16e280 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #00ffed 0%,#30ff9b 50%,#16e280 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffed', endColorstr='#16e280',GradientType=1 ); /* IE6-9 */
+}
+
+    header > .header-container {
+        display: flex;
+        height: 60px;
+        align-items: center;
+    }
+
+        header > .header-container > .header-section-center {
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding: 5px;
+        }
+
+        header > .header-container > .header-section-right,
+        header > .header-container > .header-section-left {
+            /*as a flex item*/
+            flex-grow: 1;
+            max-width: 200px;
+            min-width: 40px;
+            /*as a flex container*/
+            display: flex;
+            flex-direction: row;
+            height: 60px;
+            align-items: stretch;
+            justify-content: space-around;
+            cursor: pointer;
+        }
+
+
+/*
+* ---------- Footer ----------
+*/
+
+footer {
+    background: Var(--article-bg-color);
+    z-index: 0;
+    color: var(--footer-text-color);
+    display:flex;
+    flex-direction:column;
+    flex: 1 1 40px;
+}
+    footer > footer-content {
+        flex: 1 1 auto;
+    }
+
+    /*Separator between article and footer*/
+    footer #hr-footer {
+        border: 0;
+        height: 1px;
+        width: 50%;
+        /* Old gradient colour http://colorzilla.com/gradient-editor/#e5e9ec+0,00ffed+35,16e280+50,30ff9b+65,e5e9ec+100 */
+        /* Gradient colour: http://colorzilla.com/gradient-editor/#e5e9ec+0,626466+50,e5e9ec+100 */
+        background: #e5e9ec; /* Old browsers */
+        background: -moz-linear-gradient(left, #e5e9ec 0%, #626466 50%, #e5e9ec 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e9ec', endColorstr='#e5e9ec',GradientType=1 ); /* IE6-9 */
+    }
+
+
+/*
+* ---------- Navbar ----------
+*/
+
+nav {
+    z-index: 20;
+    background: var(--article-bg-color);
+}
+
+    nav > .nav-container {
+        display: grid;
+        grid-template-columns: auto 50px;
+        grid-template-rows: auto;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 10px;
+    }
+
+        /* Menu Content */
+
+        nav > .nav-container > .nav-content {
+            z-index: 25;
+            grid-column: 1 / 1;
+            grid-row: 1;
+            background: var(--aside-bg-color);
+            padding: 10px;
+            /*Shadow middle height*/
+            -moz-box-shadow: var(--shadow-side);
+            -webkit-box-shadow: var(--shadow-side);
+            box-shadow: var(--shadow-side);
+        }
+
+            nav > .nav-container > .nav-content > ul {
+                margin: 5px;
+                margin-top: 15px;
+                padding: 0;
+                min-width: 0;
+                display: flex;
+                flex-shrink: 1;
+                flex-direction: column;
+                flex-grow: 1;
+                align-items: stretch;
+            }
+
+                nav > .nav-container > .nav-content > ul > li {
+                    list-style-type: none;
+                    justify-content: center;
+                    min-width: 0px;
+                    height: 30px;
+                    font-family: var(--nav-active-font);
+                    color: var(--nav-inactive-color);
+                    cursor: pointer;
+                }
+
+                    nav > .nav-container > .nav-content > ul > li.active {
+                        color: var(--nav-active-color);
+                        font-size: larger;
+                        font-weight: bold;
+                        text-decoration: underline;
+                    }
+
+
+        /* Tabs */
+
+        nav > .nav-container > .nav-tabs {
+            grid-column: 2 / 2;
+            grid-row: 1;
+            background: var(--article-bg-color);
+        }
+
+            nav > .nav-container > .nav-tabs > ul {
+                z-index: 24;
+                margin: 0;
+                padding: 0;
+                margin-top: 30px;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column-reverse;
+            }
+
+                nav > .nav-container > .nav-tabs > ul > li {
+                    list-style-type: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 80px;
+                    margin-top: -10px;
+                    margin-left: -10px;
+                    font-family: var(--theme-font-text);
+                    color: var(--text-font);
+                    cursor: pointer;
+                    background: var(--nav-tab-inactive-bg-color);
+                    /*Shadow middle height*/
+                    -moz-box-shadow: var(--shadow-card);
+                    -webkit-box-shadow: var(--shadow-card);
+                    box-shadow: var(--shadow-card);
+                    /*Slant*/
+                    transform: skewX(-15deg);
+                    /*Transition*/
+                    -moz-transition: all .15s ease-in;
+                    -o-transition: all .15s ease-in;
+                    -webkit-transition: all .15s ease-in;
+                    transition: all .15s ease-in;
+                }
+
+                    nav > .nav-container > .nav-tabs > ul > li:not(.active):hover {
+                        background: var(--nav-tab-hover-bg-color);
+                        width: 70px;
+                        /*Transition*/
+                        -moz-transition: all .3s linear;
+                        -o-transition: all .3s linear;
+                        -webkit-transition: all .3s linear;
+                        transition: all .3s linear;
+                    }
+
+                    nav > .nav-container > .nav-tabs > ul > li.active {
+                        position: relative;
+                        margin-right: -5px;
+                        border-right: 5px solid var(--nav-tab-active-bg-color);
+                        background: var(--nav-tab-active-bg-color);
+                        /*Shadow middle height*/
+                        -moz-box-shadow: var(--shadow-active-tab);
+                        -webkit-box-shadow: var(--shadow-active-tab);
+                        box-shadow: var(--shadow-active-tab);
+                        /*Transition*/
+                        -moz-transition: all 0s linear;
+                        -o-transition: all 0s linear;
+                        -webkit-transition: all 0s linear;
+                        transition: all 0s linear;
+                    }
+
+
+/*
+* ---------- Sidebar ----------
+*/
+
+aside {
+    z-index: 20;
+    background: var(--article-bg-color);
+}
+
+    aside > .aside-container {
+        display: grid;
+        grid-template-columns: 30px auto;
+        grid-template-rows: auto;
+        height: 100%;
+        width: 100%;
+        float: right;
+        padding-bottom: 10px;
+        padding-left: 5px;
+    }
+
+        aside > .aside-container > .aside-content {
+            z-index: 25;
+            grid-column: 2 / 3;
+            grid-row: 1;
+            background: var(--aside-bg-color);
+            padding: 10px;
+            /*Shadow middle height*/
+            -moz-box-shadow: var(--shadow-side);
+            -webkit-box-shadow: var(--shadow-side);
+            box-shadow: var(--shadow-side);
+        }
+
+        aside > .aside-container > .aside-tabs {
+            grid-column: 1 / 2;
+            grid-row: 1;
+            background: var(--article-bg-color);
+        }
+
+            aside > .aside-container > .aside-tabs > ul {
+                z-index: 24;
+                margin: 0;
+                padding: 0;
+                margin-top: 30px;
+                display: flex;
+                align-items: flex-end;
+                flex-direction: column-reverse;
+            }
+
+                aside > .aside-container > .aside-tabs > ul > li {
+                    list-style-type: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 80px;
+                    margin-top: -10px;
+                    font-size: 1.1em;
+                    font-family: var(--theme-font-text);
+                    color: var(--text-font);
+                    cursor: pointer;
+                    background: var(--aside-tab-inactive-bg-color);
+                    /*Shadow middle height*/
+                    -moz-box-shadow: var(--shadow-card);
+                    -webkit-box-shadow: var(--shadow-card);
+                    box-shadow: var(--shadow-card);
+                    /*Rounded corners*/
+                    -webkit-border-radius: 30px 0 0 15px;
+                    border-radius: 30px 0 0 15px; /* future proofing */
+                    -moz-border-radius: 15px 0 0 15px;
+                    /*Transition*/
+                    -moz-transition: all .15s ease-in;
+                    -o-transition: all .15s ease-in;
+                    -webkit-transition: all .15s ease-in;
+                    transition: all .15s ease-in;
+                }
+
+                    aside > .aside-container > .aside-tabs > ul > li:not(.active):hover {
+                        background: var(--aside-tab-hover-bg-color);
+                        /*Transition*/
+                        -moz-transition: all 0s linear;
+                        -o-transition: all 0s linear;
+                        -webkit-transition: all 0s linear;
+                        transition: all 0s linear;
+                    }
+
+                    aside > .aside-container > .aside-tabs > ul > li.active {
+                        z-index: 26;
+                        position: relative;
+                        margin-right: -5px;
+                        border-right: 5px solid var(--aside-tab-active-bg-color);
+                        background: var(--aside-tab-active-bg-color);
+                        /*Shadow middle height*/
+                        -moz-box-shadow: var(--shadow-active-tab);
+                        -webkit-box-shadow: var(--shadow-active-tab);
+                        box-shadow: var(--shadow-active-tab);
+                        /*Transition*/
+                        -moz-transition: all 0s linear;
+                        -o-transition: all 0s linear;
+                        -webkit-transition: all 0s linear;
+                        transition: all 0s linear;
+                    }
+
+/*
+* ---------- Rotatables ----------
+*/
+
+.rotate {
+    z-index: inherit;
+    /* Safari */
+    -webkit-transform: rotate(270deg);
+    /* Firefox */
+    -moz-transform: rotate(270deg);
+    /* IE */
+    -ms-transform: rotate(270deg);
+    /* Opera */
+    -o-transform: rotate(270deg);
+}
+
+
+/*
+* ---------- Unselectables----------
+*/
+
+h1, img, .rotate {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}

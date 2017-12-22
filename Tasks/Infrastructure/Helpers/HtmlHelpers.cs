@@ -12,11 +12,8 @@ namespace Tasks.Infrastructure.Helpers
     {
         private const string includeJavascriptFormatString = "\t<script type=\"text/javascript\" src=\"{0}\"></script>\r\n";
 
-        /// <summary>
-        /// Will include the matching javascript file taken from /Javascript/Controllers/{Controller}/{Action}
-        /// </summary>
-        /// <param name="htmlHelper"></param>
-        /// <returns></returns>
+        private const string cssIncludeKey = "CSSIncludes";
+        
         public static MvcHtmlString ViewJavascriptResource(this HtmlHelper htmlHelper)
         {
             var action = htmlHelper.ViewContext.RouteData.Values["action"];
@@ -28,5 +25,44 @@ namespace Tasks.Infrastructure.Helpers
 
             return MvcHtmlString.Create(includeFile.ToString());
         }
+        public static   MvcHtmlString ViewStylesheetResource(this HtmlHelper htmlHelper)
+        {
+            string controllerOverride = htmlHelper.ViewBag.CssControllerOverride;
+            var httpContext = htmlHelper.ViewContext.HttpContext;
+            var action = htmlHelper.ViewContext.RouteData.Values["action"];
+            var controller = controllerOverride ?? htmlHelper.ViewContext.RouteData.Values["controller"];
+
+            string targetFile = string.Format("~/CSS/Controllers/{0}.css", controller);
+
+            targetFile = UrlHelper.GenerateContentUrl(targetFile, httpContext);
+
+            string actualFile = htmlHelper.ViewContext.HttpContext.Server.MapPath(targetFile);
+
+            if (!File.Exists(actualFile))
+            {
+                return MvcHtmlString.Empty;
+            }
+
+            var includeFile = new StringBuilder(string.Format("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"{0}\" />\r\n", targetFile));
+
+            // Search for CSS resources for partial controls that might be contained in this page
+            List<string> cssResourceFiles = null;
+
+            if (httpContext.Items.Contains(cssIncludeKey))
+            {
+                cssResourceFiles = (List<string>)httpContext.Items[cssIncludeKey];
+            }
+
+            if (cssResourceFiles != null && cssResourceFiles.Count > 0)
+            {
+                foreach (var file in cssResourceFiles)
+                {
+                    includeFile.AppendFormat("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"{0}\" />\r\n", file);
+                }
+            }
+
+            return MvcHtmlString.Create(includeFile.ToString());
+        }
+
     }
 }

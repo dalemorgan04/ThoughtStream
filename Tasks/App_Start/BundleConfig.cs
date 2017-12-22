@@ -9,34 +9,34 @@ namespace Tasks
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/JavaScript/Framework/jquery-{version}.js",
-                        "~/JavaScript/Framework/jquery-ui-{version}.js",
-                        "~/JavaScript/Framework/jquery.nicescroll.min.js"));
+                    "~/JavaScript/Framework/jquery-{version}.js",
+                    "~/JavaScript/Framework/jquery-ui-{version}.js",
+                    "~/JavaScript/Framework/jquery.nicescroll.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/JavaScript/Framework/jquery.validate*"));
+                    "~/JavaScript/Framework/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/JavaScript/Framework/modernizr-*"));
+                    "~/JavaScript/Framework/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/JavaScript/Framework/bootstrap.js",
-                      "~/JavaScript/Framework/respond.js",
-                      "~/JavaScript/Framework/split.js"));
+                    "~/JavaScript/Framework/bootstrap.js",
+                    "~/JavaScript/Framework/respond.js",
+                    "~/JavaScript/Framework/split.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/core").Include(
-                      "~/JavaScript/Controllers/Utils/Core.js",                      
-                      "~/JavaScript/Menu.js"));
+                    "~/JavaScript/Controllers/Utils/Core.js",
+                    "~/JavaScript/Framework/velocity.min.js",
+                    "~/JavaScript/Framework/velocity.ui.js",
+                    "~/JavaScript/Framework/Layout.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(                                            
-                      "~/CSS/Global/bootstrap.css",
-                      "~/CSS/Global/jquery-ui.css",
-                      "~/CSS/Modules/split.css",
-                      "~/CSS/Modules/menu.css",
-                      "~/CSS/Modules/header.css",
-                      "~/CSS/Global/global.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(                    
+                    "~/CSS/Global/bootstrap.css",
+                    "~/CSS/Global/jquery-ui.css",
+                    "~/CSS/Global/layout.css",
+                    "~/CSS/Global/content.css"));
         }
     }
 }
