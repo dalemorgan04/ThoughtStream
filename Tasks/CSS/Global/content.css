@@ -24,7 +24,7 @@
     /*Button*/
     --button-bg-color: var(--theme-green-light);
     --button-hover-bg-color: var(--theme-green);
-    --button-font: var(--theme-font);
+    --button-font: var(--theme-font-text);
     --button-font-color: var(--theme-black);
     --button-font-size: 12px;
     /*Forms*/
@@ -127,6 +127,12 @@ button {
     -webkit-transition: all .15s ease-in;
     transition: all .15s ease-in;
 }
+
+.table {
+    
+}
+
+
 
 /*
 * ==================== FORMS ====================

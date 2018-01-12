@@ -5,26 +5,27 @@
     ViewBag.Heading = "Plan Week";
 }
 
-<div class="plan-container debug">
-
-    <div class="plan-pane-left debug">
-        Draggable content
-    </div>
-
-    <!--Weekly tasks-->    
-    <div id="weekPlanTable" class="plan-pane-middle debug">
-        @Html.Partial("_WeekPlanTable", Model)
-    </div>
-
-    
-    <!--End of Weekly Tasks -->
-
-    <div class="plan-pane-right debug">
-        Draggable content
-    </div>
-
+<!--Open Items-->
+<div id="open-container">
+    @Html.Partial("_WeekPlanTable", Model.weekItemLists)
 </div>
 
-        <!--Side panel with draggable items-->
+<!--In Week Items-->
+<div id="week-container">
+    @Html.Partial("_WeekPlanTable", Model.weekItemLists)
+</div>
 
-<!--End of Side panel-->
+
+    
+
+
+    <!--
+        Toolbar Pane
+            Selected Item
+            Thoughts - Choose order
+            Tasks - Due order, Overdue
+            Habits - Next due date
+            Projects
+    -->
+
+

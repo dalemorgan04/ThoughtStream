@@ -1,3 +1,5 @@
+D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\obj\Debug\Tasks.Tests.csproj.CoreCompileInputs.cache
+D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\obj\Debug\Tasks.Tests.csprojResolveAssemblyReference.cache
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin\Debug\ApplicationInsights.config
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin\Debug\Tasks.Tests.dll.config
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin\Debug\Tasks.Tests.dll
@@ -34,6 +36,5 @@ D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin\Debug\FluentNHibernate.xml
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin\Debug\NHibernate.xml
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\bin\Debug\Castle.Core.xml
-D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\obj\Debug\Tasks.Tests.csprojResolveAssemblyReference.cache
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\obj\Debug\Tasks.Tests.dll
 D:\Users\Dale.Morgan\Documents\Visual Studio 2017\Projects\Tasks\Tasks.Tests\obj\Debug\Tasks.Tests.pdb

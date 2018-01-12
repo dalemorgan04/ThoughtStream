@@ -10,7 +10,7 @@ namespace Tasks.Models.DomainModels.Tasks.Spec
     public class TaskOnDaySpec : ExpressionSpecificationBase<Task>
     {
         private readonly DateTime date;
-        public TaskOnDaySpec(DateTime date)
+        public TaskOnDaySpec(DateTime date) 
         {
             this.date = date;
         }

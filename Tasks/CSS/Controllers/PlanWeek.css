@@ -1,0 +1,40 @@
+﻿#content {
+    /*Grid*/
+    display: grid;
+    grid-template-columns: [open] 20% [weekly] 80% [end];
+    grid-template-rows: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#open-container {
+    grid-column-start: open;
+    grid-column-end: weekly;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    min-width: 20%;
+    overflow-y: scroll;
+}
+
+/*
+#week-container {
+    width: 100%;
+    height: 100%;
+    /*Grid item
+    margin: 10px;
+    grid-column-start: weekly;
+    grid-column-end: end;
+    /*Flex container
+    display: grid;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    min-width: 30px;
+    overflow-y: scroll;
+}
+
+*/

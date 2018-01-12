@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Tasks.Infrastructure.Extension;
 using Tasks.Models.DomainModels;
 using Tasks.Models.DomainModels.Habits.Entity;
 using Tasks.Models.DomainModels.Tasks.Spec;
@@ -13,9 +13,9 @@ namespace Tasks.Service.PlanWeek
 {
     public class PlanWeekService : IPlanWeekService
     {
-        ISpecificationRepository<Task, int> taskRepository;
-        ISpecificationRepository<Habit, int> habitRepository;
-        IHabitRepository habitSqlRepository;
+        private readonly ISpecificationRepository<Task, int> taskRepository;
+        private readonly ISpecificationRepository<Habit, int> habitRepository;
+        private readonly IHabitRepository habitSqlRepository;
 
         public PlanWeekService(
             ISpecificationRepository<Task, int> taskRepository,
@@ -27,25 +27,69 @@ namespace Tasks.Service.PlanWeek
             this.habitSqlRepository = habitSqlRepository;
         }
 
-        public WeekPlanDto GetCurrentWeekPlan()
+        public Dictionary<DayOfWeek, ItemListDto> GetCurrentWeekItems()
         {
-            WeekPlanDto weekPlan = new WeekPlanDto()
-            {
-                DayPlans = new List<DayPlanDto>()
-            };
-            for ( int i = 0; i < 7 ;i++  )
-            {
-                DateTime date = DateTime.Now.AddDays(i);
-                weekPlan.DayPlans.Add(GetDayPlan(date));
-            }
-            return weekPlan;
+            return GetWeekItems(DateTime.Now.StartOfWeek(DayOfWeek.Monday));
         }
 
-        private DayPlanDto GetDayPlan(DateTime date)
+        public Dictionary<DayOfWeek, ItemListDto> GetWeekItems(DateTime weekCommencingDate)
         {
-            DayPlanDto dayPlan = new DayPlanDto()
+            Dictionary<DayOfWeek, ItemListDto> weekList = new Dictionary<DayOfWeek, ItemListDto>(); //Each day will be a new list
+
+            /* Pulls the next 7 days after the given date
+             * Allowing flexibility in choosing the commence date
+             * for the possibility of the user setting when 
+             * the week start date could be i.e Monday or Sunday 
+             */
+            
+            for (int i = 0; i < 7; i++)
             {
-                Items = new List<DayPlanItemDto>()
+                DateTime date = weekCommencingDate.AddDays(i);
+                weekList.Add(date.DayOfWeek, GetDayItems(date));
+            }
+            return weekList;
+        }
+
+        public Dictionary<TimeFrameType, ItemListDto> GetCurrentOpenItems()
+        {
+            return GetOpenItems(DateTime.Today);
+        }
+
+        public Dictionary<TimeFrameType, ItemListDto> GetOpenItems(DateTime date)
+        {
+            ItemListDto allItems = GetDayItems(date);
+            Dictionary<TimeFrameType, ItemListDto> openItemLists = new Dictionary<TimeFrameType, ItemListDto>();
+
+            //Week
+            ItemListDto weekItems = new ItemListDto()
+            {
+                ItemDtos = new List<ItemDto>()
+            };
+            //Month
+            ItemListDto monthItems = new ItemListDto()
+            {
+                ItemDtos = new List<ItemDto>()
+            };
+            //Year
+            ItemListDto yearItems = new ItemListDto()
+            {
+                ItemDtos = new List<ItemDto>()
+            };
+
+            //Open
+            ItemListDto openItems = new ItemListDto()
+            {
+                ItemDtos = new List<ItemDto>()
+            };
+
+            return openItemLists;
+        }
+
+        public ItemListDto GetDayItems(DateTime date)
+        {
+            ItemListDto itemList = new ItemListDto()
+            {
+                ItemDtos = new List<ItemDto>()
             };
 
             //Tasks
@@ -54,13 +98,13 @@ namespace Tasks.Service.PlanWeek
                                         .ToList();
             foreach (Task task in tasks)
             {
-                DayPlanItemDto item = new DayPlanItemDto()
+                ItemDto item = new ItemDto()
                 {
                     Id = task.Id,
                     Description = task.Description,
                     Type = "Task"
                 };
-                dayPlan.Items.Add(item);
+                itemList.ItemDtos.Add(item);
             }
 
             //Habits
@@ -68,16 +112,16 @@ namespace Tasks.Service.PlanWeek
             List<Habit> habits = habitRepository.Get(habitIds).ToList();
             foreach (Habit habit in habits)
             {
-                DayPlanItemDto item = new DayPlanItemDto()
+                ItemDto item = new ItemDto()
                 {
                     Id = habit.Id,
                     Description = habit.Description,
                     Type = "Habit"
                 };
-                dayPlan.Items.Add(item);
+                itemList.ItemDtos.Add(item);
             }
 
-            return dayPlan;
+            return itemList;
         }
     }
 }
