@@ -8,3 +8,8 @@ Split(['#weekPlan', '#draggables'], {
     minSize: 75
 });
 */
+
+$('#open-container').niceScroll({
+    cursorcolor: "aquamarine",
+    cursorwidth: "16px"
+});
