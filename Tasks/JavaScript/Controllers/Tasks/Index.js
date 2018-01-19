@@ -1,9 +1,9 @@
 ﻿$(function () {
-    pubsub.init();
-    pubsub.applyBindings();
+    tasksPubsub.init();
+    tasksPubsub.applyBindings();
 });
 
-var pubsub = {
+var tasksPubsub = {
     getThougtId: function(e) { return $(e.target).closest('tr')[0].dataset.thoughtid; },
 
     urls: {
@@ -22,27 +22,27 @@ var pubsub = {
     },
 
     getTasksTable: function() {
-        $.post(pubsub.urls.GetTasksTable,
+        $.post(tasksPubsub.urls.GetTasksTable,
             function(resultHtml) {
                 $('#taskResultsTable').html(resultHtml);
-                pubsub.init();
+                tasksPubsub.init();
             });
     },
 
     saveTask: function() {
         e.preventDefault();
         var viewModel = $('#addTaskForm').serialize();
-        $.post(pubsub.urls.SaveThought,
+        $.post(tasksPubsub.urls.SaveThought,
             viewModel,
             function(result) {
                 if (result == "True" || result === true) {
-                    pubsub.getThoughtsTable();
+                    tasksPubsub.getThoughtsTable();
                 }
             });
     },
 
     ShowAddTaskPopup: function(e) {
-        $.post(pubsub.urls.GetAddTaskPopup,
+        $.post(tasksPubsub.urls.GetAddTaskPopup,
             function (popupHtml) {
                 $('#addTaskContainer').html(popupHtml);
                 $('#addTaskModal').modal();

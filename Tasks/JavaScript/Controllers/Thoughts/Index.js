@@ -1,9 +1,9 @@
 ﻿$(function () {
-    pubsub.init();
-    pubsub.applyBindings();
+    thoughtsPubsub.init();
+    thoughtsPubsub.applyBindings();
 });
 
-var pubsub = {
+var thoughtsPubsub = {
 
     getThougtId: function (e) { return $(e.target).closest('tr')[0].dataset.thoughtid; },
 
@@ -35,11 +35,11 @@ var pubsub = {
                         moveToSortId = 1 + (+ prevRow.dataset.sortid);    
                     }
                 };
-                $.post(pubsub.urls.MoveThought,
+                $.post(thoughtsPubsub.urls.MoveThought,
                     { thoughtId: thoughtId , moveToSortId: moveToSortId},
                     function(result) {
                         if (result == "True" || result === true) {
-                            pubsub.getThoughtsTable();
+                            thoughtsPubsub.getThoughtsTable();
                         }
                     }
                 );
@@ -58,30 +58,30 @@ var pubsub = {
 
     deleteThought: function(e) {
         $.post(
-            pubsub.urls.DeleteThought,
-            { thoughtId: pubsub.getThougtId(e) },
+            thoughtsPubsub.urls.DeleteThought,
+            { thoughtId: thoughtsPubsub.getThougtId(e) },
             function(result) {
                 if (result == "True" || result === true) {
-                    pubsub.getThoughtsTable();
+                    thoughtsPubsub.getThoughtsTable();
                 }
             });
     },
 
     getThoughtsTable: function() {
-        $.post(pubsub.urls.GetThoughtsTable,
+        $.post(thoughtsPubsub.urls.GetThoughtsTable,
             function(resultHtml) {
                 $('#thoughtResultsTable').html(resultHtml);
-                pubsub.init();
+                thoughtsPubsub.init();
             });
     },
       
     saveThought: function (e) {
         e.preventDefault();
         var viewModel = $('#addThoughtForm').serialize();
-        $.post(pubsub.urls.SaveThought, viewModel,
+        $.post(thoughtsPubsub.urls.SaveThought, viewModel,
             function(result) {
                 if (result == "True" || result === true) {
-                    pubsub.getThoughtsTable();
+                    thoughtsPubsub.getThoughtsTable();
                 }
             });
     },
