@@ -14,6 +14,14 @@ var planWeekPubsub = {
             smoothscroll: true,
             railalign: 'left'
         });
+
+        $('#week-container').niceScroll({
+            cursorcolor: "aquamarine",
+            cursorwidth: "16px",
+            bouncescroll: true,
+            smoothscroll: true,
+            railalign: 'left'
+        });
         /*
             Implement when divs are finished
             Split(['#weekPlan', '#draggables'], {
