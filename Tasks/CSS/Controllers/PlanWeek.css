@@ -3,8 +3,10 @@
     display: grid;
     grid-template-columns: [open] 20% [weekly] 80% [end];
     grid-template-rows: auto;
+    grid-column-gap: 5px;
     width: 100%;
     height: 100%;
+    
 }
 
 #open-container {
@@ -15,6 +17,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
+    padding: 5px;    
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
     /*
     display: flex;
     flex: 1 1 0;
@@ -25,20 +30,21 @@
     */
 }
 
+    #open-container.card {
 
+    }
+    
 #week-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    /*Grid item*/
-    margin: 10px;
-    grid-column-start: weekly;
-    grid-column-end: end;
-    /*Flex container*/
-    display: grid;
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-    min-width: 30px;
-    overflow-y: scroll;
-}
+        position: relative;
+        width: auto;
+        height: auto;
+        /*Grid item*/
+        grid-column-start: weekly;
+        grid-column-end: end;
+        /*Flex container*/
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: row;
+        min-width: 30px;
+        overflow-y: scroll;
+    }
