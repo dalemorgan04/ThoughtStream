@@ -115,6 +115,7 @@ button {
     background: var(--card-bg-color);
     padding: 10px;    
     padding-bottom: 20px;
+    margin: 10px;
     margin-bottom:15px;
 
     /*Shadow card height*/
@@ -131,7 +132,6 @@ button {
 .table {
     
 }
-
 
 
 /*
@@ -184,6 +184,37 @@ button {
     transition: border-color ease-in-out .3s, box-shadow ease-in-out .15s;
 }
 
+/*
+* ---------- Separator ----------
+*/
+
+
+.hr-horizontal{
+    border: 0;
+    height: 1px;
+    width: 80%;
+    /* Old gradient colour http://colorzilla.com/gradient-editor/#e5e9ec+0,00ffed+35,16e280+50,30ff9b+65,e5e9ec+100 */
+    /* Gradient colour: http://colorzilla.com/gradient-editor/#e5e9ec+0,626466+50,e5e9ec+100 */
+    background: #e5e9ec; /* Old browsers */
+    background: -moz-linear-gradient(left, #e5e9ec 0%, #626466 50%, #e5e9ec 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e9ec', endColorstr='#e5e9ec',GradientType=1 ); /* IE6-9 */
+}
+
+.hr-vertical{
+    border: 0;
+    height: 80%;
+    width: 1px;
+    /* Gradient color: http://colorzilla.com/gradient-editor/#e5e9ec+0,626466+50,e5e9ec+100 */
+    background: #e5e9ec; /* Old browsers */
+    background: -moz-linear-gradient(top, #e5e9ec 0%, #626466 50%, #e5e9ec 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e9ec', endColorstr='#e5e9ec',GradientType=0 ); /* IE6-9 */
+    align-self: center;
+    justify-self: center;
+}
 
 /*
 * ==================== TABLE ====================

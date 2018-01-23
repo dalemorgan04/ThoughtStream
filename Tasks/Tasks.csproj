@@ -349,7 +349,8 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\_ProjectsTable.cshtml" />
     <Content Include="Views\PlanWeek\Index.cshtml" />
-    <Content Include="Views\PlanWeek\_WeekPlanTable.cshtml" />
+    <Content Include="Views\PlanWeek\_WeekItemsTable.cshtml" />
+    <Content Include="Views\PlanWeek\_OpenItemsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ScheduleWeek\" />

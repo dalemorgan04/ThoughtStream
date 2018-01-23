@@ -3,19 +3,23 @@
 @model Dictionary<DayOfWeek, ItemListDto> 
 
 <!--Days-->
-@foreach (KeyValuePair<DayOfWeek, ItemListDto> day in Model)
-{
-    <div class="card">
-        <h1>@day.Key.ToString()</h1>
-        <table>
-            <thead>
+<div class="heading">
+    <h1>In Week Items</h1>    
+</div>
+<div class="plan">
+    @foreach (KeyValuePair<DayOfWeek, ItemListDto> day in Model)
+    {
+        <div class="day card">
+            <h1>@day.Key.ToString()</h1>
+            <table>
+                <thead>
                 <tr>
                     <th>Id</th>
                     <th>Description</th>
                     <th>Type</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach (ItemDto item in day.Value.ItemDtos)
                 {
                     <tr data-taskid="@item.Id">
@@ -24,8 +28,8 @@
                         <td> @item.Type </td>
                     </tr>
                 }
-            </tbody>
-        </table>
-    </div>
-}
-
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

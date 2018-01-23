@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../../framework/jquery.nicescroll.js" />
+
 
 $(function() {
     planWeekPubsub.init();
@@ -7,20 +8,25 @@ $(function() {
 var planWeekPubsub = {
 
     init: function () {
-        $('#open-container').niceScroll({
-            cursorcolor: "aquamarine",
-            cursorwidth: "16px",
+        $('#open-container .plan .card').niceScroll('.list',{
+            cursorcolor: 'aquamarine',
+            cursorborder: '0px transparent',
+            cursorwidth: '10px',
             bouncescroll: true,
             smoothscroll: true,
             railalign: 'left'
         });
+        /*$('#week-container .plan').niceScroll(".card");*/
 
-        $('#week-container').niceScroll({
-            cursorcolor: "aquamarine",
-            cursorwidth: "16px",
+        
+        $('#week-container .plan').niceScroll({
+            cursorcolor: 'aquamarine',
+            cursorwidth: '1px',
             bouncescroll: true,
             smoothscroll: true,
-            railalign: 'left'
+            railalign: 'left',
+            railpadding: {left:10}
+
         });
         /*
             Implement when divs are finished

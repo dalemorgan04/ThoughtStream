@@ -1,50 +1,91 @@
 ﻿#content {
     /*Grid*/
     display: grid;
-    grid-template-columns: [open] 20% [weekly] 80% [end];
-    grid-template-rows: auto;
+    grid-template-columns: [open] auto [separator] 10px [weekly] 85% [end];
+    grid-template-rows: 100%;
     grid-column-gap: 5px;
     width: 100%;
     height: 100%;
-    
+    justify-items: stretch;
+    overflow: hidden;
 }
 
 #open-container {
+    /*Grid item*/
     grid-column-start: open;
-    grid-column-end: weekly;
-    width: auto;
-    height: auto;
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-    padding: 5px;    
-    border-top: 2px solid blue;
-    border-bottom: 2px solid blue;
-    /*
-    display: flex;
-    flex: 1 1 0;
-    flex-direction: column;
-    margin: 10px;
-    min-width: 20%;
-    
-    */
+    grid-column-end: separator;
+    min-width: 220px;
+    /*Grid container*/
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: [heading] 50px [plan] calc(100% - 50px) [end]; /*calc(100% - 50px)*/
+    overflow: hidden;
+    justify-items: stretch;
 }
 
-    #open-container.card {
-
+    #open-container .heading {
+        grid-area: heading/1/plan/1;
     }
-    
+    #open-container .plan {
+        grid-area: plan/1/end/1;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        justify-items: stretch;
+    }
+        #open-container .plan .card {
+            /*flex: 1 1 auto;*/
+            height: 98%;
+            width: 100%;
+            margin: 10px;
+            padding: 5px;
+        }
+    #open-container .plan .card .list{
+    }
+
 #week-container {
-        position: relative;
-        width: auto;
-        height: auto;
+    /*Grid item*/
+    grid-column-start: weekly;
+    grid-column-end: end;
+    overflow: hidden;
+    /*Grid container*/
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: [heading] 50px [plan] auto [end];
+    width: 100%;
+    height: 100%;
+    justify-items: stretch;   
+
+}
+    #week-container .heading {
+        grid-area: heading / 1 / plan / 1 
+    }
+    #week-container .plan {
         /*Grid item*/
-        grid-column-start: weekly;
-        grid-column-end: end;
+        grid-row-start: plan;
+        grid-row-end: end;
+        
         /*Flex container*/
         display: flex;
         flex: 1 1 auto;
         flex-direction: row;
-        min-width: 30px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
         overflow-y: scroll;
+        
     }
+        #week-container .plan .day {
+            display: inline-block;
+            flex: 1 1 auto;
+            flex-direction: column;
+            width: auto;
+            max-width: 30%;
+            min-width: 170px;
+            margin: 5px;
+        }
+
+.separator {
+    
+}

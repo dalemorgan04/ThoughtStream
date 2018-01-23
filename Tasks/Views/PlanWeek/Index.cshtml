@@ -7,21 +7,26 @@
 
 <!--Open Items-->
 <div id="open-container">
-    @Html.Partial("_WeekPlanTable", Model.weekItemLists)
+    @Html.Partial("_OpenItemsTable", Model.weekItemLists)
 </div>
+
+<!--Vertical Separator-->
+<div class="separator">
+    <hr class="hr-vertical" />    
+</div>
+
+
 
 <!--In Week Items-->
 <div id="week-container">
-    @Html.Partial("_WeekPlanTable", Model.weekItemLists)
+    @Html.Partial("_WeekItemsTable", Model.weekItemLists)
 </div>
 
-    <!--
-        Toolbar Pane
-            Selected Item
-            Thoughts - Choose order
-            Tasks - Due order, Overdue
-            Habits - Next due date
-            Projects
-    -->
-
-
+<!--
+    Toolbar Pane
+        Selected Item
+        Thoughts - Choose order
+        Tasks - Due order, Overdue
+        Habits - Next due date
+        Projects
+-->

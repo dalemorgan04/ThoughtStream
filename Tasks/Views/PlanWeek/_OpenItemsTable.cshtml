@@ -1,0 +1,40 @@
+﻿@using Tasks.Service.PlanWeek.Dto
+@model Dictionary<DayOfWeek, ItemListDto> 
+
+<!--Days-->
+
+<div class="heading">
+    <h1> Open Items </h1>    
+</div>
+
+<div class="plan">
+    <div class="card">
+        <div class="list">
+            @foreach (KeyValuePair<DayOfWeek, ItemListDto> day in Model)
+            {
+                <div>
+                    <h1>@day.Key.ToString()</h1>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (ItemDto item in day.Value.ItemDtos)
+                        {
+                            <tr data-taskid="@item.Id">
+                                <td> @item.Id </td>
+                                <td> @item.Description </td>
+                                <td> @item.Type </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
