@@ -22,7 +22,7 @@
                             <th>Type</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id=@day.Key  class="connectedSortable">
                         @foreach (ItemDto item in day.Value.ItemDtos)
                         {
                             <tr data-taskid="@item.Id">
