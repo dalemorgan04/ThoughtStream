@@ -34,8 +34,9 @@ var planWeekPubsub = {
             scroll: true,
             cursor: 'move',
             cursorAt: { top: 40, left: 60 },
-            helper: 'original',
-            zIndex: 9999,
+            helper: 'clone',
+            appendTo: document.body,
+            zIndex: 10000,
             containment: 'window'
         }).disableSelection();
 
@@ -47,5 +48,7 @@ var planWeekPubsub = {
                 minSize: 75
             });
         */
+        //TODO When the left pane is minimised you need to reset the position of the 
+        //scrollbars or they can be left floating in the middle of the page
     }
 }
