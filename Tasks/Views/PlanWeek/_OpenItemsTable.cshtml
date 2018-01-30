@@ -22,15 +22,16 @@
                             <th>Type</th>
                         </tr>
                         </thead>
-                        <tbody id=@day.Key  class="connectedSortable">
-                        @foreach (ItemDto item in day.Value.ItemDtos)
-                        {
-                            <tr data-taskid="@item.Id">
-                                <td> @item.Id </td>
-                                <td> @item.Description </td>
-                                <td> @item.Type </td>
-                            </tr>
-                        }
+                        <tbody id=@day.Key class="connectedSortable">
+                            <tr class="emptyTablePlaceholder"></tr>
+                                @foreach (ItemDto item in day.Value.ItemDtos)
+                                {
+                                    <tr data-taskid="@item.Id">
+                                        <td> @item.Id </td>
+                                        <td> @item.Description </td>
+                                        <td> @item.Type </td>
+                                    </tr>
+                                }
                         </tbody>
                     </table>
                 </div>

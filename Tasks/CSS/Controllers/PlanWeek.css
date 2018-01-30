@@ -114,3 +114,14 @@
             flex: 1 1 auto;
             z-index: 24;
         }
+
+.placeholder {
+    height: 20px;
+    line-height: 20px;
+    background: var(--theme-green-light);
+}
+
+.emptyTablePlaceholder {
+    height: 5px;
+    
+}

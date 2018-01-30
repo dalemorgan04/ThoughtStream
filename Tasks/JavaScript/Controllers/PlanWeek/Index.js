@@ -30,6 +30,7 @@ var planWeekPubsub = {
         });
 
         $('.connectedSortable').sortable({
+            items: '>*:not(.emptyTablePlaceholder)',
             connectWith: '.connectedSortable',
             scroll: true,
             cursor: 'move',
@@ -37,6 +38,8 @@ var planWeekPubsub = {
             helper: 'clone',
             appendTo: document.body,
             zIndex: 10000,
+            placeholder: 'placeholder',
+            dropOnEmpty: true,
             containment: 'window'
         }).disableSelection();
 
