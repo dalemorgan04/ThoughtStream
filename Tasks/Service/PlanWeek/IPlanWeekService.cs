@@ -10,7 +10,7 @@ namespace Tasks.Service.PlanWeek
     public interface IPlanWeekService
     {
         Dictionary<DayOfWeek, ItemListDto> GetCurrentWeekItems();
-        Dictionary<DayOfWeek, ItemListDto> GetWeekItems(DateTime weekCommencingDate);
+        InWeekItemList GetWeekItems(DateTime weekCommencingDate);
         Dictionary<TimeFrameType, ItemListDto> GetCurrentOpenItems();
         Dictionary<TimeFrameType, ItemListDto> GetOpenItems(DateTime date);
         ItemListDto GetDayItems(DateTime date);

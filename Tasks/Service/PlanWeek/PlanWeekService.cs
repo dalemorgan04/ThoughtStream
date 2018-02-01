@@ -32,9 +32,9 @@ namespace Tasks.Service.PlanWeek
             return GetWeekItems(DateTime.Now.StartOfWeek(DayOfWeek.Monday));
         }
 
-        public Dictionary<DayOfWeek, ItemListDto> GetWeekItems(DateTime weekCommencingDate)
+        public InWeekItemList GetWeekItems(DateTime weekCommencingDate)
         {
-            Dictionary<DayOfWeek, ItemListDto> weekList = new Dictionary<DayOfWeek, ItemListDto>(); //Each day will be a new list
+            InWeekItemList weekList = new InWeekItemList();//Each day will be a new list
 
             /* Pulls the next 7 days after the given date
              * Allowing flexibility in choosing the commence date
@@ -45,7 +45,7 @@ namespace Tasks.Service.PlanWeek
             for (int i = 0; i < 7; i++)
             {
                 DateTime date = weekCommencingDate.AddDays(i);
-                weekList.Add(date.DayOfWeek, GetDayItems(date));
+                weekList.dayItems[DayOfWeek.Monday] = GetDayItems(date);
             }
             return weekList;
         }

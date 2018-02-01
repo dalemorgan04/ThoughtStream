@@ -53,5 +53,9 @@ var planWeekPubsub = {
         */
         //TODO When the left pane is minimised you need to reset the position of the 
         //scrollbars or they can be left floating in the middle of the page
+    },
+
+
     }
+
 }

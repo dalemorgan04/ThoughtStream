@@ -12,22 +12,16 @@
         <div class="day card">
             <h1>@day.Key.ToString()</h1>
             <table>
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                </tr>
-                </thead>
                 <tbody class="connectedSortable">
                     <tr class="emptyTablePlaceholder"></tr>
                         @foreach (ItemDto item in day.Value.ItemDtos)
                         {
-                            <tr data-taskid="@item.Id">
-                                <td> @item.Id </td>
-                                <td> @item.Description </td>
-                                <td> @item.Type </td>
-                            </tr>
+                        <tr data-taskid="@item.Id">
+                            <td>
+                                @item.Description
+                                <input type="checkbox"/>
+                            </td>
+                        </tr>
                         }
                 </tbody>
             </table>
