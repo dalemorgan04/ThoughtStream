@@ -1,29 +1,32 @@
-﻿@using Tasks.Service.PlanWeek.Dto
-@model Dictionary<DayOfWeek, ItemListDto> 
+﻿@using FluentNHibernate.Utils
+@using Tasks.Service.PlanWeek.Dto
+@using Tasks.ViewModels.PlanWeek
+@model PlanWeekViewModel
 
 <!--Days-->
 
 <div class="heading">
-    <h1> Open Items </h1>    
+    <h1> Open Items </h1>
 </div>
 
 <div class="plan">
     <div class="card">
         <div class="list">
-            @foreach (KeyValuePair<DayOfWeek, ItemListDto> day in Model)
+            @foreach (var day in Model.openItemsList.openItems)
             {
                 <div>
                     <h1>@day.Key.ToString()</h1>
                     <table>
                         <tbody id=@day.Key class="connectedSortable">
-                        
+
                             <tr class="emptyTablePlaceholder"></tr>
 
                             @foreach (ItemDto item in day.Value.ItemDtos)
                             {
                                 <tr data-taskid="@item.Id">
-                                    <td> @item.Description 
-                                        <input type="checkbox"/>
+                                    <td>
+                                        @item.Description
+                                        <input type="checkbox" />
                                     </td>
                                 </tr>
                             }

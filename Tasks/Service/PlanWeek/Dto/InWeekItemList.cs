@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 
 namespace Tasks.Service.PlanWeek.Dto
 {
@@ -21,6 +22,11 @@ namespace Tasks.Service.PlanWeek.Dto
                 { DayOfWeek.Saturday, new ItemListDto() },
                 { DayOfWeek.Sunday, new ItemListDto() }
             };
+        }
+
+        public void Update(DayOfWeek dayOfWeek, ItemListDto newItemListDto)
+        {
+            this.dayItems[dayOfWeek] = newItemListDto;
         }
     }
 }

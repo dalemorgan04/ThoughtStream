@@ -7,7 +7,7 @@
 
 <!--Open Items-->
 <div id="open-container">
-    @Html.Partial("_OpenItemsTable", Model.weekItemLists)
+    @Html.Partial("_OpenItemsTable", Model)
 </div>
 
 <!--Vertical Separator-->
@@ -19,7 +19,7 @@
 
 <!--In Week Items-->
 <div id="week-container">
-    @Html.Partial("_WeekItemsTable", Model.weekItemLists)
+    @Html.Partial("_WeekItemsTable", Model)
 </div>
 
 <!--

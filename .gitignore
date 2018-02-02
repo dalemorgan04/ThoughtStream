@@ -246,3 +246,10 @@ Tasks/bin/Tasks.dll
 *.pdb
 *.dll
 *.pdb
+*.cache
+Tasks/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Tasks/obj/Debug/Tasks.csproj.FileListAbsolute.txt
+Tasks/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Tasks/obj/Debug/Tasks.csproj.FileListAbsolute.txt
+Tasks/obj/Debug/Tasks.csprojResolveAssemblyReference.cache
+.vs/Tasks/v15/.suo

@@ -13,9 +13,9 @@ namespace Tasks.Service.PlanWeek
 {
     public class PlanWeekService : IPlanWeekService
     {
-        private readonly ISpecificationRepository<Task, int> taskRepository;
         private readonly ISpecificationRepository<Habit, int> habitRepository;
         private readonly IHabitRepository habitSqlRepository;
+        private readonly ISpecificationRepository<Task, int> taskRepository;
 
         public PlanWeekService(
             ISpecificationRepository<Task, int> taskRepository,
@@ -27,78 +27,87 @@ namespace Tasks.Service.PlanWeek
             this.habitSqlRepository = habitSqlRepository;
         }
 
-        public Dictionary<DayOfWeek, ItemListDto> GetCurrentWeekItems()
+        public InWeekItemList GetCurrentWeekItems()
         {
             return GetWeekItems(DateTime.Now.StartOfWeek(DayOfWeek.Monday));
         }
 
         public InWeekItemList GetWeekItems(DateTime weekCommencingDate)
         {
-            InWeekItemList weekList = new InWeekItemList();//Each day will be a new list
+            var weekList = new InWeekItemList(); //Each day will be a new list
 
             /* Pulls the next 7 days after the given date
              * Allowing flexibility in choosing the commence date
-             * for the possibility of the user setting when 
-             * the week start date could be i.e Monday or Sunday 
+             * for the possibility of the user setting when
+             * the week start date could be i.e Monday or Sunday
              */
-            
-            for (int i = 0; i < 7; i++)
+
+            for (var i = 0; i < 7; i++)
             {
-                DateTime date = weekCommencingDate.AddDays(i);
-                weekList.dayItems[DayOfWeek.Monday] = GetDayItems(date);
+                var date = weekCommencingDate.AddDays(i);
+                weekList.Update(date.DayOfWeek, GetDayItems(date));
             }
             return weekList;
         }
 
-        public Dictionary<TimeFrameType, ItemListDto> GetCurrentOpenItems()
+        public OpenItemList GetCurrentOpenItems()
         {
             return GetOpenItems(DateTime.Today);
         }
 
-        public Dictionary<TimeFrameType, ItemListDto> GetOpenItems(DateTime date)
+        public OpenItemList GetOpenItems(DateTime date)
         {
-            ItemListDto allItems = GetDayItems(date);
-            Dictionary<TimeFrameType, ItemListDto> openItemLists = new Dictionary<TimeFrameType, ItemListDto>();
+            
+            var openItemList = new OpenItemList();
 
             //Week
-            ItemListDto weekItems = new ItemListDto()
+            var weekItems = new ItemListDto
             {
                 ItemDtos = new List<ItemDto>()
+                {
+                    {new ItemDto() {Id = 97, Description = "Week example", Type = "Week"}},
+                    {new ItemDto() {Id = 98, Description = "Week example 2", Type = "Week"}},
+                    {new ItemDto() {Id = 99, Description = "Week example 3", Type = "Week"}}
+                }
             };
+            
+            openItemList.Update(TimeFrameType.Week, weekItems);
+
             //Month
-            ItemListDto monthItems = new ItemListDto()
+            var monthItems = new ItemListDto
             {
                 ItemDtos = new List<ItemDto>()
             };
+            openItemList.Update(TimeFrameType.Month, weekItems);
+
             //Year
-            ItemListDto yearItems = new ItemListDto()
+            var yearItems = new ItemListDto
             {
                 ItemDtos = new List<ItemDto>()
             };
+            openItemList.Update(TimeFrameType.Year, weekItems);
 
             //Open
-            ItemListDto openItems = new ItemListDto()
+            var openItems = new ItemListDto
             {
                 ItemDtos = new List<ItemDto>()
             };
+            openItemList.Update(TimeFrameType.Open, weekItems);
 
-            return openItemLists;
+            return openItemList;
         }
 
         public ItemListDto GetDayItems(DateTime date)
         {
-            ItemListDto itemList = new ItemListDto()
-            {
-                ItemDtos = new List<ItemDto>()
-            };
+            var itemList = new ItemListDto();
 
             //Tasks
-            List<Task> tasks = taskRepository
-                                        .Find( new TaskOnDaySpec(date))
-                                        .ToList();
-            foreach (Task task in tasks)
+            var tasks = taskRepository
+                .Find(new TaskOnDaySpec(date))
+                .ToList();
+            foreach (var task in tasks)
             {
-                ItemDto item = new ItemDto()
+                var item = new ItemDto
                 {
                     Id = task.Id,
                     Description = task.Description,
@@ -108,11 +117,11 @@ namespace Tasks.Service.PlanWeek
             }
 
             //Habits
-            List<int> habitIds = habitSqlRepository.GetHabitOccurrencesOnDate(date);
-            List<Habit> habits = habitRepository.Get(habitIds).ToList();
-            foreach (Habit habit in habits)
+            var habitIds = habitSqlRepository.GetHabitOccurrencesOnDate(date);
+            var habits = habitRepository.Get(habitIds).ToList();
+            foreach (var habit in habits)
             {
-                ItemDto item = new ItemDto()
+                var item = new ItemDto
                 {
                     Id = habit.Id,
                     Description = habit.Description,
