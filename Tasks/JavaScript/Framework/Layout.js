@@ -1,6 +1,6 @@
-///<reference path="jquery.min.js"/>
-///<reference path="velocity.min.js"/>
-///<reference path="velocity.ui.min.js"/>
+/// <reference path="jquery-1.10.2.js" />
+/// <reference path="velocity.min.js" />
+/// <reference path="velocity.ui.js" />
 
 /*
 *   Developed by Dale Morgan
@@ -122,7 +122,7 @@ var layoutpubsub = {
                 complete: function () {
                     if (!layoutpubsub.navbarIsVisible) { $('nav > .nav-container').hide(); }
                     $('#body-grid').css('grid-template-columns', layoutpubsub.navbarWidth + ' auto ' + layoutpubsub.asideWidth);
-                    $('nav > .nav-container').css({ 'overflow': 'visible' })
+                    $('nav > .nav-container').css({ 'overflow': 'visible' });
                 }
             });
         $(document).trigger('navToggled');
@@ -203,7 +203,7 @@ var layoutpubsub = {
                 complete: function () {
                     if (!layoutpubsub.asideIsVisible) { $('aside > .aside-container').hide(); }
                     $('#body-grid').css('grid-template-columns', layoutpubsub.navbarWidth + ' auto ' + layoutpubsub.asideWidth);
-                    $('aside > .aside-container').css({ 'overflow': 'visible' })
+                    $('aside > .aside-container').css({ 'overflow': 'visible' });
                 }
             });
         $(document).trigger('asideToggled');

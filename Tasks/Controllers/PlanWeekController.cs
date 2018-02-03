@@ -19,9 +19,9 @@ namespace Tasks.Controllers
             PlanWeekViewModel viewModel = new PlanWeekViewModel()
             {
                 //List of tasks per day in current week
-                weekItemLists = planWeekService.GetCurrentWeekItems(),
+                inWeekItemsList = planWeekService.GetCurrentWeekItems(),
                 //Open ended tasks i.e. week, month, year
-                openItemLists = planWeekService.GetCurrentOpenItems()
+                openItemsList = planWeekService.GetCurrentOpenItems()
                 
             };
             

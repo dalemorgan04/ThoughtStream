@@ -7,19 +7,19 @@ $(function() {
 });
 
 var planWeekPubsub = {
-
-    init: function () {
-        $('#open-container .plan .card').niceScroll('.list',{
-            cursorcolor: 'aquamarine',
-            cursorborder: '0px transparent',
-            cursorwidth: '10px',
-            bouncescroll: true,
-            smoothscroll: true,
-            railalign: 'left'
-        });
+    init: function() {
+        $('#open-container .plan .card').niceScroll('.list',
+            {
+                cursorcolor: 'aquamarine',
+                cursorborder: '0px transparent',
+                cursorwidth: '10px',
+                bouncescroll: true,
+                smoothscroll: true,
+                railalign: 'left'
+            });
         /*$('#week-container .plan').niceScroll(".card");*/
 
-        
+
         $('#week-container .plan').niceScroll({
             cursorcolor: 'aquamarine',
             cursorborder: '0px transparent',
@@ -53,9 +53,5 @@ var planWeekPubsub = {
         */
         //TODO When the left pane is minimised you need to reset the position of the 
         //scrollbars or they can be left floating in the middle of the page
-    },
-
-
     }
-
-}
+};

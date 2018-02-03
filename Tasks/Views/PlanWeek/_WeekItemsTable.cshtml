@@ -1,28 +1,30 @@
 ﻿@using Tasks.Service.PlanWeek.Dto
 @using Tasks.ViewModels.PlanWeek
-@model Dictionary<DayOfWeek, ItemListDto> 
+@model PlanWeekViewModel
 
 <!--Days-->
 <div class="heading">
-    <h1>In Week Items</h1>    
+    <h1>In Week Items</h1>
 </div>
 <div class="plan">
-    @foreach (KeyValuePair<DayOfWeek, ItemListDto> day in Model)
+    @foreach (KeyValuePair<DayOfWeek, ItemListDto> day in Model.inWeekItemsList.dayItems)
     {
         <div class="day card">
             <h1>@day.Key.ToString()</h1>
             <table>
                 <tbody class="connectedSortable">
-                    <tr class="emptyTablePlaceholder"></tr>
-                        @foreach (ItemDto item in day.Value.ItemDtos)
-                        {
+                <tr class="emptyTablePlaceholder"></tr>
+                    
+                @foreach (ItemDto item in day.Value.ItemDtos)
+                    {
                         <tr data-taskid="@item.Id">
                             <td>
                                 @item.Description
-                                <input type="checkbox"/>
+                                <input type="checkbox" />
                             </td>
                         </tr>
-                        }
+                    }
+                    
                 </tbody>
             </table>
         </div>

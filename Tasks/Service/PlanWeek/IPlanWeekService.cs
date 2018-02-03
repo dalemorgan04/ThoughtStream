@@ -9,10 +9,10 @@ namespace Tasks.Service.PlanWeek
 {
     public interface IPlanWeekService
     {
-        Dictionary<DayOfWeek, ItemListDto> GetCurrentWeekItems();
+        InWeekItemList GetCurrentWeekItems();
         InWeekItemList GetWeekItems(DateTime weekCommencingDate);
-        Dictionary<TimeFrameType, ItemListDto> GetCurrentOpenItems();
-        Dictionary<TimeFrameType, ItemListDto> GetOpenItems(DateTime date);
+        OpenItemList GetCurrentOpenItems();
+        OpenItemList GetOpenItems(DateTime date);
         ItemListDto GetDayItems(DateTime date);
     }
 }
