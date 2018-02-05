@@ -6,11 +6,11 @@ using Microsoft.Ajax.Utilities;
 
 namespace Tasks.Service.PlanWeek.Dto
 {
-    public class InWeekItemList
+    public class InWeekItemListDto
     {
         public Dictionary<DayOfWeek, ItemListDto> dayItems { get; set; }
 
-        public InWeekItemList()
+        public InWeekItemListDto()
         {
             dayItems = new Dictionary<DayOfWeek, ItemListDto>
             {

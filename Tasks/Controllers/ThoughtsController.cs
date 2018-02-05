@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using Tasks.Infrastructure.ControllerDependencies;
 using Tasks.Models.DomainModels;
+using Tasks.Models.DomainModels.Enum;
+using Tasks.Service.Aside.Dto;
 using Tasks.Service.Tasks;
 using Tasks.Service.Thoughts;
 using Tasks.Service.Thoughts.Dto;
 using Tasks.Service.Users;
 using Tasks.Service.Users.Dto;
+using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.Thoughts;
 
 namespace Tasks.Controllers
 {
-    public class ThoughtsController : Controller
+    public class ThoughtsController : BaseController, IAsideController
     {
         private readonly IUserService userService;
         private readonly IThoughtService thoughtService;
@@ -80,6 +84,21 @@ namespace Tasks.Controllers
         private bool isValidViewModel(ThoughtEditViewModel viewModel)
         {
             return true; //TODO
+        }
+        
+        public ActionResult Aside()
+        {
+            var viewModel = new AsideViewModel()
+            {
+                TabsList = new List<Tab>()
+                {
+                    {new Tab(){ OrderNumber = 0, TabType = AsideTabType.Select, Name = "Selection"} },
+                    {new Tab(){ OrderNumber = 1, TabType = AsideTabType.Tools, Name = "Tools"} },
+                    {new Tab(){ OrderNumber = 2, TabType = AsideTabType.Thoughts, Name = "Thoughts"} }
+                }
+            };
+            
+            return PartialView("_Aside", viewModel);
         }
     }
 }

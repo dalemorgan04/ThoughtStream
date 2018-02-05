@@ -4,7 +4,7 @@ using Tasks.ViewModels.PlanWeek;
 
 namespace Tasks.Controllers
 {
-    public class PlanWeekController : Controller
+    public class PlanWeekController : BaseController
     {
         readonly IPlanWeekService planWeekService;
 
@@ -19,9 +19,9 @@ namespace Tasks.Controllers
             PlanWeekViewModel viewModel = new PlanWeekViewModel()
             {
                 //List of tasks per day in current week
-                inWeekItemsList = planWeekService.GetCurrentWeekItems(),
+                InWeekItemsListDto = planWeekService.GetCurrentWeekItems(),
                 //Open ended tasks i.e. week, month, year
-                openItemsList = planWeekService.GetCurrentOpenItems()
+                OpenItemsListDto = planWeekService.GetCurrentOpenItems()
                 
             };
             

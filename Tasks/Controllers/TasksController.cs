@@ -10,7 +10,7 @@ using Tasks.ViewModels.Tasks;
 
 namespace Tasks.Controllers
 {
-    public class TasksController : Controller
+    public class TasksController : BaseController
     {
         private readonly ITaskService taskService;
 

@@ -1,0 +1,29 @@
+﻿@using Tasks.Service.Aside.Dto
+@using Tasks.ViewModels.Aside
+@model AsideViewModel
+
+<div class="aside-tabs">
+    
+<ul>
+    @{
+        var orderedTabs = Model.TabsList
+            .OrderBy(x => x.OrderNumber)
+            .Reverse() //Reverse as tabs are reversed using css
+            .ToList();
+    }
+    @foreach (var tab in orderedTabs)
+    {
+        <li>
+            <div class="rotate">@tab.Name</div>
+        </li>
+    }
+</ul>
+</div>
+
+<div class="aside-content">
+    <h2>Tool bar</h2>
+    <p>
+        This is where the tools will be kept.
+        You can drag from here and place in centre
+    </p>
+</div>

@@ -9,7 +9,7 @@ using Tasks.ViewModels.Projects;
 
 namespace Tasks.Controllers
 {
-    public class ProjectsController : Controller
+    public class ProjectsController : BaseController
     {
         private readonly IProjectService projectService;
         public ProjectsController(IProjectService projectService)

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Tasks.Models.DomainModels;
 
 namespace Tasks.Service.PlanWeek.Dto
 {
-    public class OpenItemList
+    public class OpenItemListDto
     {
-        public Dictionary<TimeFrameType, ItemListDto> openItems { get; set; }
+        public Dictionary<TimeFrameType, ItemListDto> openItems { get; private set; }
 
-        public OpenItemList()
+        public OpenItemListDto()
         {
             this.openItems = new Dictionary<TimeFrameType, ItemListDto>()
             {

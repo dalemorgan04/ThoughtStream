@@ -27,14 +27,14 @@ namespace Tasks.Service.PlanWeek
             this.habitSqlRepository = habitSqlRepository;
         }
 
-        public InWeekItemList GetCurrentWeekItems()
+        public InWeekItemListDto GetCurrentWeekItems()
         {
             return GetWeekItems(DateTime.Now.StartOfWeek(DayOfWeek.Monday));
         }
 
-        public InWeekItemList GetWeekItems(DateTime weekCommencingDate)
+        public InWeekItemListDto GetWeekItems(DateTime weekCommencingDate)
         {
-            var weekList = new InWeekItemList(); //Each day will be a new list
+            var weekList = new InWeekItemListDto(); //Each day will be a new list
 
             /* Pulls the next 7 days after the given date
              * Allowing flexibility in choosing the commence date
@@ -50,15 +50,15 @@ namespace Tasks.Service.PlanWeek
             return weekList;
         }
 
-        public OpenItemList GetCurrentOpenItems()
+        public OpenItemListDto GetCurrentOpenItems()
         {
             return GetOpenItems(DateTime.Today);
         }
 
-        public OpenItemList GetOpenItems(DateTime date)
+        public OpenItemListDto GetOpenItems(DateTime date)
         {
             
-            var openItemList = new OpenItemList();
+            var openItemList = new OpenItemListDto();
 
             //Week
             var weekItems = new ItemListDto

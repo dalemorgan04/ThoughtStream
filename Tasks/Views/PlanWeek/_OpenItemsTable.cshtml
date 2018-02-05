@@ -1,5 +1,4 @@
-﻿@using FluentNHibernate.Utils
-@using Tasks.Service.PlanWeek.Dto
+﻿@using Tasks.Service.PlanWeek.Dto
 @using Tasks.ViewModels.PlanWeek
 @model PlanWeekViewModel
 
@@ -12,7 +11,7 @@
 <div class="plan">
     <div class="card">
         <div class="list">
-            @foreach (var day in Model.openItemsList.openItems)
+            @foreach (var day in Model.OpenItemsListDto.openItems)
             {
                 <div>
                     <h1>@day.Key.ToString()</h1>

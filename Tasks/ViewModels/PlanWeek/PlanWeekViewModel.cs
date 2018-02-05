@@ -10,7 +10,7 @@ namespace Tasks.ViewModels.PlanWeek
 {
     public class PlanWeekViewModel
     {
-        public InWeekItemList inWeekItemsList { get; set; }
-        public OpenItemList openItemsList { get; set; }
+        public InWeekItemListDto InWeekItemsListDto { get; set; }
+        public OpenItemListDto OpenItemsListDto { get; set; }
     }
 }
