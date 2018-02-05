@@ -102,7 +102,7 @@ namespace Tasks.Controllers
 
         public ActionResult GetDefaultAsideContent()
         {
-            return PartialView("_Aside");
+            return new EmptyResult();
         }
     }
 }

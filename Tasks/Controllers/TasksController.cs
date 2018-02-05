@@ -86,7 +86,13 @@ namespace Tasks.Controllers
 
         public ActionResult GetAsideAddTab()
         {
-            return PartialView("_AddTask");
+            TaskEditViewModel viewModel = new TaskEditViewModel
+            {
+                DateTime = DateTime.Now,
+                Description = "Enter description",
+                TimeFrameId = TimeFrameType.Date
+            };
+            return PartialView("_AddTask", viewModel);
         }
 
         public ActionResult GetAsideEditTab()

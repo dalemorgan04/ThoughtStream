@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Tasks.Infrastructure.ControllerDependencies;
+using Tasks.Models.DomainModels;
 using Tasks.Models.DomainModels.Enum;
 using Tasks.Service.Aside.Dto;
 using Tasks.Service.PlanWeek;
 using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.PlanWeek;
+using Tasks.ViewModels.Tasks;
 
 namespace Tasks.Controllers
 {
@@ -48,7 +51,7 @@ namespace Tasks.Controllers
 
         public ActionResult GetDefaultAsideContent()
         {
-            throw new System.NotImplementedException();
+            return new EmptyResult();
         }
     }
 }
