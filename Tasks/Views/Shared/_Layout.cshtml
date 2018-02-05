@@ -26,7 +26,7 @@
                 </div>
             </div>
         </header>
-        
+
         <nav>
 
             <div class="nav-container">
@@ -46,7 +46,7 @@
         <aside>
 
             <div class="aside-container">
-                @{ Html.RenderAction("Aside"); }
+                @{ Html.RenderAction("GetDefaultAsideLayout"); }
             </div>
                 
         </aside>
@@ -61,7 +61,7 @@
         </footer>
 
     </div>
-
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/core")

@@ -179,6 +179,7 @@
     <Compile Include="Infrastructure\Extension\DateTimeExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\DomainModels\Enum\AsideTabType.cs" />
+    <Compile Include="Models\DomainModels\Enum\TaskType.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\HabitGoal.cs" />
     <Compile Include="Models\DomainModels\Projects\Entity\Project.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\Habit.cs" />
@@ -224,7 +225,9 @@
     <Compile Include="Repository\Thoughts\ThoughtMap.cs" />
     <Compile Include="Repository\Thoughts\ThoughtRepository.cs" />
     <Compile Include="Repository\UserMap.cs" />
+    <Compile Include="Service\Aside\AsideService.cs" />
     <Compile Include="Service\Aside\Dto\Tab.cs" />
+    <Compile Include="Service\Aside\IAsideService.cs" />
     <Compile Include="Service\Habits\HabitDtoMap.cs" />
     <Compile Include="Service\PlanWeek\Dto\InWeekItemListDto.cs" />
     <Compile Include="Service\PlanWeek\Dto\ItemListDto.cs" />
@@ -361,6 +364,7 @@
     <Content Include="Views\Shared\_Aside.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Aside\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ScheduleWeek\" />
   </ItemGroup>

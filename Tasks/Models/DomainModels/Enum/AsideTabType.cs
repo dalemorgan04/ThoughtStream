@@ -8,11 +8,13 @@ namespace Tasks.Models.DomainModels.Enum
     public enum AsideTabType
     {
         Select = 0,
-        Tools = 1,
-        Thoughts = 2,
-        Tasks = 3,
-        Habits = 4,
-        Projects = 5,
-        Lists = 6
+        Add = 1,
+        Edit = 2,
+        Drag = 3,
+        Thoughts = 4,
+        Tasks = 5,
+        Habits = 6,
+        Projects = 7,
+        Lists = 8
     }
 }

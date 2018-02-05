@@ -1,10 +1,15 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Tasks.Infrastructure.ControllerDependencies;
+using Tasks.Models.DomainModels.Enum;
+using Tasks.Service.Aside.Dto;
 using Tasks.Service.PlanWeek;
+using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.PlanWeek;
 
 namespace Tasks.Controllers
 {
-    public class PlanWeekController : BaseController
+    public class PlanWeekController : BaseController, IAsideController
     {
         readonly IPlanWeekService planWeekService;
 
@@ -26,6 +31,24 @@ namespace Tasks.Controllers
             };
             
             return View("Index", viewModel);
+        }
+
+        public ActionResult GetDefaultAsideLayout()
+        {
+            var viewModel = new AsideViewModel()
+            {
+                VisibleTabsList = new List<Tab>()
+                {
+                    {new Tab(){ OrderNumber = 0, TabType = AsideTabType.Select, Name = "Selection"} },
+                    {new Tab(){ OrderNumber = 2, TabType = AsideTabType.Thoughts, Name = "Thoughts"} }
+                }
+            };
+            return PartialView("_Aside", viewModel);
+        }
+
+        public ActionResult GetDefaultAsideContent()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

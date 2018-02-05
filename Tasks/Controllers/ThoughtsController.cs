@@ -86,19 +86,23 @@ namespace Tasks.Controllers
             return true; //TODO
         }
         
-        public ActionResult Aside()
+        public ActionResult GetDefaultAsideLayout()
         {
             var viewModel = new AsideViewModel()
             {
-                TabsList = new List<Tab>()
+                VisibleTabsList = new List<Tab>()
                 {
                     {new Tab(){ OrderNumber = 0, TabType = AsideTabType.Select, Name = "Selection"} },
-                    {new Tab(){ OrderNumber = 1, TabType = AsideTabType.Tools, Name = "Tools"} },
                     {new Tab(){ OrderNumber = 2, TabType = AsideTabType.Thoughts, Name = "Thoughts"} }
                 }
             };
             
             return PartialView("_Aside", viewModel);
+        }
+
+        public ActionResult GetDefaultAsideContent()
+        {
+            return PartialView("_Aside");
         }
     }
 }

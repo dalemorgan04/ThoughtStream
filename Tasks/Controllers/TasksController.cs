@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tasks.Infrastructure.ControllerDependencies;
 using Tasks.Models.DomainModels;
+using Tasks.Models.DomainModels.Enum;
+using Tasks.Service.Aside.Dto;
 using Tasks.Service.Tasks;
 using Tasks.Service.Tasks.Dto;
+using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.Tasks;
 
 namespace Tasks.Controllers
 {
-    public class TasksController : BaseController
+    public class TasksController : BaseController, IAsideController
     {
         private readonly ITaskService taskService;
 
@@ -56,6 +60,43 @@ namespace Tasks.Controllers
             taskDto.DateTime = viewModel.DateTime;
             taskService.Save(taskDto);
             return true;
+        }
+
+        public bool Update(TaskEditViewModel viewModel)
+        {
+            return true;
+        }
+
+        public ActionResult GetDefaultAsideLayout()
+        {
+            var viewModel = new AsideViewModel()
+            {
+                VisibleTabsList = new List<Tab>()
+                {
+                    {new Tab(){ OrderNumber = 0, TabType = AsideTabType.Add, Name = "Selection"} }
+                }
+            };
+            return PartialView("_Aside", viewModel);
+        }
+
+        public ActionResult GetDefaultAsideContent()
+        {
+            return GetAsideAddTab();
+        }
+
+        public ActionResult GetAsideAddTab()
+        {
+            return PartialView("_AddTask");
+        }
+
+        public ActionResult GetAsideEditTab()
+        {
+            return PartialView("");
+        }
+
+        public ActionResult GetAsideDragTab()
+        {
+            return PartialView("");
         }
     }
 }

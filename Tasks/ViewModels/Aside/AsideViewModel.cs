@@ -8,10 +8,11 @@ namespace Tasks.ViewModels.Aside
 {
     public class AsideViewModel
     {
-        public List<Tab> TabsList { get; set; }
+        public List<Tab> VisibleTabsList { get; set; }
+        public List<Tab> HiddenTabsList { get; set; }
         public AsideViewModel()
         {
-            this.TabsList = new List<Tab>();
+            this.VisibleTabsList = new List<Tab>();
         }
     }
 }
