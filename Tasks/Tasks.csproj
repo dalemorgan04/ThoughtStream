@@ -165,6 +165,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HabitsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\PlanWeekController.cs" />
@@ -174,8 +175,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\ControllerDependencies\IAsideController.cs" />
     <Compile Include="Infrastructure\Extension\DateTimeExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
+    <Compile Include="Models\DomainModels\Enum\AsideTabType.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\HabitGoal.cs" />
     <Compile Include="Models\DomainModels\Projects\Entity\Project.cs" />
     <Compile Include="Models\DomainModels\Habits\Entity\Habit.cs" />
@@ -221,9 +224,12 @@
     <Compile Include="Repository\Thoughts\ThoughtMap.cs" />
     <Compile Include="Repository\Thoughts\ThoughtRepository.cs" />
     <Compile Include="Repository\UserMap.cs" />
+    <Compile Include="Service\Aside\Dto\Tab.cs" />
     <Compile Include="Service\Habits\HabitDtoMap.cs" />
+    <Compile Include="Service\PlanWeek\Dto\InWeekItemListDto.cs" />
     <Compile Include="Service\PlanWeek\Dto\ItemListDto.cs" />
     <Compile Include="Service\PlanWeek\Dto\ItemDto.cs" />
+    <Compile Include="Service\PlanWeek\Dto\OpenItemListDto.cs" />
     <Compile Include="Service\PlanWeek\IPlanWeekService.cs" />
     <Compile Include="Service\PlanWeek\PlanWeekService.cs" />
     <Compile Include="Service\Projects\Dto\ProjectDto.cs" />
@@ -246,6 +252,7 @@
     <Compile Include="Service\Users\IUserService.cs" />
     <Compile Include="Service\Users\UserDtoMap.cs" />
     <Compile Include="Service\Users\UserService.cs" />
+    <Compile Include="ViewModels\Aside\AsideViewModel.cs" />
     <Compile Include="ViewModels\Habits\HabitsViewModel.cs" />
     <Compile Include="ViewModels\PlanWeek\PlanWeekViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
@@ -351,8 +358,10 @@
     <Content Include="Views\PlanWeek\Index.cshtml" />
     <Content Include="Views\PlanWeek\_WeekItemsTable.cshtml" />
     <Content Include="Views\PlanWeek\_OpenItemsTable.cshtml" />
+    <Content Include="Views\Shared\_Aside.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\ScheduleWeek\" />
   </ItemGroup>
   <ItemGroup>
