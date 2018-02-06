@@ -16,8 +16,8 @@ $(function () {
 var layoutpubsub = {
 
     // ===== Layout Settings ===== //    
-    setNavbarWidth: '200px',
-    setAsideWidth: '250px',
+    setNavbarWidth: '150px',
+    setAsideWidth: '350px',
     setTransitionTime: 250,
     // =========================== //    
 

@@ -18,30 +18,9 @@
 
                 <label>Timeframe Window</label>
 
-                <div class="form-group">
-
-                    @Html.RadioButtonFor(m => m.TimeFrameId, 1, new {@class = "tgl tgl-flip", id = "window-time", name = "window"})
-                    <label class='tgl-btn' data-tg-off='Time' data-tg-on='Time & Day' for='window-time'></label>
-
-                    @Html.RadioButtonFor(m => m.TimeFrameId, 2, new {@class = "tgl tgl-flip", id = "window-day", name = "window"})
-                    <label class='tgl-btn' data-tg-off='Day' data-tg-on='Day' for='window-day'></label>
-
-                    @Html.RadioButtonFor(m => m.TimeFrameId, 3, new {@class = "tgl tgl-flip", id = "window-week", name = "window"})
-                    <label class='tgl-btn' data-tg-off='Week' data-tg-on='Week' for='window-week'></label>
-
-                    @Html.RadioButtonFor(m => m.TimeFrameId, 4, new {@class = "tgl tgl-flip", id = "window-month", name = "window"})
-                    <label class='tgl-btn' data-tg-off='Month' data-tg-on='Month' for='window-month'></label>
-
-                    @Html.RadioButtonFor(m => m.TimeFrameId, 5, new {@class = "tgl tgl-flip", id = "window-year", name = "window"})
-                    <label class='tgl-btn' data-tg-off='Year' data-tg-on='Year' for='window-year'></label>
-
-                    @Html.RadioButtonFor(m => m.TimeFrameId, 6, new {@class = "tgl tgl-flip", id = "window-someday", name = "window"})
-                    <label class='tgl-btn' data-tg-off='Someday' data-tg-on='Someday' for='window-someday'></label>
-
-                </div>
-
                 <label>Expected to be done by</label>
                 @Html.TextBoxFor(model => model.DateTime, new {@class = "form-control"})
+                
 
             </div>
         }

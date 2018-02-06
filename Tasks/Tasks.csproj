@@ -270,10 +270,6 @@
     <Content Include="App_Data\Tasks_log.ldf">
       <DependentUpon>Tasks.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\hack-extended.css" />
-    <Content Include="Content\hack-extended.min.css" />
-    <Content Include="Content\hack.css" />
-    <Content Include="Content\hack.min.css" />
     <Content Include="CSS\Controllers\PlanWeek.css" />
     <Content Include="CSS\Controllers\Thoughts.css" />
     <Content Include="CSS\Global\bootstrap.css" />
@@ -334,8 +330,6 @@
     </Content>
     <Content Include="JavaScript\Framework\jquery-ui-1.12.1.js" />
     <Content Include="JavaScript\Framework\jquery-ui-1.12.1.min.js" />
-    <Content Include="scripts\jquery.nicescroll.js" />
-    <Content Include="scripts\jquery.nicescroll.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

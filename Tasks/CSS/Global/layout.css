@@ -95,7 +95,7 @@ h2, h3 {
     display: grid;
     margin: 0;
     /*Column and row sizes*/
-    grid-template-columns: 200px auto 250px;
+    grid-template-columns: 150px auto 350px;
     grid-template-rows: 60px auto auto;
     /*Fill view height and width*/
     width: 100%;
