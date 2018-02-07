@@ -89,7 +89,7 @@ namespace Tasks.Controllers
             TaskEditViewModel viewModel = new TaskEditViewModel
             {
                 DateTime = DateTime.Now,
-                Description = "Enter description",
+                Description = "",
                 TimeFrameId = TimeFrameType.Date
             };
             return PartialView("_AddTask", viewModel);

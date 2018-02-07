@@ -28,8 +28,6 @@ namespace Tasks.Models.DomainModels
                         return "Week";
                     case TimeFrameType.Month:
                         return "Month";
-                    case TimeFrameType.Year:
-                        return "Year";
                     default:
                         return "Error";
                 };
@@ -69,8 +67,6 @@ namespace Tasks.Models.DomainModels
                             return string.Format("{0} - {1}", from, to);
                         case TimeFrameType.Month:
                             return string.Format("{mmm}", new DateTime(dateTime.Year, dateTime.Month, 1));
-                        case TimeFrameType.Year:
-                            return dateTime.Year.ToString();
                         default:
                             return "Someday";
                     }

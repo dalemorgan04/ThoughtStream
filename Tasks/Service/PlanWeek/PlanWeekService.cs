@@ -80,13 +80,6 @@ namespace Tasks.Service.PlanWeek
             };
             openItemList.Update(TimeFrameType.Month, weekItems);
 
-            //Year
-            var yearItems = new ItemListDto
-            {
-                ItemDtos = new List<ItemDto>()
-            };
-            openItemList.Update(TimeFrameType.Year, weekItems);
-
             //Open
             var openItems = new ItemListDto
             {

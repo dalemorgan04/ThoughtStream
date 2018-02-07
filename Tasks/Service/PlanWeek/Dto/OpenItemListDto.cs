@@ -13,7 +13,6 @@ namespace Tasks.Service.PlanWeek.Dto
             {
                 {TimeFrameType.Week, new ItemListDto()},
                 {TimeFrameType.Month, new ItemListDto()},
-                {TimeFrameType.Year, new ItemListDto()},
                 {TimeFrameType.Open, new ItemListDto()}
             };
         }
