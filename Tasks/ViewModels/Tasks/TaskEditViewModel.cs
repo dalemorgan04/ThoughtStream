@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Tasks.Models.DomainModels;
 
 namespace Tasks.ViewModels.Tasks
@@ -12,6 +13,9 @@ namespace Tasks.ViewModels.Tasks
         public int PriorityId { get; set; }
         public TimeFrameType TimeFrameId { get; set; }
         public DateTime DateTime { get; set; }
+        
+        public List<SelectListItem> PriorityDropDownItems { get; set; }
+
 
         public TaskEditViewModel()
         {

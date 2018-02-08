@@ -90,7 +90,14 @@ namespace Tasks.Controllers
             {
                 DateTime = DateTime.Now,
                 Description = "",
-                TimeFrameId = TimeFrameType.Date
+                TimeFrameId = TimeFrameType.Date,
+
+                PriorityDropDownItems = new List<SelectListItem>()
+                {
+                    new SelectListItem(){Value = "Low"},
+                    new SelectListItem(){Value = "Medium"},
+                    new SelectListItem(){Value = "High"}
+                }
             };
             return PartialView("_AddTask", viewModel);
         }
