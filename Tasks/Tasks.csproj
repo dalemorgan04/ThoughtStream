@@ -271,6 +271,7 @@
       <DependentUpon>Tasks.mdf</DependentUpon>
     </Content>
     <Content Include="CSS\Controllers\PlanWeek.css" />
+    <Content Include="CSS\Controllers\Tasks.css" />
     <Content Include="CSS\Controllers\Thoughts.css" />
     <Content Include="CSS\Global\bootstrap.css" />
     <Content Include="CSS\Global\content.css" />

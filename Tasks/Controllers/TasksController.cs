@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -57,7 +58,7 @@ namespace Tasks.Controllers
             taskDto.Description = viewModel.Description;
             taskDto.Priority.Id = viewModel.PriorityId;
             //taskDto.TimeFrame.Id= viewModel.TimeFrameId;
-            taskDto.DateTime = viewModel.DateTime;
+            
             taskService.Save(taskDto);
             return true;
         }
@@ -88,15 +89,19 @@ namespace Tasks.Controllers
         {
             TaskEditViewModel viewModel = new TaskEditViewModel
             {
-                DateTime = DateTime.Now,
+                //Defaults
+                Date = DateTime.Now,
+                HasTime = false,
+                Month = DateTime.Now.Month,
+                Time = DateTime.Now.Date,
+                WeekNumber = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Now,CalendarWeekRule.FirstDay, DayOfWeek.Monday),
                 Description = "",
                 TimeFrameId = TimeFrameType.Date,
-
                 PriorityDropDownItems = new List<SelectListItem>()
                 {
-                    new SelectListItem(){Value = "Low"},
-                    new SelectListItem(){Value = "Medium"},
-                    new SelectListItem(){Value = "High"}
+                    new SelectListItem(){Text = "Low", Value = "1" , Selected = true},
+                    new SelectListItem(){Text = "Medium", Value = "2"},
+                    new SelectListItem(){Text = "High", Value = "3"}
                 }
             };
             return PartialView("_AddTask", viewModel);

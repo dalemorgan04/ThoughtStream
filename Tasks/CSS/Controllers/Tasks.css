@@ -1,0 +1,14 @@
+﻿#addTask {
+    z-index: 26;
+}
+
+#addTaskForm {
+    z-index: 27;
+}
+
+    #addTaskForm select,
+    #addTaskForm input {
+        position: relative;
+        z-index: 28;
+    }
+

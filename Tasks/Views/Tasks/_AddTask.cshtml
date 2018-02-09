@@ -3,31 +3,47 @@
 @model Tasks.ViewModels.Tasks.TaskEditViewModel
 
 
-<div id="addTaskModal">
-    
+<div id="addTask">
+
     <h4 class="modal-title">Add a task</h4>
 
-        @using (Html.BeginForm("Create", "Tasks", FormMethod.Post, new {id = "addTaskForm"}))
-        {
-            @Html.AntiForgeryToken()
-    
+    @using (Html.BeginForm("Create", "Tasks", FormMethod.Post, new { id = "addTaskForm" }))
+    {
+        @Html.AntiForgeryToken()
+
 
         <h3>Description</h3>
         @Html.TextBoxFor(model => model.Description, new { @class = "form-control", PlaceHolder = "Task description" })
 
         <h3>Priority</h3>
-        @Html.DropDownListFor(model => model.PriorityId, Model.PriorityDropDownItems, new { id = "priority", name = "priority" })
+        @Html.DropDownListFor(model => model.PriorityId, Model.PriorityDropDownItems, "Choose", new { id = "priority", name = "priority" })
 
         <h3>Timeframe Window</h3>
         <label for='timeFrame-day'>Day</label>
-        @Html.RadioButtonFor(m => m.TimeFrameId, 1, new { id = "timeFrame-day", name = "Window" })
+        @Html.RadioButtonFor(m => m.TimeFrameId, 1, new { id = "timeFrameId-day", name = "Window" })
         <label for='timeFrame-week'>Week</label>
-        @Html.RadioButtonFor(m => m.TimeFrameId, 2, new { id = "timeFrame-week", name = "Window" })
+        @Html.RadioButtonFor(m => m.TimeFrameId, 2, new { id = "timeFrameId-week", name = "Window" })
         <label for='timeFrame-wmonth'>Month</label>
-        @Html.RadioButtonFor(m => m.TimeFrameId, 3, new { id = "timeFrame-month", name = "Window" })
+        @Html.RadioButtonFor(m => m.TimeFrameId, 3, new { id = "timeFrameId-month", name = "Window" })
 
-        <h3>Timeframe Window</h3>
-    
-        }
+        <h3>Due On</h3>
+
+        <div class="timeframe-day-container">
+            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { @id = "timeframe-date" , @placeholder = "Choose date" })
+            @Html.CheckBoxFor(model => model.HasTime)
+            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { @id = "timeframe-time", @placeholder = "Choose date" })
+        </div>
+        <div class="timeframe-week-container">
+            @Html.TextBoxFor(model => model.WeekNumber, new { @id = "timeframe-week", @placeholder = "Choose date" })
+        </div>
+
+        <div class="timeframe-month-container">
+            @Html.TextBoxFor(model => model.WeekNumber, new { @id = "timeframe-month", @placeholder = "Choose date" })
+        </div>
+        
+        <input id="#startDate" />
+        <input id="#endDate" />
+    }
+
     <button id="btnAddTask" type="submit" value="Create" class="btn btn-default">Add</button>
 </div>

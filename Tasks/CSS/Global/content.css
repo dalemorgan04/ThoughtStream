@@ -188,7 +188,6 @@ button {
 * ---------- Separator ----------
 */
 
-
 .hr-horizontal{
     border: 0;
     height: 1px;
@@ -220,13 +219,28 @@ button {
 * ---------- Drop down ----------
 */
 
+Select {
+    min-width: 100px;
+    width: auto;
+    margin-right: 5px;
+}
+
 
 /*
-* ==================== TABLE ====================
+* ---------- jQuery DatePicker----------
 */
 
-.table{ 
+.ui-datepicker-current-day {
+    background: #00d8ca;
+}
 
+    .ui-datepicker-current-day a {
+        background: #00d8ca;
+    }
+    /*
+* ==================== TABLE ====================
+*/
+    .table {
 }
 table::before, table::after {
     -webkit-box-sizing: border-box;

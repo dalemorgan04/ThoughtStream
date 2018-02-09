@@ -12,17 +12,13 @@ namespace Tasks.ViewModels.Tasks
         public string Description { get; set; }
         public int PriorityId { get; set; }
         public TimeFrameType TimeFrameId { get; set; }
-        public DateTime DateTime { get; set; }
+
+        public DateTime Date { get; set; }
+        public bool HasTime { get; set; }
+        public DateTime Time { get; set; }
+        public int WeekNumber { get; set; }
+        public int Month { get; set; }
         
         public List<SelectListItem> PriorityDropDownItems { get; set; }
-
-
-        public TaskEditViewModel()
-        {
-            Description = "";
-            PriorityId = 6;
-            TimeFrameId = TimeFrameType.Date;
-            DateTime = DateTime.Today;
-        }
     }
 }
