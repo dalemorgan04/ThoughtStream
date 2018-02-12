@@ -29,16 +29,19 @@
         <h3>Due On</h3>
 
         <div class="timeframe-day-container">
-            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { @id = "timeframe-date" , @placeholder = "Choose date" })
+            <h3>Day container</h3>
+            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new {@id = "timeframe-date", @placeholder = "Choose date"})
             @Html.CheckBoxFor(model => model.HasTime)
-            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { @id = "timeframe-time", @placeholder = "Choose date" })
+            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new {@id = "timeframe-time", @placeholder = "Choose date"})
         </div>
         <div class="timeframe-week-container">
-            @Html.TextBoxFor(model => model.WeekNumber, new { @id = "timeframe-week", @placeholder = "Choose date" })
+            <h3>Week container</h3>
+            @Html.TextBoxFor(model => model.WeekNumber, new {@id = "timeframe-week", @placeholder = "Choose date"})
         </div>
 
         <div class="timeframe-month-container">
-            @Html.TextBoxFor(model => model.WeekNumber, new { @id = "timeframe-month", @placeholder = "Choose date" })
+            <h3>Month container</h3>
+            @Html.TextBoxFor(model => model.WeekNumber, new {@id = "timeframe-month", @placeholder = "Choose date"})
         </div>
         
         <input id="#startDate" />

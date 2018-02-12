@@ -11,7 +11,8 @@ namespace Tasks
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                     "~/JavaScript/Framework/jquery-{version}.js",
                     "~/JavaScript/Framework/jquery-ui-{version}.js",
-                    "~/JavaScript/Framework/jquery.nicescroll.min.js"));
+                    "~/JavaScript/Framework/jquery.nicescroll.min.js",
+                    "~/JavaScript/Framework/timedropper.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                     "~/JavaScript/Framework/jquery.validate*"));
@@ -35,6 +36,9 @@ namespace Tasks
             bundles.Add(new StyleBundle("~/Content/css").Include(                    
                     "~/CSS/Global/bootstrap.css",
                     "~/CSS/Global/jquery-ui.css",
+                    "~/CSS/Global/jquery-ui.structure.css",
+                    "~/CSS/Global/jquery-ui.theme.css",
+                    "~/CSS/Global/timedropper.css",
                     "~/CSS/Global/layout.css",
                     "~/CSS/Global/content.css"));
         }

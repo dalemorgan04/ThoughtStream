@@ -13,12 +13,12 @@
     --theme-black: #363537;
     --theme-red: #ee6055;
     --theme-font-text: 'Scope One', serif;
-    --theme-font-heading: 'Spectral SC', serif;    
+    --theme-font-heading: 'Spectral SC', serif;
     /* --- Layout Specific Themes --- */
     /*Headings*/
     --heading-font: var(--theme-font-heading);
     --heading-font-color: var(--theme-green-dark);
-    --heading-logo-font-color: var(--theme-grey-dark);    
+    --heading-logo-font-color: var(--theme-grey-dark);
     /*Card*/
     --card-bg-color: var(--theme-white);
     /*Button*/
@@ -29,6 +29,8 @@
     --button-font-size: 12px;
     /*Forms*/
     --input-line-height: 40px;
+    --datepicker-selected: var(--theme-blue-light);
+    --datepicker-hover: var(--theme-green-light);
     /*Shadow*/
     --shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -230,17 +232,28 @@ Select {
 * ---------- jQuery DatePicker----------
 */
 
-.ui-datepicker-current-day {
-    background: #00d8ca;
-}
-
-    .ui-datepicker-current-day a {
-        background: #00d8ca;
+    /*Week picker*/
+    .week-picker.selected a {
+        background: var(--datepicker-selected) !important;
     }
-    /*
+
+    .week-picker.hover a {
+        background: var(--datepicker-hover) !important;
+    }
+
+    .ui-datepicker-week-col {
+        font-weight: bold !important;
+    }
+
+    /*Month picker*/
+    .month-picker table{
+        display: none;
+    }
+
+/*
 * ==================== TABLE ====================
 */
-    .table {
+.table {
 }
 table::before, table::after {
     -webkit-box-sizing: border-box;

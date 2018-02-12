@@ -276,7 +276,10 @@
     <Content Include="CSS\Global\bootstrap.css" />
     <Content Include="CSS\Global\content.css" />
     <Content Include="CSS\Global\jquery-ui.css" />
+    <Content Include="CSS\Global\jquery-ui.structure.css" />
+    <Content Include="CSS\Global\jquery-ui.theme.css" />
     <Content Include="CSS\Global\layout.css" />
+    <Content Include="CSS\Global\timedropper.css" />
     <Content Include="CSS\Modules\split.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -322,6 +325,7 @@
     <Content Include="JavaScript\Framework\respond.min.js" />
     <Content Include="JavaScript\Framework\split.js" />
     <Content Include="JavaScript\Framework\split.min.js" />
+    <Content Include="JavaScript\Framework\timedropper.js" />
     <Content Include="JavaScript\Framework\velocity.min.js" />
     <Content Include="JavaScript\Framework\velocity.ui.js" />
     <Content Include="JavaScript\Framework\velocity.ui.min.js" />
