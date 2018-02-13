@@ -279,6 +279,7 @@
     <Content Include="CSS\Global\jquery-ui.structure.css" />
     <Content Include="CSS\Global\jquery-ui.theme.css" />
     <Content Include="CSS\Global\layout.css" />
+    <Content Include="CSS\Global\monthPicker.css" />
     <Content Include="CSS\Global\timedropper.css" />
     <Content Include="CSS\Modules\split.css" />
     <Content Include="favicon.ico" />
@@ -321,6 +322,8 @@
     <Content Include="JavaScript\Framework\jquery.validate.unobtrusive.js" />
     <Content Include="JavaScript\Framework\jquery.validate.unobtrusive.min.js" />
     <Content Include="JavaScript\Framework\modernizr-2.6.2.js" />
+    <Content Include="JavaScript\Framework\moment.js" />
+    <Content Include="JavaScript\Framework\monthPicker.js" />
     <Content Include="JavaScript\Framework\respond.js" />
     <Content Include="JavaScript\Framework\respond.min.js" />
     <Content Include="JavaScript\Framework\split.js" />

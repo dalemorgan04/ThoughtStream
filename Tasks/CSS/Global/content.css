@@ -36,6 +36,7 @@
     --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     --shadow-header: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     --shadow-active-tab: -3px 5px 5px -3px rgba(0,0,0,0.16), -3px 5px 5px -3px rgba(0,0,0,0.23);
+    --timeDropper: 0 0 0 1px #a9a9a9, 0px 2px 2px 3px rgba(0, 0, 0, 0.16);
 }
 
 /*
@@ -227,6 +228,12 @@ Select {
     margin-right: 5px;
 }
 
+/*
+* ---------- Multi Toggle ----------
+*/
+
+
+
 
 /*
 * ---------- jQuery DatePicker----------
@@ -237,23 +244,35 @@ Select {
         background: var(--datepicker-selected) !important;
     }
 
-    .week-picker.hover a {
-        background: var(--datepicker-hover) !important;
-    }
+.week-picker.hover a {
+    background: var(--datepicker-hover);
+}
 
     .ui-datepicker-week-col {
         font-weight: bold !important;
     }
+    
+    #ui-datepicker-div,
+    #MonthPicker_timeframe-month
+    {
+        /*Shadow card height*/
+        -moz-box-shadow: var(--shadow-card) !important;
+        -webkit-box-shadow: var(--shadow-card) !important;
+        box-shadow: var(--shadow-card) !important;
+    }
 
-    /*Month picker*/
-    .month-picker table{
-        display: none;
+    #td-clock-0 .td-clock {
+        font-family: var(--heading-font);
+        /*Shadow*/
+        -moz-box-shadow: var(--timeDropper) !important;
+        -webkit-box-shadow: var(--timeDropper) !important;
+        box-shadow: var(--timeDropper) !important;
     }
 
 /*
 * ==================== TABLE ====================
 */
-.table {
+    .table {
 }
 table::before, table::after {
     -webkit-box-sizing: border-box;

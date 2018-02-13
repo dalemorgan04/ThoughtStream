@@ -12,7 +12,9 @@ namespace Tasks
                     "~/JavaScript/Framework/jquery-{version}.js",
                     "~/JavaScript/Framework/jquery-ui-{version}.js",
                     "~/JavaScript/Framework/jquery.nicescroll.min.js",
-                    "~/JavaScript/Framework/timedropper.js"));
+                    "~/JavaScript/Framework/timedropper.js",
+                    "~/JavaScript/Framework/monthPicker.js",
+                    "~/JavaScript/Framework/moment.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                     "~/JavaScript/Framework/jquery.validate*"));
@@ -39,6 +41,7 @@ namespace Tasks
                     "~/CSS/Global/jquery-ui.structure.css",
                     "~/CSS/Global/jquery-ui.theme.css",
                     "~/CSS/Global/timedropper.css",
+                    "~/CSS/Global/monthPicker.css",
                     "~/CSS/Global/layout.css",
                     "~/CSS/Global/content.css"));
         }

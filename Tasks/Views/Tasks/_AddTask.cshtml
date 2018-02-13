@@ -7,9 +7,15 @@
 
     <h4 class="modal-title">Add a task</h4>
 
-    @using (Html.BeginForm("Create", "Tasks", FormMethod.Post, new { id = "addTaskForm" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "addTaskForm" }))
     {
         @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.TimeFrameId)
+        @Html.HiddenFor(model => model.Date)
+        @Html.HiddenFor(model => model.Time)
+        @Html.HiddenFor(model => model.WeekNumber)
+        @Html.HiddenFor(model => model.Month)
 
 
         <h3>Description</h3>
@@ -18,35 +24,47 @@
         <h3>Priority</h3>
         @Html.DropDownListFor(model => model.PriorityId, Model.PriorityDropDownItems, "Choose", new { id = "priority", name = "priority" })
 
-        <h3>Timeframe Window</h3>
-        <label for='timeFrame-day'>Day</label>
-        @Html.RadioButtonFor(m => m.TimeFrameId, 1, new { id = "timeFrameId-day", name = "Window" })
-        <label for='timeFrame-week'>Week</label>
-        @Html.RadioButtonFor(m => m.TimeFrameId, 2, new { id = "timeFrameId-week", name = "Window" })
-        <label for='timeFrame-wmonth'>Month</label>
-        @Html.RadioButtonFor(m => m.TimeFrameId, 3, new { id = "timeFrameId-month", name = "Window" })
+        <h3>Due date due</h3>
+        <div id="timeframe-tabs">
 
-        <h3>Due On</h3>
+            <ul>
+                <li><a href="#timeframe-open-container">Open</a></li>
+                <li><a href="#timeframe-day-container">Day</a></li>
+                <li><a href="#timeframe-week-container">Week</a></li>
+                <li><a href="#timeframe-month-container">Month</a></li>
+            </ul>
 
-        <div class="timeframe-day-container">
-            <h3>Day container</h3>
-            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new {@id = "timeframe-date", @placeholder = "Choose date"})
-            @Html.CheckBoxFor(model => model.HasTime)
-            @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new {@id = "timeframe-time", @placeholder = "Choose date"})
-        </div>
-        <div class="timeframe-week-container">
-            <h3>Week container</h3>
-            @Html.TextBoxFor(model => model.WeekNumber, new {@id = "timeframe-week", @placeholder = "Choose date"})
-        </div>
+            <div id="timeframe-day-container">
 
-        <div class="timeframe-month-container">
-            <h3>Month container</h3>
-            @Html.TextBoxFor(model => model.WeekNumber, new {@id = "timeframe-month", @placeholder = "Choose date"})
+                <h3>Due On the date...</h3>
+
+                <div class="form-group">
+                    <input id="timeframe-date" placeholder="Choose date" />
+                </div>
+                <div class="form-group">
+                    <p>specify time?</p>
+                    @Html.CheckBoxFor(model => model.HasTime)
+                </div>
+                <div class="form-group">
+                    <input id="timeframe-time" placeholder="Choose time" />
+                </div>
+            </div>
+
+            <div id="timeframe-week-container">
+                <h3>Due in the week of...</h3>
+                <input id="timeframe-week" placeholder="Choose a week" />
+            </div>
+
+            <div id="timeframe-month-container">
+                <h3>Due in the month of...</h3>
+                <input id="timeframe-month" placeholder="Choose a month" />
+            </div>
+
+            <div id="timeframe-open-container">
+                <h3>No due date</h3>
+            </div>
+
         </div>
-        
-        <input id="#startDate" />
-        <input id="#endDate" />
     }
 
-    <button id="btnAddTask" type="submit" value="Create" class="btn btn-default">Add</button>
 </div>
