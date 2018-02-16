@@ -3,23 +3,41 @@
 @model AsideViewModel
 
 <div class="aside-tabs">
-    
-<ul>
-    @{
-        var orderedTabs = Model.VisibleTabsList
-            .OrderBy(x => x.OrderNumber)
-            .Reverse() //Reverse as tabs are reversed using css
-            .ToList();
-    }
-    @foreach (var tab in orderedTabs)
-    {
-        <li>
-            <div class="rotate">@tab.Name</div>
+
+    <ul>
+        
+        @{
+            var orderedTabs = Model.TabList
+                .OrderBy(x => x.OrderNumber)
+                .Reverse() //Reverse as tabs are reversed using css
+                .ToList();
+
+            
+        }
+        @foreach (var tab in orderedTabs)
+        {
+            var isActiveClass = "";
+            if (tab.IsDefault)
+            {
+                isActiveClass = "";
+            }
+        <li class="@isActiveClass">
+
+            @{ var cssClass = "aside-tab rotate"; }
+            @if (!tab.IsEnabled)
+            {
+                cssClass += " disabled";
+            }
+
+            @{var idName = "aside-tab-" + @tab.Name; }
+
+            <div id="@idName" class="@cssClass">@tab.Name</div>
         </li>
-    }
-</ul>
+        }
+
+    </ul>
 </div>
 
-<div class="aside-content">
+<div id="aside-content">
     @{ Html.RenderAction("GetDefaultAsideContent"); }
 </div>

@@ -12,3 +12,6 @@
         z-index: 28;
     }
 
+#taskResultsTableBody .selected {
+    background: var(--selected);
+}

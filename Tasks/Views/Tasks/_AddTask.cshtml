@@ -13,16 +13,12 @@
 
         @Html.HiddenFor(model => model.TimeFrameId)
         @Html.HiddenFor(model => model.Date)
-        @Html.HiddenFor(model => model.Time)
-        @Html.HiddenFor(model => model.WeekNumber)
-        @Html.HiddenFor(model => model.Month)
-
 
         <h3>Description</h3>
         @Html.TextBoxFor(model => model.Description, new { @class = "form-control", PlaceHolder = "Task description" })
 
         <h3>Priority</h3>
-        @Html.DropDownListFor(model => model.PriorityId, Model.PriorityDropDownItems, "Choose", new { id = "priority", name = "priority" })
+        @Html.DropDownListFor(model => model.PriorityId, Model.PriorityDropDownItems)
 
         <h3>Due date due</h3>
         <div id="timeframe-tabs">
@@ -38,15 +34,15 @@
 
                 <h3>Due On the date...</h3>
 
-                <div class="form-group">
+                <div class="input-container">
                     <input id="timeframe-date" placeholder="Choose date" />
                 </div>
-                <div class="form-group">
+                <div class="input-container">
                     <p>specify time?</p>
                     @Html.CheckBoxFor(model => model.HasTime)
                 </div>
-                <div class="form-group">
-                    <input id="timeframe-time" placeholder="Choose time" />
+                <div class="input-container">
+                    @Html.TextBoxFor(model => model.Time)
                 </div>
             </div>
 
@@ -65,6 +61,7 @@
             </div>
 
         </div>
+        <button id="saveTask">Save Task</button>
     }
 
 </div>

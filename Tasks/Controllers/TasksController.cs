@@ -31,6 +31,7 @@ namespace Tasks.Controllers
             List<TaskDto> taskList = taskService.GetTasks().ToList();
             viewModel.TaskList = taskList;
             viewModel.EditViewModel = new TaskEditViewModel();
+            
             return View("Index",viewModel);
         }
 
@@ -53,11 +54,17 @@ namespace Tasks.Controllers
         [HttpPost]
         public bool Create(TaskEditViewModel viewModel)
         {
-            TaskDto taskDto  = new TaskDto();
-            taskDto.User = new User(){Id = 1};
-            taskDto.Description = viewModel.Description;
-            taskDto.Priority.Id = viewModel.PriorityId;
-            //taskDto.TimeFrame.Id= viewModel.TimeFrameId;
+            DateTime timeFrameDate = new DateTime(viewModel.Date.Year, viewModel.Date.Month, viewModel.Date.Day);
+            DateTime timeFrameDateTime = timeFrameDate.Date.Add( viewModel.HasTime ? new TimeSpan(0, 0, 0) : viewModel.Time);
+
+            TaskDto taskDto = new TaskDto()
+            {
+                Description = viewModel.Description,
+                Priority = new Priority() { Id = viewModel.PriorityId },
+                TimeFrame = new TimeFrame((TimeFrameType)viewModel.TimeFrameId,timeFrameDateTime),
+                DateTime = timeFrameDateTime,
+                User = new User() { Id = 1}
+            };
             
             taskService.Save(taskDto);
             return true;
@@ -72,9 +79,22 @@ namespace Tasks.Controllers
         {
             var viewModel = new AsideViewModel()
             {
-                VisibleTabsList = new List<Tab>()
+                TabList = new List<Tab>()
                 {
-                    {new Tab(){ OrderNumber = 0, TabType = AsideTabType.Add, Name = "Selection"} }
+                    new Tab()
+                    {
+                        Name = "Add",
+                        OrderNumber = 1,
+                        IsDefault = true,
+                        IsEnabled = true
+                    },
+                    new Tab()
+                    {
+                        Name = "Edit",
+                        OrderNumber = 1,
+                        IsDefault = false,
+                        IsEnabled = false
+                    }
                 }
             };
             return PartialView("_Aside", viewModel);
@@ -90,13 +110,12 @@ namespace Tasks.Controllers
             TaskEditViewModel viewModel = new TaskEditViewModel
             {
                 //Defaults
+                
                 Date = DateTime.Now,
                 HasTime = false,
-                Month = DateTime.Now.Month,
-                Time = DateTime.Now.Date,
-                WeekNumber = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Now,CalendarWeekRule.FirstDay, DayOfWeek.Monday),
                 Description = "",
                 TimeFrameId = TimeFrameType.Date,
+                PriorityId = 0,
                 PriorityDropDownItems = new List<SelectListItem>()
                 {
                     new SelectListItem(){Text = "Low", Value = "1" , Selected = true},
@@ -107,8 +126,28 @@ namespace Tasks.Controllers
             return PartialView("_AddTask", viewModel);
         }
 
-        public ActionResult GetAsideEditTab()
+        public ActionResult GetAsideEditTab(int taskId)
         {
+            TaskDto task =  taskService.GetTaskById(taskId);
+            DateTime taskDate = new DateTime(task.DateTime.Year, task.DateTime.Month, task.DateTime.Day);
+            TimeSpan taskTime =  ((TimeFrameType)task.TimeFrame.TimeFrameId == TimeFrameType.Time) ? new TimeSpan( task.DateTime.Hour, task.DateTime.Minute, 0) : new TimeSpan(0, 0, 0);
+            
+            TaskEditViewModel viewModel = new TaskEditViewModel
+            {
+                //Defaults
+                Date = taskDate.Add(taskTime),
+                HasTime = false,
+                Time = taskTime,
+                Description = "",
+                TimeFrameId = TimeFrameType.Date,
+                PriorityId = 0,
+                PriorityDropDownItems = new List<SelectListItem>()
+                {
+                    new SelectListItem(){Text = "Low", Value = "1" , Selected = true},
+                    new SelectListItem(){Text = "Medium", Value = "2"},
+                    new SelectListItem(){Text = "High", Value = "3"}
+                }
+            };
             return PartialView("");
         }
 

@@ -329,7 +329,7 @@ aside {
         padding-left: 5px;
     }
 
-        aside > .aside-container > .aside-content {
+        aside > .aside-container > #aside-content {
             z-index: 25;
             grid-column: 2 / 3;
             grid-row: 1;

@@ -7,7 +7,7 @@ namespace Tasks.Models.DomainModels
     {
         private readonly int id;
         private readonly DateTime? nullableDateTime;
-        public TimeFrame(int TimeFrameId, DateTime? dateTime = null)
+        public TimeFrame(TimeFrameType timeFrame, DateTime? dateTime = null)
         {
             this.id = TimeFrameId;
             this.nullableDateTime = dateTime;

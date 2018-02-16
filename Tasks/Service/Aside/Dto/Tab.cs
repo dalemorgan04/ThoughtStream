@@ -7,9 +7,10 @@ using Tasks.Models.DomainModels.Enum;
 namespace Tasks.Service.Aside.Dto
 {
     public class Tab
-    {
-        public int OrderNumber { get; set; }
-        public AsideTabType TabType { get; set; }
+    {   
         public string Name { get; set; }
+        public bool IsEnabled { get; set; }
+        public bool IsDefault { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

@@ -65,7 +65,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/core")
+    @RenderSection("urls",false)
     @Html.ViewJavascriptResource()
-    @RenderSection("scripts", false)
+
 </body>
 </html>

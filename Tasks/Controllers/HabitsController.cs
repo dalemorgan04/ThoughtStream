@@ -26,10 +26,22 @@ namespace Tasks.Controllers
         {
             var viewModel = new AsideViewModel()
             {
-                VisibleTabsList = new List<Tab>()
+                TabList = new List<Tab>()
                 {
-                    {new Tab(){ OrderNumber = 0, TabType = AsideTabType.Select, Name = "Selection"} },
-                    {new Tab(){ OrderNumber = 2, TabType = AsideTabType.Thoughts, Name = "Thoughts"} }
+                    new Tab()
+                    {
+                        Name = "Add",
+                        OrderNumber = 1,
+                        IsDefault = true,
+                        IsEnabled = true
+                    },
+                    new Tab()
+                    {
+                        Name = "Edit",
+                        OrderNumber = 1,
+                        IsDefault = false,
+                        IsEnabled = false
+                    }
                 }
             };
             return PartialView("_Aside", viewModel);
