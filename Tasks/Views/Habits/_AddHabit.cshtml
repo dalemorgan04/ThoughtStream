@@ -1,0 +1,94 @@
+﻿@using System.Web.Mvc.Html
+@model Tasks.ViewModels.Habits.HabitEditViewModel
+
+
+<h4 class="modal-title">Edit task</h4>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new {id = "Add_Form"}))
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+
+
+
+    <h3>Description</h3>
+    @Html.TextBoxFor(model => model.Description, new {@id = "Edit_Description", @class = "form-control", PlaceHolder = "Task description"})
+
+    <h3>Priority</h3>
+    @Html.DropDownListFor(model => model.PriorityId, Model.PriorityDropDownItems, new {@id = "Edit_TimeFrameId"})
+
+    <input placeholder="start now"/>
+
+    <h3>Repat Every</h3>
+    <input class="form-control" type="text" placeholder="Number"/>
+    <select class="form-control" id="">
+        <option>Day</option>
+        <option>Week</option>
+        <option>Month</option>
+        <option>Year</option>
+    </select>
+
+    <h3>Day</h3>
+    <p>No extra settings required</p>
+
+    <h3>Day of Week</h3>
+    <select class="form-control" id="add_day">
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+    </select>
+
+    <h3>Month</h3>
+    <select class="form-control" id="">
+        <option>On day of month</option>
+        <option>On weekday of month</option>
+    </select>
+
+    <h3>Day of month</h3>
+    <input placeholder="Day of Month"/>
+
+    <h3>Weekday of month</h3>
+    <select class="form-control" id="">
+        <option>First</option>
+        <option>Second</option>
+        <option>Third</option>
+        <option>Fourth</option>
+        <option>Last</option>
+    </select>
+    <select class="form-control" id="add_day">
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+    </select>
+
+    <h3>Year</h3>
+    <select class="form-control" id="">
+        <option>Week of Year</option>
+        <option>Month of year</option>
+    </select>
+
+    <h3>Week of Year</h3>
+    <input placeholder="Week of year"/>
+    <input placeholder="Day of Week"/>
+    <input placeholder="Day of Week"/>
+
+    <h3>Month of Year</h3>
+    <input placeholder="Month"/>
+
+    <h3>End..</h3>
+    <input placeholder="end on date"/>
+    <input placeholder="end after number of occurrences"/>
+
+    <button id="editTask">Save Habit</button>
+}

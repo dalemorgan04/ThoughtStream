@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Tasks.Infrastructure.ControllerDependencies;
 using Tasks.Models.DomainModels;
-using Tasks.Models.DomainModels.Enum;
-using Tasks.Service.Aside.Dto;
 using Tasks.Service.Tasks;
 using Tasks.Service.Tasks.Dto;
-using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.Tasks;
 
 namespace Tasks.Controllers
@@ -74,43 +69,70 @@ namespace Tasks.Controllers
         {
             return true;
         }
+        
 
-        public ActionResult GetDefaultAsideLayout()
-        {
-            var viewModel = new AsideViewModel()
-            {
-                TabList = new List<Tab>()
-                {
-                    new Tab()
-                    {
-                        Name = "Add",
-                        OrderNumber = 1,
-                        IsDefault = true,
-                        IsEnabled = true
-                    },
-                    new Tab()
-                    {
-                        Name = "Edit",
-                        OrderNumber = 1,
-                        IsDefault = false,
-                        IsEnabled = false
-                    }
-                }
-            };
-            return PartialView("_Aside", viewModel);
-        }
+       /*
+        * Aside 
+        */
 
-        public ActionResult GetDefaultAsideContent()
+        public ActionResult GetAside()
         {
-            return GetAsideAddTab();
+            return PartialView("_Aside");
         }
 
         public ActionResult GetAsideAddTab()
         {
+            TaskEditViewModel viewModel = getDefaultAdideViewModel();
+            return PartialView("_AddTask", viewModel);
+        }
+
+        public ActionResult GetAsideEditTab(int taskId)
+        {
+            if (taskId == 0)
+            {
+                //Default edit tab when nothing is selected
+                TaskEditViewModel viewModel = getDefaultAdideViewModel();
+                return PartialView("_EditTask", viewModel);
+            }
+            else
+            {
+                TaskDto task = taskService.GetTaskById(taskId);
+                DateTime taskDate = new DateTime(task.DateTime.Year, task.DateTime.Month, task.DateTime.Day);
+                TimeSpan taskTime = ((TimeFrameType) task.TimeFrame.TimeFrameId == TimeFrameType.Time)
+                    ? new TimeSpan(task.DateTime.Hour, task.DateTime.Minute, 0)
+                    : new TimeSpan(0, 0, 0);
+
+                bool hasTime = ((TimeFrameType) task.TimeFrame.TimeFrameId == TimeFrameType.Time ||
+                                (TimeFrameType) task.TimeFrame.TimeFrameId == TimeFrameType.Date)
+                    ? true
+                    : false;
+
+                TaskEditViewModel viewModel = new TaskEditViewModel
+                {
+                    Id = task.Id,
+                    Date = task.DateTime,
+                    HasTime = hasTime,
+                    Time = taskTime,
+                    Description = task.Description,
+                    TimeFrameId = (TimeFrameType) task.TimeFrame.TimeFrameId,
+                    PriorityId = 0,
+                    PriorityDropDownItems = new List<SelectListItem>()
+                    {
+                        new SelectListItem() {Text = "Low", Value = "1", Selected = true},
+                        new SelectListItem() {Text = "Medium", Value = "2"},
+                        new SelectListItem() {Text = "High", Value = "3"}
+                    }
+                };
+                return PartialView("_EditTask", viewModel);
+            }
+        }
+
+        private TaskEditViewModel getDefaultAdideViewModel()
+        {
             TaskEditViewModel viewModel = new TaskEditViewModel
             {
                 //Defaults
-                
+                Id = 0,
                 Date = DateTime.Now,
                 HasTime = false,
                 Description = "",
@@ -123,32 +145,7 @@ namespace Tasks.Controllers
                     new SelectListItem(){Text = "High", Value = "3"}
                 }
             };
-            return PartialView("_AddTask", viewModel);
-        }
-
-        public ActionResult GetAsideEditTab(int taskId)
-        {
-            TaskDto task =  taskService.GetTaskById(taskId);
-            DateTime taskDate = new DateTime(task.DateTime.Year, task.DateTime.Month, task.DateTime.Day);
-            TimeSpan taskTime =  ((TimeFrameType)task.TimeFrame.TimeFrameId == TimeFrameType.Time) ? new TimeSpan( task.DateTime.Hour, task.DateTime.Minute, 0) : new TimeSpan(0, 0, 0);
-            
-            TaskEditViewModel viewModel = new TaskEditViewModel
-            {
-                //Defaults
-                Date = taskDate.Add(taskTime),
-                HasTime = false,
-                Time = taskTime,
-                Description = "",
-                TimeFrameId = TimeFrameType.Date,
-                PriorityId = 0,
-                PriorityDropDownItems = new List<SelectListItem>()
-                {
-                    new SelectListItem(){Text = "Low", Value = "1" , Selected = true},
-                    new SelectListItem(){Text = "Medium", Value = "2"},
-                    new SelectListItem(){Text = "High", Value = "3"}
-                }
-            };
-            return PartialView("");
+            return viewModel;
         }
 
         public ActionResult GetAsideDragTab()

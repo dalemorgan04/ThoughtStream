@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Tasks.Infrastructure.ControllerDependencies;
-using Tasks.Models.DomainModels;
-using Tasks.Models.DomainModels.Enum;
 using Tasks.Service.Aside.Dto;
 using Tasks.Service.PlanWeek;
-using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.PlanWeek;
-using Tasks.ViewModels.Tasks;
 
 namespace Tasks.Controllers
 {
@@ -36,29 +31,9 @@ namespace Tasks.Controllers
             return View("Index", viewModel);
         }
 
-        public ActionResult GetDefaultAsideLayout()
+        public ActionResult GetAside()
         {
-            var viewModel = new AsideViewModel()
-            {
-                TabList = new List<Tab>()
-                {
-                    new Tab()
-                    {
-                        Name = "Add",
-                        OrderNumber = 1,
-                        IsDefault = true,
-                        IsEnabled = true
-                    },
-                    new Tab()
-                    {
-                        Name = "Edit",
-                        OrderNumber = 1,
-                        IsDefault = false,
-                        IsEnabled = false
-                    }
-                }
-            };
-            return PartialView("_Aside", viewModel);
+            return PartialView("_Aside");
         }
 
         public ActionResult GetDefaultAsideContent()

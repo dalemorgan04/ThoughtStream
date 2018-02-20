@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Tasks.Infrastructure.ControllerDependencies;
-using Tasks.Models.DomainModels.Enum;
 using Tasks.Service.Aside.Dto;
 using Tasks.Service.Projects;
 using Tasks.Service.Projects.Dto;
-using Tasks.ViewModels.Aside;
 using Tasks.ViewModels.Projects;
 
 namespace Tasks.Controllers
@@ -28,34 +24,44 @@ namespace Tasks.Controllers
             return View("Index",viewModel);
         }
 
-        public ActionResult GetDefaultAsideLayout()
+        public ActionResult GetAside()
         {
-            var viewModel = new AsideViewModel()
-            {
-                TabList = new List<Tab>()
-                {
-                    new Tab()
-                    {
-                        Name = "Add",
-                        OrderNumber = 1,
-                        IsDefault = true,
-                        IsEnabled = true
-                    },
-                    new Tab()
-                    {
-                        Name = "Edit",
-                        OrderNumber = 1,
-                        IsDefault = false,
-                        IsEnabled = false
-                    }
-                }
-            };
-            return PartialView("_Aside", viewModel);
+            return PartialView("_Aside");
         }
 
-        public ActionResult GetDefaultAsideContent()
+        public ActionResult GetAsideAddTab()
         {
-            throw new NotImplementedException();
+            ProjectEditViewModel viewmodel = getDefaultViewModel();
+            return PartialView("_AddProject", viewmodel);
+        }
+
+        public ActionResult GetAsideEditTab( int projectId)
+        {
+            if (projectId == 0)
+            {
+                ProjectEditViewModel viewmodel = getDefaultViewModel();
+                return PartialView("_EditProject", viewmodel);
+            }
+            else
+            {
+                //TODO get requested project in basic form
+                ProjectEditViewModel viewmodel = new ProjectEditViewModel()
+                {
+                    Id = 0,
+                    Description = ""
+                };
+                return PartialView("_EditProject", viewmodel);
+            }
+        }
+
+        private ProjectEditViewModel getDefaultViewModel()
+        {
+            ProjectEditViewModel viewmodel = new ProjectEditViewModel()
+            {
+                Id = 0,
+                Description = ""
+            };
+            return viewmodel;
         }
     }
 }

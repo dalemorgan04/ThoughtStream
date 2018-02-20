@@ -2,7 +2,7 @@
     z-index: 26;
 }
 
-#addTaskForm {
+#addTaskForm, #editTaskForm {
     z-index: 27;
 }
 

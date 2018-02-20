@@ -9,7 +9,6 @@ namespace Tasks.Infrastructure.ControllerDependencies
 {
     interface IAsideController
     {
-        ActionResult GetDefaultAsideLayout();
-        ActionResult GetDefaultAsideContent();
+        ActionResult GetAside();
     }
 }

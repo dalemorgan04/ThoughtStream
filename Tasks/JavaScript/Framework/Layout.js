@@ -56,7 +56,8 @@ var layoutpubsub = {
         $(document).on('mouseenter', 'nav > .nav-container > ul > li:not(.active)', layoutpubsub.navLinkHoverStart);
         $(document).on('mouseleave', 'nav > .nav-container > ul > li:not(.active)', layoutpubsub.navLinkHoverEnd);
 
-        $(document).on('click', 'aside > .aside-container > .aside-tabs > ul > li', layoutpubsub.tabClick);
+        $(document).on('click', 'aside > .aside-container > .aside-tabs > ul > li:not(.disabled)', layoutpubsub.tabClick);
+        
     },
 
     // ===== Animation ===== //     
@@ -177,6 +178,10 @@ var layoutpubsub = {
 
 
     // ===== Aside ===== //
+    defaultTab: function() {
+
+        
+    },
 
     toggleAside: function () {
 
@@ -208,6 +213,7 @@ var layoutpubsub = {
             });
         $(document).trigger('asideToggled');
     },
+
 
 
     // ===== Aside Arrow ===== //

@@ -1,0 +1,24 @@
+﻿<!--Tabs-->
+<div class="aside-tabs">
+    <ul>
+        <li id="aside-tabs-thoughts">Thoughts</li>
+        <li id="aside-tabs-habits" >HabitsGoals</li>
+        <li id="aside-tabs-tasks">Tasks</li>
+        
+        <li id="aside-tabs-edit" class="disabled">Edit</li>
+        <li id="aside-tabs-add" class="active">Add</li>
+    </ul>
+</div>
+
+<div id="aside-content">
+    <!--Tabs content-->
+    <div id="aside-add-container">
+        @{ Html.RenderAction("GetAsideAddTab"); }
+    </div>
+
+    <div id="aside-edit-container">
+        @{ Html.RenderAction("GetAsideEditTab", new { projectId = 0 }); }
+    </div>
+
+</div>
+

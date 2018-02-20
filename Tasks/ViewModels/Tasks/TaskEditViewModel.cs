@@ -9,6 +9,7 @@ namespace Tasks.ViewModels.Tasks
 {
     public class TaskEditViewModel
     {
+        public int Id { get; set; }
         public string Description { get; set; }
         public int PriorityId { get; set; }
         public TimeFrameType TimeFrameId { get; set; }

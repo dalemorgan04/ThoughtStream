@@ -1,0 +1,16 @@
+﻿@using System.Web.Mvc.Html
+@model Tasks.ViewModels.Projects.ProjectEditViewModel
+
+<h4 class="modal-title">Add a task</h4>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "Add_Form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h3>Description</h3>
+    @Html.TextBoxFor(model => model.Description, new { @id = "Add_Description", @class = "form-control", PlaceHolder = "Task description" })
+
+    <p>Once added you can drag tasks to this project</p>
+
+    <button id="addTask">Save Task</button>
+}

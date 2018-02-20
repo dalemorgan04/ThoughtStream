@@ -255,9 +255,10 @@
     <Compile Include="Service\Users\IUserService.cs" />
     <Compile Include="Service\Users\UserDtoMap.cs" />
     <Compile Include="Service\Users\UserService.cs" />
-    <Compile Include="ViewModels\Aside\AsideViewModel.cs" />
+    <Compile Include="ViewModels\Habits\HabitEditViewModel.cs" />
     <Compile Include="ViewModels\Habits\HabitsViewModel.cs" />
     <Compile Include="ViewModels\PlanWeek\PlanWeekViewModel.cs" />
+    <Compile Include="ViewModels\Projects\ProjectEditViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TaskEditViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TasksViewModel.cs" />
@@ -271,6 +272,7 @@
       <DependentUpon>Tasks.mdf</DependentUpon>
     </Content>
     <Content Include="CSS\Controllers\PlanWeek.css" />
+    <Content Include="CSS\Controllers\Projects.css" />
     <Content Include="CSS\Controllers\Tasks.css" />
     <Content Include="CSS\Controllers\Thoughts.css" />
     <Content Include="CSS\Global\bootstrap.css" />
@@ -363,10 +365,17 @@
     <Content Include="Views\PlanWeek\Index.cshtml" />
     <Content Include="Views\PlanWeek\_WeekItemsTable.cshtml" />
     <Content Include="Views\PlanWeek\_OpenItemsTable.cshtml" />
-    <Content Include="Views\Shared\_Aside.cshtml" />
+    <Content Include="Views\Tasks\_EditTask.cshtml" />
+    <Content Include="Views\Tasks\_Aside.cshtml" />
+    <Content Include="Views\Thoughts\_Aside.cshtml" />
+    <Content Include="Views\Habits\_Aside.cshtml" />
+    <Content Include="Views\Projects\_Aside.cshtml" />
+    <Content Include="Views\Habits\_AddHabit.cshtml" />
+    <Content Include="Views\Habits\_EditHabit.cshtml" />
+    <Content Include="Views\Projects\_AddProject.cshtml" />
+    <Content Include="Views\Projects\_EditProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Aside\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ScheduleWeek\" />
   </ItemGroup>
