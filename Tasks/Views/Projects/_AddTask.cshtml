@@ -1,0 +1,17 @@
+﻿@using Tasks.Service.Tasks.Dto
+@model Tasks.ViewModels.Tasks.TasksViewModel
+
+<h3>Drag a task</h3>
+<table class="table">
+    <tbody class="connectedSortable">
+        @foreach (TaskDto task in Model.TaskList)
+        {
+            <tr data-taskid="@task.Id">
+                <td>@task.Id</td>
+                <td>@task.Description</td>
+                <td>@task.TimeFrame.Description</td>
+                <td>@task.TimeFrame.Due</td>
+            </tr>
+        }
+    </tbody>
+</table>

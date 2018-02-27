@@ -1,10 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using AutoMapper;
+using Castle.Windsor.Diagnostics.Extensions;
 using Tasks.Models.DomainModels;
+using Tasks.Models.DomainModels.Enum;
 using Tasks.Models.DomainModels.Habits.Entity;
 using Tasks.Models.DomainModels.Projects.Entity;
 using Tasks.Models.DomainModels.Projects.Spec;
+using Tasks.Models.DomainModels.Tasks.Spec;
 using Tasks.Repository.Core;
+using Tasks.Repository.Habits;
+using Tasks.Repository.Projects;
 using Tasks.Service.Projects.Dto;
 
 namespace Tasks.Service.Projects
@@ -12,75 +20,104 @@ namespace Tasks.Service.Projects
     public class ProjectService : IProjectService
     {
         private readonly ISpecificationRepository<Project, int> projectRepository;
-        public ProjectService(ISpecificationRepository<Project, int> projectRepository)
+        private readonly IProjectRepository projectSqlRepository;
+        private readonly ISpecificationRepository<Task, int> taskRepository;
+        private readonly IUnitOfWork unitOfWork;
+        public ProjectService(
+            ISpecificationRepository<Project, int> projectRepository,
+            IProjectRepository projectSqlRepository,
+            ISpecificationRepository<Task, int> taskRepository,
+            IUnitOfWork unitOfWork)
         {
             this.projectRepository = projectRepository;
+            this.projectSqlRepository = projectSqlRepository;
+            this.taskRepository = taskRepository;
+            this.unitOfWork = unitOfWork;
         }
-        public List<ProjectDto> GetRootProjects()
+
+        public List<ProjectWithItemsDto> GetRootProjects()
         {
-            List<Project> rootProjects = projectRepository
-                                                .Find( new ProjectRootSpec())                                                
-                                                .ToList();
-            List<ProjectDto> projectList = new List<ProjectDto>();
-            
-            foreach (Project project in rootProjects)
+            List<ProjectWithItemsDto> rootProjects = new List<ProjectWithItemsDto>();
+            List<int> rootProjectIds = new List<int>();
+            DataTable dataTable = projectSqlRepository.GetProjectDescendants(0, 1);
+            for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                //Overview
-                ProjectDto projectDto = new ProjectDto()
-                {
-                    Id = project.Id,
-                    Description = project.Description,
-                    Items = new List<ProjectItemDto>()
-                };                
-                
-                //Add habits, tasks, child projects as items and seen as equal
-
-                //Habits
-                foreach (HabitGoal habitGoal in project.HabitGoals)
-                {
-                    ProjectItemDto itemDto = new ProjectItemDto()
-                    {
-                            Id = habitGoal.Id,
-                            Description = habitGoal.Description,
-                            Type = "Habit"
-                        };
-                    projectDto.Items.Add(itemDto);
-                }
-
-                //Tasks
-                foreach (Task task in project.Tasks)
-                {
-                    ProjectItemDto itemDto = new ProjectItemDto()
-                    {
-                        Id = task.Id,
-                        Description = task.Description,
-                        Type = "Task"
-                    };
-                    projectDto.Items.Add(itemDto);
-                }
-
-                //Child Projects
-                foreach (Project childProject in GetChildProjects(project))
-                {
-                    ProjectItemDto itemDto = new ProjectItemDto()
-                    {
-                        Id = childProject.Id,
-                        Description = childProject.Description,
-                        Type = "Sub-Project"
-                    };
-                    projectDto.Items.Add(itemDto);
-                }
-
-                projectList.Add(projectDto);
-            }            
-
-            return projectList;
+                rootProjectIds.Add(Convert.ToInt32(dataTable.Rows[i]["ProjectId"].ToString()));
+            }
+            foreach (int rootProjectId in rootProjectIds)
+            {
+                rootProjects.Add(GetProject(rootProjectId));
+            }
+            return rootProjects;
         }
-        private List<Project> GetChildProjects(Project project)
+
+        public ProjectWithItemsDto GetProject(int projectId)
         {
-            return this.projectRepository
-                                .Find( new ProjectChildrenSpec(project))
-                                .ToList();
+            Project rootProject = projectRepository.Get(projectId);
+            ProjectWithItemsDto projectWithItemsDto = new ProjectWithItemsDto()
+            {
+                Id = rootProject.Id,
+                Description = rootProject.Description
+            };
+
+            //Sub Projects
+            DataTable table = projectSqlRepository.GetProjectDescendants(projectId, 1);
+            List<int> subProjectIds = new List<int>();
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                subProjectIds.Add( Convert.ToInt32( table.Rows[i]["ProjectId"].ToString() ) );
+            }
+
+            List<Project> subProjects = projectRepository.Get(subProjectIds).ToList();
+            foreach (Project subProject in subProjects)
+            {
+                ProjectItemDto projectItem = new ProjectItemDto()
+                {
+                    Id = projectId,
+                    Type = ItemType.Project,
+                    Description = subProject.Description
+                };
+                projectWithItemsDto.Items.Add(projectItem);
+            }
+
+            //Tasks
+            List<Task> tasks = taskRepository.Find(new ProjectTasksSpec(rootProject)).ToList();
+            foreach (Task task in tasks)
+            {
+                ProjectItemDto projectItem = new ProjectItemDto()
+                {
+                    Id = task.Id,
+                    Description = task.Description,
+                    Type = ItemType.Task
+                };
+                projectWithItemsDto.Items.Add(projectItem);
+            }
+
+            //Habits
+            //List<Habit> habits = HabitRepository.Find()
+
+
+            return projectWithItemsDto;
+        }
+
+        public void AppendTask( int projectId, int taskId)
+        {
+            Project project = projectRepository.Get(projectId);
+            Task task = taskRepository.Get(taskId);
+            task.Update(project);
+            unitOfWork.Commit();
+        }
+
+        public void Save(ProjectWithItemsDto projectWithItemsDto)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Save(ProjectDto projectDto)
+        {
+            Project project = Mapper.Map<ProjectDto, Project>(projectDto);
+            projectRepository.Add(project);
+            unitOfWork.Commit();
         }
     }
 }

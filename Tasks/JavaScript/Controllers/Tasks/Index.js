@@ -7,7 +7,6 @@
 
 $(function () {
     tasksPubsub.init();
-    tasksPubsub.applyBindings();
 });
 
 var tasksPubsub = {
@@ -31,7 +30,7 @@ var tasksPubsub = {
         $(document).on('click', '#Add_HasTime', this.add_updateHasTime);
         $(document).on('click', '#Edit_HasTime', this.edit_updateHasTime);
 
-        $(document).on('click', '#saveTask', this.saveTask);
+        $(document).on('click', '#saveProject', this.saveTask);
         $(document).on('click', '#aside-tab-Add', this.getAddTask);
         $(document).on('click', '#aside-tab-Edit', this.getEditTask);
 

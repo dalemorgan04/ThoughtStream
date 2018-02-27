@@ -11,6 +11,7 @@ using Tasks.Repository.Habits;
 using Tasks.Service.Habits;
 using Tasks.Service.Projects;
 using Tasks.Repository.Core;
+using Tasks.Repository.Projects;
 using Tasks.Service.PlanWeek;
 
 namespace Tasks
@@ -47,6 +48,12 @@ namespace Tasks
             container.Register(Component
                 .For<IHabitRepository>()
                 .ImplementedBy<HabitRepository>()
+                .LifeStyle.Transient
+                .DependsOn(dependencies));
+
+            container.Register(Component
+                .For<IProjectRepository>()
+                .ImplementedBy<ProjectRepository>()
                 .LifeStyle.Transient
                 .DependsOn(dependencies));
 

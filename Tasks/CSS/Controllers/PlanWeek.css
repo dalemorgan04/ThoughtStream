@@ -144,13 +144,3 @@
                 float: right;
                 width: 20px;
             }
-
-.placeholder {
-    height: 20px;
-    line-height: 20px;
-    background: var(--theme-green-light);
-}
-
-.emptyTablePlaceholder {
-    height: 5px;
-}

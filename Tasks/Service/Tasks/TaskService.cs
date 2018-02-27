@@ -10,9 +10,13 @@ namespace Tasks.Service.Tasks
     public class TaskService: ITaskService
     {
         private readonly ISpecificationRepository<Task, int> taskRepository;
-        public TaskService(ISpecificationRepository<Task, int> taskRepository)
+        private readonly IUnitOfWork unitOfWork;
+        public TaskService(
+            ISpecificationRepository<Task, int> taskRepository,
+            IUnitOfWork unitOfWork)
         {
             this.taskRepository = taskRepository;
+            this.unitOfWork = unitOfWork;
         }
         public void Delete(int taskId)
         {
@@ -33,6 +37,7 @@ namespace Tasks.Service.Tasks
         {
             Task task = Mapper.Map <TaskDto,Task> (taskDto);
             taskRepository.Add(task);
+            this.unitOfWork.Commit();
         }
     }
 }

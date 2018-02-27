@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Tasks.Models.DomainModels.Enum
 {
-    public enum TaskType
+    public enum ItemType
     {
         Thought = 0,
         Task = 1,

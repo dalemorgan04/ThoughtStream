@@ -16,8 +16,10 @@
         @{ Html.RenderAction("GetAsideAddTab"); }
     </div>
 
-    <div id="aside-edit-container">
-        @{ Html.RenderAction("GetAsideEditTab", new { projectId = 0 }); }
+    <div id="aside-edit-container" style="display: none;" >
+    </div>
+    
+    <div id="aside-tasks-container"  style="display: none;" >
     </div>
 
 </div>

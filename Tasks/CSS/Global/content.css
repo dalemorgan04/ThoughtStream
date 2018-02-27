@@ -171,6 +171,16 @@ button {
         height: 40px;
     }
 
+    .emptyTablePlaceholder {
+        height: 5px;
+    }
+
+    .placeholder {
+        height: 20px;
+        line-height: 20px;
+        background: var(--theme-green-light);
+    }
+
 /*
 * ---------- Textbox ----------
 */

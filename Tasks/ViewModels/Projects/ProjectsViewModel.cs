@@ -5,6 +5,6 @@ namespace Tasks.ViewModels.Projects
 {
     public class ProjectsViewModel
     {
-        public List<ProjectDto> Projects { get; set; }
+        public List<ProjectWithItemsDto> Projects { get; set; }
     }
 }

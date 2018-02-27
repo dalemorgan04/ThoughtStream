@@ -10,16 +10,14 @@ namespace Tasks.Repository
             Table("HabitRecurrences");
             Id(x => x.Id).Column("RecurrenceId").GeneratedBy.Native();
             References(x => x.Habit).Column("HabitId");            
-            Map(x => x.RepeatInterval);
-            Map(x => x.RepeatCount);
+            Map(x => x.IntervalType);
+            Map(x => x.RepeatEveryCount);
             Map(x => x.DayOfWeek);
             Map(x => x.DayOfMonth);
             Map(x => x.WeekdayOfMonth);
             Map(x => x.WeekOfYear);
             Map(x => x.MonthNo);            
             Map(x => x.StartOnDate);
-            Map(x => x.EndOnDate);
-            Map(x => x.EndOnOccurrenceNo); 
         }
     }
 }

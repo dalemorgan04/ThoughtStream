@@ -20,6 +20,7 @@ namespace Tasks.NHibernate
         {
             return this.session.Get<TEntity>(id);
         }
+
         public List<TEntity> Get(IEnumerable<TIdentity> ids)
         {
             return this.session
@@ -27,7 +28,7 @@ namespace Tasks.NHibernate
                             .Add(Restrictions.In("Id", ids.ToArray()))
                             .List<TEntity>()
                             .ToList();
-        }        
+        }
 
         public void Remove(TIdentity id)
         {

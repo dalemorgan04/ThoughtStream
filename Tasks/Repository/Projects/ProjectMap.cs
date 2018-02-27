@@ -18,22 +18,13 @@ namespace Tasks.Repository.Projects
             References(x => x.Priority).Column("PriorityId");
             Map(x => x.TimeFrameId);
             Map(x => x.DateTime);
-            Map(x => x.IsActive);
             Map(x => x.IsComplete);
-
             References(x => x.ParentProject).Column("ParentProjectId");
 
-            HasMany(x => x.Tasks)
-                .Access.CamelCaseField()
-                .Cascade.All()                
-                .AsBag()
-                .KeyColumn("ProjectId");
-
-            HasMany(x => x.HabitGoals)
-                .Access.CamelCaseField()
-                .Cascade.All()                
-                .AsBag()
-                .KeyColumn("ProjectId");                  
+            
+        
+        
+        
         }
     }
 }

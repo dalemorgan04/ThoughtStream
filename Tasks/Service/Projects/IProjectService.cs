@@ -9,6 +9,10 @@ namespace Tasks.Service.Projects
 {
     public interface IProjectService
     {
-        List<ProjectDto> GetRootProjects();
+        List<ProjectWithItemsDto> GetAllProjects();
+        ProjectWithItemsDto GetProject(int projectId);
+        void AppendTask(int projectId, int taskId);
+
+        void Save(ProjectWithItemsDto projectWithItemsDto);
     }
 }

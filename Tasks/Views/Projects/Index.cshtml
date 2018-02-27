@@ -4,9 +4,20 @@
 @{
     ViewBag.Heading = "Projects";
 }
+@section urls{
+<script>
+        var urlsPubsub = {
+            getAddProject: '@Url.Action("GetAsideAddTab", "Projects")',
+            getEditProject: '@Url.Action("GetAsideEditTab", "Projects")',
+            getProjectsTable: '@Url.Action("GetProjectsTable", "Projects")',
+            getAddTask: '@Url.Action("GetAsideAddTask", "Projects")',
+            appendTask: '@Url.Action("AppendTask", "Projects")',
+            saveProject: '@Url.Action("Create", "Projects")'
+        }
+</script>
+}
 
 <h1>@ViewBag.Heading</h1>
-
 
 <div id="projectResultsTable">
     @Html.Partial("_ProjectsTable", Model)

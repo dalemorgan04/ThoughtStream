@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using Tasks.Repository.Core;
 
 namespace Tasks.Repository.Thoughts

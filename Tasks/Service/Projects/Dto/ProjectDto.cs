@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Tasks.Models.DomainModels;
 using Tasks.Models.DomainModels.Projects.Entity;
 
 namespace Tasks.Service.Projects.Dto
@@ -9,13 +10,12 @@ namespace Tasks.Service.Projects.Dto
     public class ProjectDto
     {
         public int Id { get; set; }
+        public  User User { get; set; }
         public string Description { get; set; }
-        public List<ProjectItemDto> Items { get; set; }
-
-        //In the future potentially think about creating a tree
-        //For now it is acceptable to view one level at a time and call the next level on demand
-        //When that happens look at a recursive formula
+        public virtual Priority Priority { get; set; }
+        public virtual int TimeFrameId { get; set; }
+        public virtual DateTime DateTime { get; set; }
+        public virtual bool IsComplete { get; set; }
+        public virtual Project ParentProject { get; set; }
     }
-
-
 }

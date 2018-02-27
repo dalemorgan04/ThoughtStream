@@ -342,6 +342,11 @@ aside {
             box-shadow: var(--shadow-side);
         }
 
+            aside > .aside-container > #aside-content > div,
+            #aside-tasks-container {
+                z-index: 29;
+            }
+
         aside > .aside-container > .aside-tabs {
             grid-column: 1 / 2;
             grid-row: 1;
