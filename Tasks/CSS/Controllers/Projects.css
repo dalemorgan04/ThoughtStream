@@ -29,3 +29,24 @@
     height: auto;   
     border: 1px solid black;
 }
+
+.project-container ul {
+    list-style-type: none;
+    display: inline-block;
+    flex: 1 1 100%;
+    width: 100%;
+    background: var(--card-bg-color);
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    /*Shadow card height*/
+    -moz-box-shadow: var(--shadow-card);
+    -webkit-box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card);
+    /*Transition*/
+    -moz-transition: all .15s ease-in;
+    -o-transition: all .15s ease-in;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+}

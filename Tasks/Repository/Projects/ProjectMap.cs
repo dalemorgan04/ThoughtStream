@@ -19,12 +19,6 @@ namespace Tasks.Repository.Projects
             Map(x => x.TimeFrameId);
             Map(x => x.DateTime);
             Map(x => x.IsComplete);
-            References(x => x.ParentProject).Column("ParentProjectId");
-
-            
-        
-        
-        
         }
     }
 }

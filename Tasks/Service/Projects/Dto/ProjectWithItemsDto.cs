@@ -11,13 +11,12 @@ namespace Tasks.Service.Projects.Dto
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public ItemType Type => ItemType.Project;
         public List<ProjectItemDto> Items { get; set; }
-
-        //In the future potentially think about creating a tree
-        //For now it is acceptable to view one level at a time and call the next level on demand
-        //When that happens look at a recursive formula
+        public List<ProjectWithItemsDto> SubProjects { get; set; }
+        public ProjectWithItemsDto()
+        {
+            Items = new List<ProjectItemDto>();
+            SubProjects = new List<ProjectWithItemsDto>();
+        }
     }
-
-
 }

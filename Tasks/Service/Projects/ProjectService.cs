@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using AutoMapper;
-using Castle.Windsor.Diagnostics.Extensions;
 using Tasks.Models.DomainModels;
 using Tasks.Models.DomainModels.Enum;
-using Tasks.Models.DomainModels.Habits.Entity;
 using Tasks.Models.DomainModels.Projects.Entity;
-using Tasks.Models.DomainModels.Projects.Spec;
 using Tasks.Models.DomainModels.Tasks.Spec;
 using Tasks.Repository.Core;
-using Tasks.Repository.Habits;
 using Tasks.Repository.Projects;
 using Tasks.Service.Projects.Dto;
 
@@ -60,25 +56,7 @@ namespace Tasks.Service.Projects
                 Description = rootProject.Description
             };
 
-            //Sub Projects
-            DataTable table = projectSqlRepository.GetProjectDescendants(projectId, 1);
-            List<int> subProjectIds = new List<int>();
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                subProjectIds.Add( Convert.ToInt32( table.Rows[i]["ProjectId"].ToString() ) );
-            }
-
-            List<Project> subProjects = projectRepository.Get(subProjectIds).ToList();
-            foreach (Project subProject in subProjects)
-            {
-                ProjectItemDto projectItem = new ProjectItemDto()
-                {
-                    Id = projectId,
-                    Type = ItemType.Project,
-                    Description = subProject.Description
-                };
-                projectWithItemsDto.Items.Add(projectItem);
-            }
+            
 
             //Tasks
             List<Task> tasks = taskRepository.Find(new ProjectTasksSpec(rootProject)).ToList();
@@ -94,8 +72,22 @@ namespace Tasks.Service.Projects
             }
 
             //Habits
-            //List<Habit> habits = HabitRepository.Find()
 
+            //Sub Projects
+            DataTable table = projectSqlRepository.GetProjectDescendants(projectId, 1);
+            List<int> subProjectIds = new List<int>();
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                subProjectIds.Add(Convert.ToInt32(table.Rows[i]["ProjectId"].ToString()));
+            }
+
+            List<Project> subProjects = projectRepository.Get(subProjectIds).ToList();
+            foreach (Project subProject in subProjects)
+            {
+                ProjectWithItemsDto project = new ProjectWithItemsDto();
+                project = GetProject(subProject.Id);
+                projectWithItemsDto.SubProjects.Add(project);
+            }
 
             return projectWithItemsDto;
         }
@@ -104,7 +96,7 @@ namespace Tasks.Service.Projects
         {
             Project project = projectRepository.Get(projectId);
             Task task = taskRepository.Get(taskId);
-            task.Update(project);
+            //task.Update(project);
             unitOfWork.Commit();
         }
 

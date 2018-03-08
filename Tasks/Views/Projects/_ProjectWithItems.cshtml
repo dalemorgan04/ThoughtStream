@@ -1,0 +1,18 @@
+﻿@using Tasks.Models.DomainModels.Enum
+@using Tasks.Service.Projects.Dto
+@model ProjectWithItemsDto
+
+<ul>
+    @Model.Description
+    
+    @foreach (ProjectItemDto item in Model.Items)
+    {
+        <li>
+            @item.Description
+        </li>
+    }
+    @foreach (ProjectWithItemsDto subProject in Model.SubProjects)
+    {
+        @Html.Partial("_ProjectWithItems", subProject);
+    }
+</ul>

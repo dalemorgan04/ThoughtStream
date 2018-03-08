@@ -26,9 +26,9 @@ namespace Tasks.Service.Habits
             return Mapper.Map<List<Habit>,List<HabitDto>>(habits);            
         }
         
-        public List<HabitDto> GetHabitsOnDay(DateTime date)
+        public List<HabitDto> GetHabits(DateTime date)
         {
-            var result = habitSqlRepository.GetHabitOccurrencesBetweenDates(new DateTime(2017, 11, 1), DateTime.Now);
+            var result = habitSqlRepository.GetHabitOccurrences(new DateTime(2017, 11, 1), DateTime.Now);
             return new List<HabitDto>();
         }
     }

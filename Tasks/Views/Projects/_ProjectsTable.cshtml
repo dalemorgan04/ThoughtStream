@@ -1,4 +1,5 @@
-﻿@using Tasks.Service.Projects.Dto
+﻿@using Tasks.Models.DomainModels.Enum
+@using Tasks.Service.Projects.Dto
 @using Tasks.ViewModels.Projects
 @model ProjectsViewModel
 
@@ -11,22 +12,7 @@
         </div>                
         
         <div>
-            <table>
-                <tbody class="connectedSortable" data-projectId="@project.Id">  
-                
-                    <tr class="emptyTablePlaceholder"></tr>
-
-                    @foreach (ProjectItemDto item in project.Items)
-                    {
-                        <tr data-projectid=@item.Id>
-                            <td>@item.Id</td>
-                            <td>@item.Type</td>
-                            <td>@item.Description</td>                                
-                        </tr>
-                    }                        
-                </tbody>
-            </table>
+            @Html.Partial("_ProjectWithItems",project)
         </div>
-
     </div>
 }

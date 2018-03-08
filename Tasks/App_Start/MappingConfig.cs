@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tasks.Service.CalendarEvents;
 using Tasks.Service.Habits;
 using Tasks.Service.Tasks;
 using Tasks.Service.Thoughts;
@@ -16,6 +17,7 @@ namespace Tasks
 
                 //Dtos
                 cfg.AddProfile(new TaskDtoMap());
+                cfg.AddProfile(new CalendarEventDtoMap());
                 cfg.AddProfile(new UserDtoMap());
                 cfg.AddProfile(new ThoughtDtoMap());
                 cfg.AddProfile(new HabitDtoMap());

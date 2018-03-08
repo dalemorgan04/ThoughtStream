@@ -110,7 +110,7 @@ namespace Tasks.Service.PlanWeek
             }
 
             //Habits
-            var habitIds = habitSqlRepository.GetHabitOccurrencesOnDate(date);
+            var habitIds = habitSqlRepository.GetHabitOccurrences(date);
             var habits = habitRepository.Get(habitIds).ToList();
             foreach (var habit in habits)
             {

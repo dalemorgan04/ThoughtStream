@@ -21,7 +21,7 @@ namespace Tasks.Tests.Unit.Habit.Repository
             HabitRepository repo = new HabitRepository(connectionString);
             DateTime dateFrom = new DateTime(2017,11,1);
             DateTime dateTo = new DateTime(2017,11,30);
-            var results = repo.GetHabitOccurrencesBetweenDates(dateFrom, dateTo);
+            var results = repo.GetHabitOccurrences(dateFrom, dateTo);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace Tasks.Tests.Unit.Habit.Repository
             string connectionString = ConfigurationManager.ConnectionStrings["Local"].ConnectionString;
             HabitRepository repo = new HabitRepository(connectionString);
             DateTime date = new DateTime(2017, 11, 1);            
-            var results = repo.GetHabitOccurrencesOnDate(date) ;            
+            var results = repo.GetHabitOccurrences(date) ;            
         }
     }
 }

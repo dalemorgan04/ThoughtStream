@@ -14,7 +14,6 @@ namespace Tasks.Models.DomainModels.Projects.Entity
         public virtual int TimeFrameId { get; set; }
         public virtual DateTime DateTime { get; set; }
         public virtual bool IsComplete { get; set; }
-        public virtual Project ParentProject { get; set; }
     }
 }
 

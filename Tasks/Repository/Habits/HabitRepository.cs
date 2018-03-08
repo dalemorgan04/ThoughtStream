@@ -18,7 +18,7 @@ namespace Tasks.Repository.Habits
             dataAccess = new DataAccess(connectionString);
         }
 
-        public List<int> GetHabitOccurrencesOnDate(DateTime date)
+        public List<int> GetHabitOccurrences(DateTime date)
         {
             DataTable table = GetHabitOccurrencesOnDateTable(date);
             List<int> list = new List<int>();
@@ -27,7 +27,7 @@ namespace Tasks.Repository.Habits
             return list;            
         }
 
-        public List<HabitList> GetHabitOccurrencesBetweenDates(DateTime fromDate, DateTime toDate)
+        public List<HabitList> GetHabitOccurrences(DateTime fromDate, DateTime toDate)
         {
             DataTable table = GetHabitOccurrencesBetweenDatesTable(fromDate, toDate);
             List<HabitList> list = new List<HabitList>();

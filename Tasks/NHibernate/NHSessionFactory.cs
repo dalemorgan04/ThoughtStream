@@ -4,6 +4,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using Tasks.Repository;
+using Tasks.Repository.CalendarEvents;
 using Tasks.Repository.Thoughts;
 using Tasks.Repository.Projects;
 
@@ -50,14 +51,15 @@ namespace Tasks.NHibernate
 
             fluentConfig = Fluently.Configure().Database(MsSqlConfiguration.MsSql2005.ConnectionString(connectionString))
                             .Mappings(m => m.FluentMappings
-                            .AddFromAssembly(Assembly.GetAssembly(typeof(UserMap)))
-                            .AddFromAssembly(Assembly.GetAssembly(typeof(ThoughtMap)))
-                            .AddFromAssembly(Assembly.GetAssembly(typeof(TaskMap))) 
-                            
-                            .AddFromAssembly(Assembly.GetAssembly(typeof(HabitMap)))
-                            .AddFromAssembly(Assembly.GetAssembly(typeof(HabitRecurrenceMap)))
-
-                            .AddFromAssembly(Assembly.GetAssembly(typeof(ProjectMap)))
+                                .Add<UserMap>()
+                                .Add<ThoughtMap>()
+                                .Add<TaskMap>()
+                                .Add<CalendarEventMap>()
+                                .Add<HabitMap>() 
+                                .Add<HabitRecurrenceMap>()
+                                .Add<ProjectMap>()
+                                .Add<PriorityMap>()
+                                //.AddFromAssembly(Assembly.GetAssembly(typeof(ThoughtMap)))
                             );
         }
         private static ISessionFactory buildSessionFactory()
