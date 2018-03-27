@@ -1,1 +1,23 @@
-﻿
+﻿@model Tasks.ViewModels.CalendarEvents.CalendarEventsViewModel
+
+@{
+    ViewBag.Heading = "Tasks";
+}
+
+@section urls{
+    <script>
+        var urlsPubsub = {
+            getAddTask: '@Url.Action("GetAsideAddTab", "Tasks")',
+            getEditTask: '@Url.Action("GetAsideEditTab", "Tasks")',
+            getTasksTable: '@Url.Action("GetTasksTable", "Tasks")',
+            saveTask: '@Url.Action("Create", "Tasks")'
+        }
+    </script>
+}
+
+<h1>@ViewBag.Heading</h1>
+
+
+<div id="taskResultsTable">
+    @Html.Partial("_CalendarEventsTable", Model)
+</div>

@@ -313,8 +313,14 @@
     <Content Include="Images\Icons\S\share.png" />
     <Content Include="Images\Icons\S\cup.png" />
     <Content Include="Images\Icons\XS\cup.png" />
+    <Content Include="Images\SVG\calendarEvents.svg" />
+    <Content Include="Images\SVG\habits.svg" />
     <Content Include="Images\SVG\leftArrow.svg" />
+    <Content Include="Images\SVG\planWeek.svg" />
+    <Content Include="Images\SVG\projects.svg" />
     <Content Include="Images\SVG\rightArrow.svg" />
+    <Content Include="Images\SVG\tasks.svg" />
+    <Content Include="Images\SVG\thoughts.svg" />
     <Content Include="JavaScript\Controllers\PlanWeek\Index.js" />
     <Content Include="JavaScript\Controllers\Projects\Index.js" />
     <Content Include="JavaScript\Controllers\Tasks\Index.js" />

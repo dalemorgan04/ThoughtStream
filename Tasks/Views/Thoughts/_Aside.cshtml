@@ -1,1 +1,19 @@
-﻿
+﻿<!--Tabs-->
+<div class="aside-tabs">
+    <ul>
+        <li id="aside-tabs-edit" class="disabled">Edit</li>
+        <li id="aside-tabs-add" class="active">Add</li>
+    </ul>
+</div>
+
+<div id="aside-content">
+    <!--Tabs content-->
+    <div id="aside-add-container">
+        @{ Html.RenderAction("GetAsideAddTab"); }
+    </div>
+
+    <div id="aside-edit-container">
+        @{ Html.RenderAction("GetAsideEditTab", new { taskId = 0 }); }
+    </div>
+
+</div>

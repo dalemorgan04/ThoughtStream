@@ -40,10 +40,10 @@
     /*Nav*/
     --nav-bg-color: var(--theme-white);
     --nav-inactive-color: var(--theme-grey-dark);
-    --nav-active-color: var(--theme-blue-dark);
+    --nav-active-color: var(--theme-blue-light);
     --nav-active-font: var(--theme-font-heading);
     --nav-tab-inactive-bg-color: var(--theme-blue-light);
-    --nav-tab-active-bg-color: var(--theme-blue-dark);
+    --nav-tab-active-bg-color: var(--theme-blue);
     --nav-tab-hover-bg-color: var(--theme-blue);
     /*Aside*/
     --aside-bg-color: var(--theme-white);
@@ -66,8 +66,10 @@
 */
 html, body {
     /*Fill view height and width*/
-    width: 100%;
-    height: 100%;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 body {
@@ -170,24 +172,32 @@ article {
 }
 
 
+    /*Used so that the animation works when expanding left*/
+
+#content.float-right{
+    float: right;
+}
+
+    #content.float-right:after {
+        float: left;
+    }
 /*
 * ---------- Header ----------
 */
-
-header {
-    z-index: 30;
-    min-width: 450px;
-    /*Shadow maximium height*/
-    -moz-box-shadow: var(--shadow-header);
-    -webkit-box-shadow: var(--shadow-header);
-    box-shadow: var(--shadow-header);
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00ffed+0,30ff9b+50,16e280+100 */
-    background: #00ffed; /* Old browsers */
-    background: -moz-linear-gradient(left, #00ffed 0%, #30ff9b 50%, #16e280 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(left, #00ffed 0%,#30ff9b 50%,#16e280 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, #00ffed 0%,#30ff9b 50%,#16e280 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffed', endColorstr='#16e280',GradientType=1 ); /* IE6-9 */
-}
+    header {
+        z-index: 30;
+        min-width: 450px;
+        /*Shadow maximium height*/
+        -moz-box-shadow: var(--shadow-header);
+        -webkit-box-shadow: var(--shadow-header);
+        box-shadow: var(--shadow-header);
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00ffed+0,30ff9b+50,16e280+100 */
+        background: #00ffed; /* Old browsers */
+        background: -moz-linear-gradient(left, #00ffed 0%, #30ff9b 50%, #16e280 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #00ffed 0%,#30ff9b 50%,#16e280 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #00ffed 0%,#30ff9b 50%,#16e280 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffed', endColorstr='#16e280',GradientType=1 ); /* IE6-9 */
+    }
 
     header > .header-container {
         display: flex;
@@ -258,31 +268,27 @@ nav {
 }
 
     nav > .nav-container {
-        display: grid;
-        grid-template-columns: auto 50px;
-        grid-template-rows: auto;
+        display: flex;
+        flex-direction: column;
         height: 100%;
         width: 100%;
         margin: 0;
         padding-bottom: 10px;
+        background: var(--aside-bg-color);
+        /*Shadow middle height*/
+        -moz-box-shadow: var(--shadow-side);
+        -webkit-box-shadow: var(--shadow-side);
+        box-shadow: var(--shadow-side);
     }
 
         /* Menu Content */
 
         nav > .nav-container > .nav-content {
             z-index: 25;
-            grid-column: 1 / 1;
-            grid-row: 1;
-            background: var(--aside-bg-color);
-            padding: 10px;
-            /*Shadow middle height*/
-            -moz-box-shadow: var(--shadow-side);
-            -webkit-box-shadow: var(--shadow-side);
-            box-shadow: var(--shadow-side);
         }
 
-            nav > .nav-container > .nav-content > ul {
-                margin: 5px;
+            nav > .nav-container > .nav-content ul {
+                margin: 0;
                 margin-top: 15px;
                 padding: 0;
                 min-width: 0;
@@ -293,22 +299,32 @@ nav {
                 align-items: stretch;
             }
 
-                nav > .nav-container > .nav-content > ul > li {
+                nav > .nav-container > .nav-content ul > li {
                     list-style-type: none;
                     justify-content: center;
-                    min-width: 0px;
+                    min-width: 0;
                     height: 30px;
                     font-family: var(--nav-active-font);
-                    color: var(--nav-inactive-color);
                     cursor: pointer;
+                    padding-bottom: 35px;
+                    padding-top: 5px;
+                    text-align: left;
                 }
-
-                    nav > .nav-container > .nav-content > ul > li.active {
-                        color: var(--nav-active-color);
-                        font-size: larger;
-                        font-weight: bold;
-                        text-decoration: underline;
+                nav > .nav-container > .nav-content ul > li.active {
+                    background: var(--nav-tab-active-bg-color);
+                    /*Shadow card height*/
+                    -moz-box-shadow: var(--shadow-card);
+                    -webkit-box-shadow: var(--shadow-card);
+                    box-shadow: var(--shadow-card);
+                }
+                    nav > .nav-container > .nav-content ul > li > a {
+                        color: var(--nav-inactive-color);    
                     }
+                    nav > .nav-container > .nav-content ul > li img {
+                        padding-left: 10px;
+                        padding-right: 5px;
+                    }
+
 
 /*
 * ---------- Sidebar ----------
@@ -316,7 +332,7 @@ nav {
 
 aside {
     z-index: 20;
-    background: var(--article-bg-color);
+    /*background: var(--article-bg-color);*/
 }
 
     aside > .aside-container {
@@ -350,7 +366,7 @@ aside {
         aside > .aside-container > .aside-tabs {
             grid-column: 1 / 2;
             grid-row: 1;
-            background: var(--article-bg-color);
+            /*background: var(--article-bg-color);*/
         }
 
             aside > .aside-container > .aside-tabs > ul {
@@ -388,10 +404,10 @@ aside {
                     -moz-border-radius: 15px 0 0 15px;
 
                     /*Transition*/
-                    -moz-transition: all 0s linear;
-                    -o-transition: all 0s linear;
-                    -webkit-transition: all 0s linear;
-                    transition: all 0s linear;
+                    -moz-transition: all 0 linear;
+                    -o-transition: all 0 linear;
+                    -webkit-transition: all 0 linear;
+                    transition: all 0 linear;
                 }
 
                     aside > .aside-container > .aside-tabs > ul > li:not(.active):not(.disabled):hover {
@@ -420,7 +436,6 @@ aside {
                     }
 
 
-                    
 /*
 * ---------- Rotatables ----------
 */

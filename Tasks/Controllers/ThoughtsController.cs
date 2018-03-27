@@ -38,8 +38,8 @@ namespace Tasks.Controllers
                 throw new ArgumentNullException("value");
 
             UserDto user = userService.GetUser(userId);
-            AddThoughtViewModel addThoughtViewModel = new AddThoughtViewModel();
-            ThoughtsViewModel viewModel = new ThoughtsViewModel {ThoughtList = thoughtList, User = user, NewThought = addThoughtViewModel};
+            ThoughtEditViewModel editThoughtViewModel = new ThoughtEditViewModel();
+            ThoughtsViewModel viewModel = new ThoughtsViewModel {ThoughtList = thoughtList, User = user, EditThought = editThoughtViewModel};
 
             return View(viewModel);
         }
@@ -84,14 +84,35 @@ namespace Tasks.Controllers
             return true; //TODO
         }
         
+        
+        //Aside
+
         public ActionResult GetAside()
         {
             return PartialView("_Aside");
         }
 
-        public ActionResult GetDefaultAsideContent()
+        public ActionResult GetAsideAddTab()
+        {
+            ThoughtEditViewModel viewModel = getDefaultAsideViewModel();
+            return PartialView("_AddThought", viewModel);
+        }
+
+        public ActionResult GetAsideEditTab()
         {
             return new EmptyResult();
+        }
+
+        private ThoughtEditViewModel getDefaultAsideViewModel()
+        {
+            ThoughtEditViewModel viewModel = new ThoughtEditViewModel()
+            {
+                UserId = 1,
+                Description = "",
+                PriorityId = 1,
+                Due = DateTime.Today
+            };
+            return viewModel;
         }
     }
 }

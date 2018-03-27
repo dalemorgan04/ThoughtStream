@@ -1,5 +1,5 @@
-﻿@using Tasks.Service.Tasks.Dto
-@model Tasks.ViewModels.Events.EventsViewModel
+﻿@using Tasks.Service.CalendarEvents.Dto
+@model Tasks.ViewModels.CalendarEvents.CalendarEventsViewModel
 
 <div class="container-fluid">
     <div class="panel panel-default">
@@ -7,13 +7,11 @@
 
             <table class="table">
                 <tbody id="taskResultsTableBody">
-                    @foreach (TaskDto task in Model.TaskList)
+                    @foreach (CalendarEventDto calendarEvent in Model.CalendarEvents)
                     {
-                        <tr data-taskid="@task.Id">
-                            <td>@task.Id</td>
-                            <td>@task.Description</td>
-                            <td>@task.TimeFrame.Description</td>
-                            <td>@task.TimeFrame.Due</td>
+                        <tr data-taskid="@calendarEvent.Id">
+                            <td>@calendarEvent.Id</td>
+                            <td>@calendarEvent.Description</td>
                         </tr>
                     }
                 </tbody>

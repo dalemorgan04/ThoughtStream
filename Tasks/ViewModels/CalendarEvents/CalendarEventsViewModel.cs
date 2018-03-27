@@ -5,6 +5,6 @@ namespace Tasks.ViewModels.CalendarEvents
 {
     public class CalendarEventsViewModel
     {
-        public List<CalendarEventDto> Events { get; set; }
+        public List<CalendarEventDto> CalendarEvents { get; set; }
     }
 }

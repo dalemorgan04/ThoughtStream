@@ -9,6 +9,6 @@ namespace Tasks.ViewModels.Thoughts
     {        
         public UserDto User { get; set; }
         public List<ThoughtDto> ThoughtList { get; set; }  
-        public AddThoughtViewModel NewThought { get; set; }
+        public ThoughtEditViewModel EditThought{ get; set; }
     }
 }

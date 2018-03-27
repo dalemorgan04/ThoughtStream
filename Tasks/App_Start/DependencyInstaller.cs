@@ -2,6 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Tasks.Models.DomainModels.CalendarEvents.Entity;
 using Tasks.NHibernate;
 using Tasks.Repository.Thoughts;
 using Tasks.Service.Tasks;
@@ -12,6 +13,7 @@ using Tasks.Service.Habits;
 using Tasks.Service.Projects;
 using Tasks.Repository.Core;
 using Tasks.Repository.Projects;
+using Tasks.Service.CalendarEvents;
 using Tasks.Service.PlanWeek;
 
 namespace Tasks
@@ -31,6 +33,7 @@ namespace Tasks
             //Services
             container.Register(Component.For<IThoughtService>().ImplementedBy<ThoughtService>().LifeStyle.Transient);
             container.Register(Component.For<ITaskService>().ImplementedBy<TaskService>().LifeStyle.Transient);
+            container.Register(Component.For<ICalendarEventService>().ImplementedBy<CalendarEventService>().LifeStyle.Transient);
             container.Register(Component.For<IHabitService>().ImplementedBy<HabitService>().LifeStyle.Transient);
             container.Register(Component.For<IProjectService>().ImplementedBy<ProjectService>().LifeStyle.Transient);
             container.Register(Component.For<IPlanWeekService>().ImplementedBy<PlanWeekService>().LifeStyle.Transient);

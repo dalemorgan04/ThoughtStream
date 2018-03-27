@@ -22,11 +22,12 @@ namespace Tasks.Controllers
 
         public ActionResult Index()
         {
-            TasksViewModel viewModel = new TasksViewModel();
             List<TaskDto> taskList = taskService.GetTasks().ToList();
-            viewModel.TaskList = taskList;
-            viewModel.EditViewModel = new TaskEditViewModel();
-            
+            TasksViewModel viewModel = new TasksViewModel()
+            {
+                TaskList = taskList,
+                EditViewModel = new TaskEditViewModel()
+            };
             return View("Index",viewModel);
         }
 
@@ -70,10 +71,8 @@ namespace Tasks.Controllers
             return true;
         }
         
-
-       /*
-        * Aside 
-        */
+        
+        //Aside
 
         public ActionResult GetAside()
         {
@@ -82,7 +81,7 @@ namespace Tasks.Controllers
 
         public ActionResult GetAsideAddTab()
         {
-            TaskEditViewModel viewModel = getDefaultAdideViewModel();
+            TaskEditViewModel viewModel = getDefaultAsideViewModel();
             return PartialView("_AddTask", viewModel);
         }
 
@@ -91,7 +90,7 @@ namespace Tasks.Controllers
             if (taskId == 0)
             {
                 //Default edit tab when nothing is selected
-                TaskEditViewModel viewModel = getDefaultAdideViewModel();
+                TaskEditViewModel viewModel = getDefaultAsideViewModel();
                 return PartialView("_EditTask", viewModel);
             }
             else
@@ -127,7 +126,7 @@ namespace Tasks.Controllers
             }
         }
 
-        private TaskEditViewModel getDefaultAdideViewModel()
+        private TaskEditViewModel getDefaultAsideViewModel()
         {
             TaskEditViewModel viewModel = new TaskEditViewModel
             {

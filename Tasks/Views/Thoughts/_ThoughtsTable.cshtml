@@ -3,27 +3,18 @@
 @model ThoughtsViewModel
 
 <div class="card">
-    
-    <table class="table table-striped table-hover ">
+    <table>
         <tbody id="thoughtResultsTableBody">
             @foreach (ThoughtDto thought in Model.ThoughtList.OrderBy(x => x.SortId))
             {
                 <tr data-thoughtid ="@thought.Id" data-sortid ="@thought.SortId">
-                    <td class="col-xs-9">@thought.Description</td>
-                    <td class="col-xs-3">
-                        @thought.DateCreated.ToString("ddd dd MMM")
-                        <span>
-                            <button type="button" class ="close" aria-hidden="true" id="btnFunnel"><img src="~/Images/funnel.png"/></button>
-                        </span>
-                        <span>
-                            <button type="button" class="close" aria-hidden="true" id="btnClose">&times;</button>
-                        </span>
-                    </td>
+                    <td> @thought.SortId </td>
+                    <td >@thought.Description</td>
+                    <td>@thought.DateCreated.ToString("ddd dd MMM") </td>
                 </tr>
             }
         </tbody>
     </table>
-
 </div>
 
 

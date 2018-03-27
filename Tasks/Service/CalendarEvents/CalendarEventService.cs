@@ -14,6 +14,7 @@ namespace Tasks.Service.CalendarEvents
         {
             this.eventRepository = eventRepository;
         }
+
         public List<CalendarEventDto> GetCalendarEvents()
         {
             List<CalendarEvent> events = eventRepository.GetAll().ToList();

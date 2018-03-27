@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Tasks.Infrastructure.ControllerDependencies;
 using Tasks.Service.CalendarEvents;
+using Tasks.Service.CalendarEvents.Dto;
 using Tasks.ViewModels.CalendarEvents;
 
 namespace Tasks.Controllers
@@ -19,7 +20,12 @@ namespace Tasks.Controllers
         
         public ActionResult Index()
         {
-            return View();
+            List<CalendarEventDto> calendarEvents = calendarEventService.GetCalendarEvents();
+            CalendarEventsViewModel viewModel = new CalendarEventsViewModel()
+            {
+                CalendarEvents = calendarEvents
+            };
+            return View(viewModel);
         }
 
         public ActionResult GetAside()

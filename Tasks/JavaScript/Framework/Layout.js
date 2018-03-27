@@ -16,12 +16,14 @@ $(function () {
 var layoutpubsub = {
 
     // ===== Layout Settings ===== //    
-    setNavbarWidth: '150px',
-    setAsideWidth: '350px',
-    setTransitionTime: 250,
+    setNavbarWidth: 150,
+    setNavbarMinifiedWidth: 60,
+    setAsideWidth: 350,
+    setAsideTabWidth: 39,
+    setTransitionTime: 300,
     // =========================== //    
 
-    navbarIsVisible: true,
+    navbarIsExpanded: true,
     navbarWidth: '',
     navArrowAnimationSequence: [],
 
@@ -43,6 +45,7 @@ var layoutpubsub = {
         $(document).on('click', '#toggleNavbar', layoutpubsub.toggleNavbar);
 
         $(document).on('navToggled', layoutpubsub.toggleNavArrow);
+        $(document).on('contentResized', layoutpubsub.resizeContent);
         $(document).on('asideToggled', layoutpubsub.toggleAsideArrow);
 
         $(document).on('mouseenter', '.header-section-left', layoutpubsub.navArrowWobbleStart);
@@ -57,7 +60,6 @@ var layoutpubsub = {
         $(document).on('mouseleave', 'nav > .nav-container > ul > li:not(.active)', layoutpubsub.navLinkHoverEnd);
 
         $(document).on('click', 'aside > .aside-container > .aside-tabs > ul > li:not(.disabled)', layoutpubsub.tabClick);
-        
     },
 
     // ===== Animation ===== //     
@@ -95,38 +97,91 @@ var layoutpubsub = {
         return animationSequence;
     },
 
+    // ===== Content ===== //
+
+    resizeContent: function () {
+
+        var $body = $('#body-grid');
+        var $content = $('#content');
+        var contentWidth = $content.width();
+        var navWidth = $('nav > .nav-container').width();
+        var newSize = $(window).width() - layoutpubsub.navbarWidth - layoutpubsub.asideWidth;
+
+        $content.velocity('stop', true);
+        $body.velocity('stop', true);
+
+        if (navWidth !== layoutpubsub.navbarWidth) {
+            $content.addClass('float-right');
+        }
+
+        if (newSize > contentWidth) {
+            $body.css('grid-template-columns',
+                layoutpubsub.navbarWidth + 'px auto ' + layoutpubsub.asideWidth + 'px');
+        }
+        
+        $content
+            .width(contentWidth)
+            .velocity(
+                { width: newSize + 'px' },
+                {
+                    easing: 'easeInSine',
+                    complete: function() {
+                        $(this)
+                            .removeClass('float-right')
+                            .css('width', '');
+                        if (newSize <= contentWidth) {
+                            $body.css('grid-template-columns',
+                                layoutpubsub.navbarWidth + 'px auto ' + layoutpubsub.asideWidth + 'px');
+                        }
+                    }
+                });
+    },
 
     // ===== Navbar ===== //
 
     toggleNavbar: function () {
+        var $text = $('nav > .nav-container ul > li a span'); //Text shown on icons
+        var $nav = $('nav > .nav-container'); //Navbar pane
 
-        var easing = '';
+        $nav.velocity('stop', true);
+        $text.velocity('stop', true);
 
-        if (layoutpubsub.navbarIsVisible) {
-            layoutpubsub.navbarIsVisible = false;
-            layoutpubsub.navbarWidth = '0px';
-            easing = 'ease-out';
+        //Minify navbar
+        if (layoutpubsub.navbarIsExpanded) {
+            layoutpubsub.navbarIsExpanded = false;
+            layoutpubsub.navbarWidth = layoutpubsub.setNavbarMinifiedWidth;
+            //Hide text then squash pane
+            $text.velocity('fadeOut',
+                {
+                    duration: 100,
+                    complete: function () {
+                        $nav.velocity(
+                            { width: layoutpubsub.navbarWidth + 'px'},
+                            {
+                                duration: 400,
+                                easing: 'spring'
+                            });
+                        $(document).trigger('contentResized');
+                        $(document).trigger('navToggled');
+                    }
+                });
         } else {
-            layoutpubsub.navbarIsVisible = true;
+
+        //Expand Navbar
+            layoutpubsub.navbarIsExpanded = true;
             layoutpubsub.navbarWidth = layoutpubsub.setNavbarWidth;
-            easing = 'ease-in';
-            $('nav > .nav-container').show();
+            //Extend pane then show text
+            $nav.velocity( { width: layoutpubsub.navbarWidth + 'px' },
+                {
+                    duration: 400,
+                    easing: 'spring',
+                    complete: function () {
+                        $text.velocity('fadeIn', { duration: 100 });
+                    }
+                });
+            $(document).trigger('contentResized');
+            $(document).trigger('navToggled');
         }
-        $('nav > .nav-container')
-            .velocity('stop', true)
-            .css({ 'overflow': 'hidden' })
-            .velocity(
-            { width: layoutpubsub.navbarWidth },
-            {
-                duration: layoutpubsub.setTransitionTime,
-                easing: easing,
-                complete: function () {
-                    if (!layoutpubsub.navbarIsVisible) { $('nav > .nav-container').hide(); }
-                    $('#body-grid').css('grid-template-columns', layoutpubsub.navbarWidth + ' auto ' + layoutpubsub.asideWidth);
-                    $('nav > .nav-container').css({ 'overflow': 'visible' });
-                }
-            });
-        $(document).trigger('navToggled');
     },
 
 
@@ -134,7 +189,7 @@ var layoutpubsub = {
 
     toggleNavArrow: function () {
         var $arrow = $('#nav-arrow');
-        if (!layoutpubsub.navbarIsVisible) {
+        if (!layoutpubsub.navbarIsExpanded) {
             //Set the wobble animation for the hover event
             layoutpubsub.navArrowAnimationSequence = layoutpubsub.getLeftWobbleSequence($arrow);
             $arrow
@@ -186,34 +241,55 @@ var layoutpubsub = {
     toggleAside: function () {
 
         var easing = '';
+        var $pane = $('aside > .aside-container');
+        var $content = $('#aside-content').find('*');
+
+        $pane.velocity('stop', true);
+        $content.velocity('stop', true);
+
+        //Minify aside
 
         if (layoutpubsub.asideIsVisible) {
             layoutpubsub.asideIsVisible = false;
-            layoutpubsub.asideWidth = '0px';
-            easing = 'ease-out';
+            layoutpubsub.asideWidth = layoutpubsub.setAsideTabWidth;
+
+
+            $content.velocity('fadeOut',
+                {
+                    duration: 100,
+                    complete: function() {
+                        $pane.velocity(
+                            { width: layoutpubsub.asideWidth + 'px'} ,
+                            {
+                                duration: 400,
+                                easing: 'spring'
+                            });
+                        $(document).trigger('contentResized');
+                        $(document).trigger('asideToggled');
+                    }
+                });
+
         } else {
+
+            //Expand aside
             layoutpubsub.asideIsVisible = true;
             layoutpubsub.asideWidth = layoutpubsub.setAsideWidth;
-            easing = 'ease-in';
-            $('aside > .aside-container').show();
-        }
-        $('aside > .aside-container')
-            .velocity('stop', true)
-            .css({ 'overflow': 'hidden' })
-            .velocity(
-            { width: layoutpubsub.asideWidth },
-            {
-                duration: layoutpubsub.setTransitionTime,
-                easing: easing,
-                complete: function () {
-                    if (!layoutpubsub.asideIsVisible) { $('aside > .aside-container').hide(); }
-                    $('#body-grid').css('grid-template-columns', layoutpubsub.navbarWidth + ' auto ' + layoutpubsub.asideWidth);
-                    $('aside > .aside-container').css({ 'overflow': 'visible' });
-                }
-            });
-        $(document).trigger('asideToggled');
-    },
 
+            $pane.velocity(
+                {
+                    width: layoutpubsub.asideWidth
+                },
+                {
+                    duration: 450,
+                    easing: 'spring',
+                    complete: function() {
+                        $content.velocity('fadeIn', 100);
+                    }
+                });
+            $(document).trigger('contentResized');
+            $(document).trigger('asideToggled');
+        }
+    },
 
 
     // ===== Aside Arrow ===== //

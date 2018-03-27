@@ -7,14 +7,14 @@ namespace Tasks.Repository.CalendarEvents
     {
         public CalendarEventMap()
         {
-            Table("Events");
+            Table("CalendarEvents");
             Id( x=> x.Id).Column("CalendarEventId").GeneratedBy.Native();
-            References(x => x.User);
+            References(x => x.User).Column("UserId");
             Map(x => x.Description);
-            References(x => x.Priority);
+            References(x => x.Priority).Column("PriorityId");
             Map(x => x.DateTime);
             Map(x => x.HasTime);
-            References(x => x.Project);
+            References(x => x.Project).Column("ProjectId");
         }
     }
 }
