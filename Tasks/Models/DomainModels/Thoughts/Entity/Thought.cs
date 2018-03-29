@@ -1,7 +1,8 @@
 ﻿using System;
+using Tasks.Models.DomainModels.Projects.Entity;
 using Tasks.Repository.Core;
 
-namespace Tasks.Models.DomainModels
+namespace Tasks.Models.DomainModels.Thoughts.Entity
 {
     public class Thought : IDomainEntity<int>
     {
@@ -10,5 +11,8 @@ namespace Tasks.Models.DomainModels
         public virtual string Description { get; set; }
         public virtual DateTime DateCreated { get; set; }
         public virtual int SortId { get; set; }
+        public virtual int TimeFrameId { get; set; }
+        public virtual DateTime DateTime { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

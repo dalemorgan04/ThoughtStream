@@ -16,7 +16,7 @@ namespace Tasks.Service.Tasks
 
             CreateMap<TaskDto, Task>()
                 .ForMember(dest => dest.TimeFrameId,
-                    input => input.MapFrom(t => t.TimeFrame.TimeFrameId));
+                    input => input.MapFrom(t => t.TimeFrame.TimeFrameType));
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Tasks
                     "~/JavaScript/Framework/Layout.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(                    
-                    "~/CSS/Global/bootstrap.css",
+                    //"~/CSS/Global/bootstrap.css",
                     "~/CSS/Global/jquery-ui.css",
                     "~/CSS/Global/jquery-ui.structure.css",
                     "~/CSS/Global/jquery-ui.theme.css",

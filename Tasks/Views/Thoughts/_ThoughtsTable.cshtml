@@ -2,19 +2,24 @@
 @using Tasks.ViewModels.Thoughts
 @model ThoughtsViewModel
 
-<div class="card">
+<div class="card table">
     <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Created</th>
+            </tr>
+        </thead>
         <tbody id="thoughtResultsTableBody">
-            @foreach (ThoughtDto thought in Model.ThoughtList.OrderBy(x => x.SortId))
-            {
-                <tr data-thoughtid ="@thought.Id" data-sortid ="@thought.SortId">
-                    <td> @thought.SortId </td>
-                    <td >@thought.Description</td>
-                    <td>@thought.DateCreated.ToString("ddd dd MMM") </td>
-                </tr>
-            }
+        @foreach (ThoughtDto thought in Model.ThoughtList.OrderBy(x => x.SortId))
+        {
+            <tr data-thoughtid="@thought.Id" data-sortid="@thought.SortId">
+                <td class="left stretch pad-left">@thought.Description</td>
+                <td class="center fit">@thought.DateCreated.ToString("ddd dd MMM") </td>
+                <td class="center fit">@thought..ToString("ddd dd MMM") </td>
+                <td class="options pad-right"><img src="~/Images/SVG/delete.svg" /></td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>
-
-

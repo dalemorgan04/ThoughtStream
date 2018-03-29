@@ -1,7 +1,1 @@
-﻿/*Set aside container layout to be a flexbox*/
-.article-container {
-    /*Already declared as flex*/
-    flex-direction: column;
-    padding: 10px;
-    padding-left: 15px;
-}
+﻿

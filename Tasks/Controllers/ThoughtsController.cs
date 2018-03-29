@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using Tasks.Infrastructure.ControllerDependencies;
 using Tasks.Models.DomainModels;
-using Tasks.Service.Aside.Dto;
 using Tasks.Service.Tasks;
 using Tasks.Service.Thoughts;
 using Tasks.Service.Thoughts.Dto;
@@ -40,7 +39,6 @@ namespace Tasks.Controllers
             UserDto user = userService.GetUser(userId);
             ThoughtEditViewModel editThoughtViewModel = new ThoughtEditViewModel();
             ThoughtsViewModel viewModel = new ThoughtsViewModel {ThoughtList = thoughtList, User = user, EditThought = editThoughtViewModel};
-
             return View(viewModel);
         }
 

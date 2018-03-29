@@ -97,12 +97,12 @@ namespace Tasks.Controllers
             {
                 TaskDto task = taskService.GetTaskById(taskId);
                 DateTime taskDate = new DateTime(task.DateTime.Year, task.DateTime.Month, task.DateTime.Day);
-                TimeSpan taskTime = ((TimeFrameType) task.TimeFrame.TimeFrameId == TimeFrameType.Time)
+                TimeSpan taskTime = ((TimeFrameType) task.TimeFrame.TimeFrameType == TimeFrameType.Time)
                     ? new TimeSpan(task.DateTime.Hour, task.DateTime.Minute, 0)
                     : new TimeSpan(0, 0, 0);
 
-                bool hasTime = ((TimeFrameType) task.TimeFrame.TimeFrameId == TimeFrameType.Time ||
-                                (TimeFrameType) task.TimeFrame.TimeFrameId == TimeFrameType.Date)
+                bool hasTime = ((TimeFrameType) task.TimeFrame.TimeFrameType == TimeFrameType.Time ||
+                                (TimeFrameType) task.TimeFrame.TimeFrameType == TimeFrameType.Date)
                     ? true
                     : false;
 
@@ -113,7 +113,7 @@ namespace Tasks.Controllers
                     HasTime = hasTime,
                     Time = taskTime,
                     Description = task.Description,
-                    TimeFrameId = (TimeFrameType) task.TimeFrame.TimeFrameId,
+                    TimeFrameId = (TimeFrameType) task.TimeFrame.TimeFrameType,
                     PriorityId = 0,
                     PriorityDropDownItems = new List<SelectListItem>()
                     {

@@ -1,5 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using Tasks.Models.DomainModels;
+using Tasks.Models.DomainModels.Thoughts;
+using Tasks.Models.DomainModels.Thoughts.Entity;
 
 namespace Tasks.Repository.Thoughts
 {
@@ -13,6 +15,9 @@ namespace Tasks.Repository.Thoughts
             Map(x => x.Description);
             Map(x => x.DateCreated);
             Map(x => x.SortId);
+            Map(x => x.TimeFrameId);
+            Map(x => x.DateTime);
+            Map(x => x.Project).Column("ProjectId");
         }    
     }
 }

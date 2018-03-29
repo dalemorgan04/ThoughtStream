@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Tasks.Models.DomainModels;
+using Tasks.Models.DomainModels.Projects.Entity;
 
 namespace Tasks.Service.Thoughts.Dto
 {
@@ -13,5 +14,7 @@ namespace Tasks.Service.Thoughts.Dto
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
         public int SortId { get; set; }
+        public TimeFrame TimeFrame { get; set; }
+        public Project Project { get; set; }
     }
 }

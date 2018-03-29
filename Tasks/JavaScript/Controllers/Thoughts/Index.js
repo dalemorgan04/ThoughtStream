@@ -18,6 +18,7 @@ var thoughtsPubsub = {
         $('#thoughtResultsTableBody').sortable({tolerance:'pointer'});
         $('#thoughtResultsTableBody').disableSelection();
         $('#thoughtResultsTableBody').sortable({
+            axis:'y',
             update: function (event, ui) {
                 var line = ui.item.context;
                 var thoughtId = line.dataset.thoughtid;
@@ -54,6 +55,9 @@ var thoughtsPubsub = {
         $(document).on('click', '#btnAddThought', this.saveThought);
         $(document).on('submit', '#addThoughtForm', this.saveThought);
         $(document).on('click', '#btnClose', this.deleteThought);
+        $(document).on('mouseenter', '#thoughtResultsTableBody > tr', this.showOptions);
+        $(document).on('mouseleave', '#thoughtResultsTableBody > tr', this.hideOptions);
+        $(document).on('click', '#thoughtResultsTableBody > tr', this.select);
     },
 
     deleteThought: function(e) {
@@ -73,6 +77,39 @@ var thoughtsPubsub = {
                 $('#thoughtResultsTable').html(resultHtml);
                 thoughtsPubsub.init();
             });
+    },
+
+    hideOptions: function(el) {
+        $(el.target)
+            .closest('tr')
+            .find('.options')
+            .removeClass('visible');
+    },
+
+    showOptions: function(el) {
+        $(el.target)
+            .closest('tr')
+            .find('.options')
+            .addClass('visible');
+    },
+
+    showAsideOptions: function() {
+        var $selection = $('#thoughtResultsTableBody .selected');
+        if ($selection.length()) {
+            //Something selected
+            $('#aside-tabs-edit').removeClass('disabled');
+        } else {
+            //Nothing selected
+            $('#aside-tabs-edit').addClass('disabled');
+        }    
+    },
+
+    select: function (el) {
+        $('#thoughtResultsTableBody .selected').removeClass('selected');
+        $(el.target)
+            .closest('tr')
+            .addClass('selected');
+        $(document).trigger('selected');
     },
       
     saveThought: function (e) {

@@ -5,6 +5,8 @@ using System.Web;
 using AutoMapper;
 using Tasks.Repository.Core;
 using Tasks.Models.DomainModels;
+using Tasks.Models.DomainModels.Thoughts;
+using Tasks.Models.DomainModels.Thoughts.Entity;
 using Tasks.Repository.Thoughts;
 using Tasks.Service.Thoughts.Dto;
 

@@ -105,7 +105,7 @@ var layoutpubsub = {
         var $content = $('#content');
         var contentWidth = $content.width();
         var navWidth = $('nav > .nav-container').width();
-        var newSize = $(window).width() - layoutpubsub.navbarWidth - layoutpubsub.asideWidth;
+        var newSize = $('body').width() - layoutpubsub.navbarWidth - layoutpubsub.asideWidth - 20; //20 includes the grid gaps
 
         $content.velocity('stop', true);
         $body.velocity('stop', true);

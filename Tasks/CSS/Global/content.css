@@ -9,6 +9,7 @@
     --theme-blue-dark: #00D8CA;
     --theme-white: #f7f7f7;
     --theme-grey: #e5e9ec;
+    --theme-grey-light: #eaf2f1;
     --theme-grey-dark: #626466;
     --theme-black: #363537;
     --theme-red: #ee6055;
@@ -32,6 +33,10 @@
     --datepicker-selected: var(--theme-blue-light);
     --datepicker-hover: var(--theme-green-light);
     --selected: var(--theme-blue-light);
+    /*Tables*/
+    --table-selected-color: var(--theme-blue-dark);
+    --table-body-border-color: var(--theme-grey);
+    --table-heading-border-color: var(--theme-grey);
     /*Shadow*/
     --shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -111,14 +116,12 @@ button {
 * ==================== CARDS ====================
 */
 
-
 .card {
-    display:inline-block;
+    display:flex;
     flex: 1 1 100%;
-    width:100%;
     background: var(--card-bg-color);
-    padding: 10px;    
-    padding-bottom: 20px;
+    padding: 0;    
+    padding-bottom: 10px;
     margin: 10px;
     margin-bottom:15px;
 
@@ -132,11 +135,6 @@ button {
     -webkit-transition: all .15s ease-in;
     transition: all .15s ease-in;
 }
-
-.table {
-    
-}
-
 
 /*
 * ==================== FORMS ====================
@@ -180,6 +178,77 @@ button {
         line-height: 20px;
         background: var(--theme-green-light);
     }
+
+
+/*
+* ---------- Table ----------
+*/
+
+table {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table > thead > tr {
+        padding-top: 20px;
+        font-family: var(--heading-font);
+        color: var(--heading-logo-font-color);
+    }
+
+        table > thead > tr > th {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+    table > tbody > tr {
+        border-bottom: 1px solid var(--table-body-border-color);
+        cursor: pointer;
+    }
+        table > tbody > tr.selected {
+            z-index: 11;
+            border-bottom: 1px solid var(--table-selected-color);
+            /*Shadow*/
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            /*Transition*/
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+
+        table td.left {
+            text-align: left;
+        }
+        table td.center{
+            text-align: center;
+        }
+        table td.right{
+            text-align: right;
+        }
+        table td.fit {
+            width: auto;
+            white-space: nowrap;
+        }
+        table td.stretch {
+            width: 100%;
+        }
+        table td.pad-left {
+            padding-left: 15px;
+        }
+        table td.pad-right{
+            padding-right: 10px;
+        }
+        table td.options img {
+            visibility: hidden;
+        }
+        table td.options.visible img {
+            visibility: visible;
+        }
+
 
 /*
 * ---------- Textbox ----------
@@ -289,14 +358,3 @@ Select {
         box-shadow: var(--timeDropper) !important;
     }
 
-/*
-* ==================== TABLE ====================
-*/
-    .table {
-    }
-
-table::before, table::after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
