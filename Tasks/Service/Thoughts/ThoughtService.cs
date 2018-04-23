@@ -16,13 +16,16 @@ namespace Tasks.Service.Thoughts
     {
         private readonly ISpecificationRepository<Thought, int> thoughtRepository;
         private readonly IThoughtRepository thoughtSqlRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         public ThoughtService(
             ISpecificationRepository<Thought, int> thoughtRepository,
-            IThoughtRepository thoughtSqlRepository)
+            IThoughtRepository thoughtSqlRepository,
+            IUnitOfWork unitOfWork)
         {
             this.thoughtRepository = thoughtRepository;
             this.thoughtSqlRepository = thoughtSqlRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public IList<ThoughtDto> GetThoughts()
@@ -46,8 +49,22 @@ namespace Tasks.Service.Thoughts
 
         public void Save(ThoughtDto thoughtDto)
         {
-            Thought thought = Mapper.Map<ThoughtDto, Thought>(thoughtDto);
-            thoughtRepository.Add(thought);
+            Thought thought;
+            if (thoughtDto.Id > 0)
+            {
+                thought = this.thoughtRepository.Get(thoughtDto.Id);
+                thought.Update(
+                    thoughtDto.Description, 
+                    (int)thoughtDto.TimeFrame.TimeFrameType, 
+                    thoughtDto.TimeFrame.TimeFrameDateTime, 
+                    thoughtDto.Project );
+            }
+            else
+            {
+                thought = Thought.Create(thoughtDto.Description, thoughtDto.SortId, (int)thoughtDto.TimeFrame.TimeFrameType, thoughtDto.TimeFrame.TimeFrameDateTime, thoughtDto.Project );
+                thoughtRepository.Add(thought);
+            }
+            this.unitOfWork.Commit();
         }
 
         public void Delete(int thoughtId)

@@ -13,11 +13,11 @@ namespace Tasks.Repository.Thoughts
             Id(x => x.Id).Column("ThoughtId").GeneratedBy.Native();
             References(x => x.User).Column("UserId");
             Map(x => x.Description);
-            Map(x => x.DateCreated);
+            Map(x => x.CreatedDateTime);
             Map(x => x.SortId);
             Map(x => x.TimeFrameId);
-            Map(x => x.DateTime);
-            Map(x => x.Project).Column("ProjectId");
+            Map(x => x.TimeFrameDateTime);
+            References(x => x.Project).Column("ProjectId");
         }    
     }
 }

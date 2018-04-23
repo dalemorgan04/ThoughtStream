@@ -18,7 +18,7 @@
     /* --- Layout Specific Themes --- */
     /*Headings*/
     --heading-font: var(--theme-font-heading);
-    --heading-font-color: var(--theme-green-dark);
+    --heading-font-color: var(--theme-grey-dark);
     --heading-logo-font-color: var(--theme-grey-dark);
     /*Card*/
     --card-bg-color: var(--theme-white);
@@ -28,10 +28,18 @@
     --button-font: var(--theme-font-text);
     --button-font-color: var(--theme-black);
     --button-font-size: 12px;
+    /*Tabs*/
+    --tab-selected: var(--theme-green);
     /*Forms*/
-    --input-line-height: 40px;
-    --datepicker-selected: var(--theme-blue-light);
-    --datepicker-hover: var(--theme-green-light);
+    --input-textbox-focus: var(--theme-green);
+    --input-textbox-border: var(--theme-grey);
+    --input-textbox-font-color: var(--theme-grey-dark);
+    --input-textbox-disabled: var(--theme-grey);
+    --input-font-size: 14px;
+    /*DtaePicker*/
+    --datepicker-hover-border: 1px solid var(--theme-green);
+    --datepicker-hover: white;
+    --datepicker-selected: var(--theme-green);
     --selected: var(--theme-blue-light);
     /*Tables*/
     --table-selected-color: var(--theme-blue-dark);
@@ -53,16 +61,30 @@ h1.logo {
     font-size: 30px;
 }
 
+/*Titles of tabs and content*/
 h1 {
     font-family: var(--heading-font);
     color: var(--heading-logo-font-color);
     font-size: 20px;
 }
 
-h2, h3 {
+
+/*Short tab names or section titles*/
+h2 {
     font-family: var(--heading-font);
     color: var(--heading-font);
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/*Descriptions*/
+h3 {
+    font-family: var(--heading-font);
+    color: var(--heading-font);
+    font-size: 14px;
+    font-weight: lighter;
+    font-style: italic;
+    
 }
 
 /*
@@ -83,6 +105,7 @@ button {
     border: 1px solid transparent;
     border-radius: 3px;
     padding: 8px 10px;
+    margin-bottom: 2px;
     /*Not selectable*/
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -141,48 +164,93 @@ button {
 */
 
 /*
-* ---------- Containers ----------
+* ---------- Text input----------
 */
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.input-container{
-    display:flex;
-    flex-direction:row;
+.input-container-text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     border: 0;
 }
-    .input-container > .input-item,
-    .input-container > input {
-        flex: 1 1 100%;
-        height: var(--input-line-height);
+
+.input-container-text > input {
+    flex: 1 1 100%;
+    border: 0;
+    padding: 0;
+    font-size: var(--input-font-size);
+    background-color: white;
+    border-bottom: 1px solid var(--input-textbox-border);
+    color: var(--input-textbox-font-color);
+    height: 30px;
+}
+        
+.input-container-text > input:disabled {
+    background-color: var(--input-textbox-disabled);
+}
+
+.input-container-text > .underline {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+    .input-container-text > input:focus ,
+    .input-container-text > input:-webkit-autofill {
+        border-bottom: 1px solid transparent;
+        outline-offset: 0;
+        outline: 0;
+    }
+    .input-container-text > input:focus + .underline,
+    .input-container-text > input.focus + .underline {
+        width: 100%;
+        background: var(--input-textbox-focus);
     }
     
-    /* Button
-       Fixed width
-    */
-    .input-container > .input-item.button {
+
+/*
+* ---------- Input group----------
+*/
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: stretch;
+    height: 33px;
+    margin: 0;
+}
+    .input-group > .pad-top{
+        padding-top: 20px;
+    }
+    .input-group > .pad-bottom{
+        padding-bottom: 20px;
+    }
+    .input-group > .stretch {
+        flex: 1 1 100%;
+    }
+    .input-group > .fit {
         flex: 0 0 auto;
-        margin-left: 15px ;
-        margin-right: 10px;
-        height: 40px;
     }
-
-    .emptyTablePlaceholder {
-        height: 5px;
+    .input-group > .pad-right {
+        padding-right: 10px;
     }
-
-    .placeholder {
-        height: 20px;
-        line-height: 20px;
-        background: var(--theme-green-light);
-    }
-
 
 /*
 * ---------- Table ----------
 */
+
+.emptyTablePlaceholder {
+    height: 5px;
+}
+
+.placeholder {
+    height: 20px;
+    line-height: 20px;
+    background: var(--theme-green-light);
+}
 
 table {
     margin: 0;
@@ -206,11 +274,12 @@ table {
 
     table > tbody > tr {
         border-bottom: 1px solid var(--table-body-border-color);
+        
         cursor: pointer;
     }
         table > tbody > tr.selected {
             z-index: 11;
-            border-bottom: 1px solid var(--table-selected-color);
+            background: var(--theme-green-light);
             /*Shadow*/
             -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -248,7 +317,6 @@ table {
         table td.options.visible img {
             visibility: visible;
         }
-
 
 /*
 * ---------- Textbox ----------
@@ -310,16 +378,75 @@ Select {
 }
 
 /*
-* ---------- Multi Toggle ----------
+* ---------- TimeFrame Tabs----------
 */
+.timeframe-container {
+    display:block;
+    background: var(--card-bg-color);
+    padding: 0;    
+    padding-bottom: 10px;
+    margin: 0;  
+    margin-bottom:15px;
+    border: 0;
+    height: 170px;
 
+    /*Transition*/
+    -moz-transition: all .15s ease-in;
+    -o-transition: all .15s ease-in;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+}
 
+    .timeframe-container > ul {
+        display: flex;
+        padding: 0;
+        justify-content: space-around;
+        align-items: center;
+        background: transparent;
+        height: 30px;
+        font-family: var(--heading-font);
+        color: var(--heading-font);
+        font-size: 14px;
+    }
 
+        .timeframe-container > ul > li {
+            list-style-type: none;
+            flex: 1 1 25%;
+            cursor: pointer;
+            border-bottom: var(--input-textbox-border);
+        }
+            .timeframe-container > ul > li:after {
+                content: "";
+                display: block;
+                height: 2px;
+                width: 0;
+                background: transparent;
+                transition: width .5s ease, background-color .5s ease;
+            }
+            .timeframe-container > ul > li.selected:after {
+                width: 100%;
+                background: var(--tab-selected);
+            }
+
+    .timeframe-container > ul > li.ui-tabs-active > a{
+        border-bottom: 5px solid #00d8ca;
+    }
+
+    .timeframe-container input {
+        position: relative;
+        z-index: 100;
+        background-color: white;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px solid var(--input-textbox-border);
+        color: var(--input-textbox-font-color);
+        height: 30px;
+
+    }
 
 /*
 * ---------- jQuery DatePicker----------
 */
-
     /*Week picker*/
     .week-picker.selected a {
         background: var(--datepicker-selected) !important;
@@ -327,6 +454,7 @@ Select {
 
     .week-picker.hover a {
         background: var(--datepicker-hover);
+        border: var(--datepicker-hover-border);
     }
 
     .date-picker.selected a {
@@ -344,6 +472,7 @@ Select {
     #ui-datepicker-div,
     #MonthPicker_timeframe-month
     {
+        margin-top: 2px;
         /*Shadow card height*/
         -moz-box-shadow: var(--shadow-card) !important;
         -webkit-box-shadow: var(--shadow-card) !important;
@@ -352,9 +481,61 @@ Select {
 
     #td-clock-0 .td-clock {
         font-family: var(--heading-font);
+        margin-top: 22px;
         /*Shadow*/
         -moz-box-shadow: var(--timeDropper) !important;
         -webkit-box-shadow: var(--timeDropper) !important;
         box-shadow: var(--timeDropper) !important;
     }
 
+
+/*
+* ---------- Checkbox ----------
+*    https://codepen.io/bdan/pen/jAkZZK
+*/
+
+.check {
+    width: 20px;
+    height: 30px;
+    display: block;
+    position:relative;
+    clear:both;
+}
+.check input {
+    display: none;
+}
+.check input:checked + .box {
+    background-color: white;
+    
+}
+.check input:checked + .box:after {
+    top: 0;
+}
+    .check .box {
+        width: 100%;
+        height: 100%;
+        transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+        border: 2px solid transparent;
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-bottom: 1px solid var(--input-textbox-border);
+    }
+.check .box:after {
+    width: 50%;
+    height: 20%;
+    content: '';
+    position: absolute;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    border-color: var(--theme-green);
+    transform: rotate(-45deg) translate3d(0, 0, 0);
+    transform-origin: center center;
+    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+    left: 5px;
+    right: 5px;
+    top: 200%;
+    bottom: 5%;
+    margin: auto;
+}

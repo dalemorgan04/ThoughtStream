@@ -1,19 +1,25 @@
-﻿<!--Tabs-->
+﻿<!--Tab buttons-->
 <div class="aside-tabs">
     <ul>
-        <li id="aside-tabs-edit" class="disabled">Edit</li>
-        <li id="aside-tabs-add" class="active">Add</li>
+        <li id="aside-tabs-edit" data-tabid="aside-edit-container">
+            <span>Edit</span>
+        </li>
+        <li id="aside-tabs-add" class="active" data-tabid="aside-add-container">
+            <span>Add</span>
+        </li>
     </ul>
 </div>
+<!--Tabs-->
+<div class="aside-content-container">
+    <div id="aside-content">
+        <!--Tabs content-->
+        <div id="aside-add-container">
+            @{ Html.RenderAction("GetAsideAddTab"); }
+        </div>
 
-<div id="aside-content">
-    <!--Tabs content-->
-    <div id="aside-add-container">
-        @{ Html.RenderAction("GetAsideAddTab"); }
+        <div id="aside-edit-container">
+            @Html.Partial("_EditThought")
+        </div>
     </div>
-
-    <div id="aside-edit-container">
-        @{ Html.RenderAction("GetAsideEditTab", new { taskId = 0 }); }
-    </div>
-
 </div>
+

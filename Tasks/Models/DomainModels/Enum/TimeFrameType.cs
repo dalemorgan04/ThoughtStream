@@ -7,10 +7,10 @@ namespace Tasks.Models.DomainModels
 {
     public enum TimeFrameType
     {
-        Time = 0,
-        Date = 1,
-        Week = 2,
-        Month = 3,
-        Open = 4
+        Open  = 0,
+        Time  = 1,
+        Date  = 2,
+        Week  = 3,
+        Month = 4
     }
 }

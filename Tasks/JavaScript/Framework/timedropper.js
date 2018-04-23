@@ -13,7 +13,6 @@
                 _td_alert,
                 _td_event = null,
                 _td_options = $.extend({
-
                     format: 'h:mm a',
                     autoswitch: false,
                     meridians: false,
@@ -23,8 +22,9 @@
                     primaryColor: "#1977CC",
                     borderColor: "#1977CC",
                     backgroundColor: "#FFF",
-                    textColor: '#555'
-
+                    textColor: '#555',
+                    focusOut: function () { },
+                    focusClass: ''
                 }, options);
 
             var _td_color = function(col, amt) {
@@ -369,7 +369,9 @@
 
             _td_input.focus(function(e) {
                 e.preventDefault();
-                _td_input.blur();
+                _td_input
+                    .blur()
+                    .addClass(_td_options.focusClass);
             });
 
             _td_input.click(function(e) {
@@ -403,7 +405,8 @@
                 _td_event = setTimeout(function() {
                     _td_container.removeClass('td-show')
                 }, 300);
-
+                _td_input.removeClass(_td_options.focusClass);
+                _td_options.focusOut();
             });
             $(window).on('resize', function() {
 

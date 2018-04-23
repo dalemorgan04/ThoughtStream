@@ -35,7 +35,7 @@ namespace Tasks.Repository.Habits
             {
                 list.Add(new HabitList()
                 {
-                    Date = Convert.ToDateTime(table.Rows[i]["Date"].ToString()),
+                    Date = Convert.ToDateTime(table.Rows[i]["TimeFrameDate"].ToString()),
                     HabitId = Convert.ToInt32(table.Rows[i]["HabitId"].ToString())
                 });
             }

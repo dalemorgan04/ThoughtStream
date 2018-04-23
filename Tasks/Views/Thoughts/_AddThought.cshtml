@@ -1,24 +1,22 @@
-﻿@using System.Web.UI.WebControls
-@model Tasks.ViewModels.Thoughts.ThoughtEditViewModel
+﻿@model Tasks.ViewModels.Thoughts.ThoughtViewModel
 
+<h1>Add a thought</h1>
 
-<div class="card">
+@using (Html.BeginForm("Create", "Thoughts", FormMethod.Post, new { id = "addThoughtForm" }))
+{
+    @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm("Create", "Thoughts", FormMethod.Post, new {id = "addThoughtForm" }))
-    {
-        @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.TimeFrameId, new { @id = "Add_TimeFrameId" })
+    @Html.HiddenFor(model => model.TimeFrameDate, new { @id = "Add_Date" })
 
-            <div class="input-container">
+    <div class="input-group">
+        <div class="input-container-text stretch pad-right">
+            @Html.TextBoxFor(model => model.Description, new { @id = "add_description", PlaceHolder = "What's on your mind?..." })
+            <span class="underline"></span>
+        </div>
+        <button id="btnAdd" class="pad-right fit">Add</button>
+    </div>
 
-                <div class="input-item textbox">
-                    @Html.TextBoxFor(model => model.Description, new { @class = "textbox", PlaceHolder = "What's on your mind?..." })
-                </div>
-
-                <div class="input-item button">
-                    <button id="btnAddThought" type="submit" value="Create">Add</button>
-                </div>
-
-            </div>        
-    }
-</div>
-    
+    /*TimeFrame picker*/
+    <div id="add-container-timeframe"></div>
+}

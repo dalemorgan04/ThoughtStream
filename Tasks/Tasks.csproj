@@ -266,7 +266,6 @@
     <Compile Include="Service\Thoughts\IThoughtService.cs" />
     <Compile Include="Service\Thoughts\ThoughtDtoMap.cs" />
     <Compile Include="Service\Thoughts\ThoughtService.cs" />
-    <Compile Include="Service\Tasks\Dto\TaskTimeFrameDto.cs" />
     <Compile Include="Service\Users\Dto\UserDto.cs" />
     <Compile Include="Service\Users\IUserService.cs" />
     <Compile Include="Service\Users\UserDtoMap.cs" />
@@ -279,8 +278,7 @@
     <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TaskEditViewModel.cs" />
     <Compile Include="ViewModels\Tasks\TasksViewModel.cs" />
-    <Compile Include="ViewModels\Thoughts\AddThoughtViewModel.cs" />
-    <Compile Include="ViewModels\Thoughts\ThoughtEditViewModel.cs" />
+    <Compile Include="ViewModels\Thoughts\ThoughtViewModel.cs" />
     <Compile Include="ViewModels\Thoughts\ThoughtsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -353,11 +351,13 @@
     <Content Include="JavaScript\Framework\modernizr-2.6.2.js" />
     <Content Include="JavaScript\Framework\moment.js" />
     <Content Include="JavaScript\Framework\monthPicker.js" />
+    <Content Include="CSS\Global\normalize.css" />
     <Content Include="JavaScript\Framework\respond.js" />
     <Content Include="JavaScript\Framework\respond.min.js" />
     <Content Include="JavaScript\Framework\split.js" />
     <Content Include="JavaScript\Framework\split.min.js" />
     <Content Include="JavaScript\Framework\timedropper.js" />
+    <Content Include="JavaScript\Framework\timeFrame.js" />
     <Content Include="JavaScript\Framework\velocity.min.js" />
     <Content Include="JavaScript\Framework\velocity.ui.js" />
     <Content Include="JavaScript\Framework\velocity.ui.min.js" />
@@ -407,6 +407,8 @@
     <Content Include="Views\CalendarEvents\_CalendarEventsTable.cshtml" />
     <Content Include="Views\PlanWeek\_Aside.cshtml" />
     <Content Include="Views\CalendarEvents\_Aside.cshtml" />
+    <Content Include="Views\Thoughts\_EditThought.cshtml" />
+    <Content Include="Views\Thoughts\_EditThoughtSelect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\DomainModels\Projects\Spec\" />

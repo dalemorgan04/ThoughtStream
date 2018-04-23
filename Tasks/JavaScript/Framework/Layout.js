@@ -59,7 +59,7 @@ var layoutpubsub = {
         $(document).on('mouseenter', 'nav > .nav-container > ul > li:not(.active)', layoutpubsub.navLinkHoverStart);
         $(document).on('mouseleave', 'nav > .nav-container > ul > li:not(.active)', layoutpubsub.navLinkHoverEnd);
 
-        $(document).on('click', 'aside > .aside-container > .aside-tabs > ul > li:not(.disabled)', layoutpubsub.tabClick);
+        $(document).on('click', 'aside > .aside-container > .aside-tabs > ul > li', function () { layoutpubsub.showAsideTab($(this).data('tabid')); });
     },
 
     // ===== Animation ===== //     
@@ -118,23 +118,23 @@ var layoutpubsub = {
             $body.css('grid-template-columns',
                 layoutpubsub.navbarWidth + 'px auto ' + layoutpubsub.asideWidth + 'px');
         }
-        
+
         $content
             .width(contentWidth)
             .velocity(
-                { width: newSize + 'px' },
-                {
-                    easing: 'easeInSine',
-                    complete: function() {
-                        $(this)
-                            .removeClass('float-right')
-                            .css('width', '');
-                        if (newSize <= contentWidth) {
-                            $body.css('grid-template-columns',
-                                layoutpubsub.navbarWidth + 'px auto ' + layoutpubsub.asideWidth + 'px');
-                        }
+            { width: newSize + 'px' },
+            {
+                easing: 'easeInSine',
+                complete: function () {
+                    $(this)
+                        .removeClass('float-right')
+                        .css('width', '');
+                    if (newSize <= contentWidth) {
+                        $body.css('grid-template-columns',
+                            layoutpubsub.navbarWidth + 'px auto ' + layoutpubsub.asideWidth + 'px');
                     }
-                });
+                }
+            });
     },
 
     // ===== Navbar ===== //
@@ -155,8 +155,9 @@ var layoutpubsub = {
                 {
                     duration: 100,
                     complete: function () {
+
                         $nav.velocity(
-                            { width: layoutpubsub.navbarWidth + 'px'},
+                            { width: layoutpubsub.navbarWidth + 'px' },
                             {
                                 duration: 400,
                                 easing: 'spring'
@@ -167,16 +168,21 @@ var layoutpubsub = {
                 });
         } else {
 
-        //Expand Navbar
+            //Expand Navbar
             layoutpubsub.navbarIsExpanded = true;
             layoutpubsub.navbarWidth = layoutpubsub.setNavbarWidth;
             //Extend pane then show text
-            $nav.velocity( { width: layoutpubsub.navbarWidth + 'px' },
+            $nav.velocity({ width: layoutpubsub.navbarWidth + 'px' },
                 {
                     duration: 400,
                     easing: 'spring',
                     complete: function () {
-                        $text.velocity('fadeIn', { duration: 100 });
+                        $text.velocity('fadeIn',
+                            {
+                                duration: 100,
+
+                            });
+                        $(this).css('display', '');
                     }
                 });
             $(document).trigger('contentResized');
@@ -233,16 +239,26 @@ var layoutpubsub = {
 
 
     // ===== Aside ===== //
-    defaultTab: function() {
+    getAsideActiveTab: function () {
+        return $('.aside-tabs').find('.active').data('tabid');
+    },
 
-        
+    closeAside: function(){
+        if (layoutpubsub.asideIsVisible) {
+            layoutpubsub.toggleAside();
+        }
+    },
+
+    openAside: function() {
+        if (!layoutpubsub.asideIsVisible) {
+            layoutpubsub.toggleAside();
+        }
     },
 
     toggleAside: function () {
-
-        var easing = '';
+        
         var $pane = $('aside > .aside-container');
-        var $content = $('#aside-content').find('*');
+        var $content = $('#aside-content');
 
         $pane.velocity('stop', true);
         $content.velocity('stop', true);
@@ -323,41 +339,33 @@ var layoutpubsub = {
             .velocity('stop');
     },
 
-
     // ===== Aside Tabs ===== //
 
-    tabClick: function (el) {
-        /*Could be done via css but the transition looks smoother when the active class is added AFTER the animation has ended*/
-        var $deselectedTab = $('aside > .aside-container > .aside-tabs > ul > li.active');
-        var $selectedTab = $(this);
-        if (!$selectedTab.hasClass('active')) {
+    showAsideTab: function(tabId) {
+        var $buttonForDeselectedTab = $('aside > .aside-container > .aside-tabs > ul > li.active');
+        var $deselectedTab = $('#' + $buttonForDeselectedTab.data('tabid'));
 
+        var $selectedTab = $('#' + tabId);
+
+        if (!$selectedTab.is($deselectedTab)) {
+
+            //Change which button is active
+            $('aside > .aside-container > .aside-tabs > ul > li.active').removeClass('active');
+            $('aside > .aside-container > .aside-tabs > ul > li[data-tabId="' + tabId + '"]').addClass('active');
+            
             $deselectedTab
-                .velocity(
-                { backgroundColor: '#7fffc1' },
-                {
-                    easing: 'easeOutQuad',
-                    duration: 100,
-                    complete: function () {
-                        $deselectedTab
-                            .removeClass('active')
-                            .css({ 'background': '' });
-                    }
-                });
-
-            $selectedTab
-                .velocity(
-                { backgroundColor: '#f7f7f7' },
-                {
-                    duration: 100,
-                    easing: 'easeOutQuad',
-                    complete: function () {
-                        $selectedTab
-                            .addClass('active')
-                            .css({ 'background': '' });
-                    }
-                });
+                .velocity('fadeOut',
+                    {
+                        duration: 300,
+                        complete: function() {
+                            $selectedTab.velocity('fadeIn', 300);
+                        }
+                    });
         }
-    }
 
+        if (!layoutpubsub.asideIsVisible) {
+            layoutpubsub.toggleAside();
+        }
+        $(document).trigger('asideSwitched');
+    }
 };

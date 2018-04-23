@@ -1,0 +1,22 @@
+﻿@model Tasks.ViewModels.Thoughts.ThoughtViewModel
+
+@using (Html.BeginForm("Update", "Thoughts", FormMethod.Post, new { id = "editThoughtForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id, new { @id = "edit_timeFrameId" })    
+    @Html.HiddenFor(model => model.TimeFrameId, new { @id = "edit_timeFrameId" })
+    @Html.HiddenFor(model => model.TimeFrameDate, new { @id = "edit_date" })
+
+    <div class="input-group">
+        <div class="input-container-text stretch pad-right">
+            @Html.TextBoxFor(model => model.Description, new { @id = "edit_description", PlaceHolder = "What's on your mind?..." })
+            <span class="underline"></span>
+        </div>
+        <button id="btnEdit" class="pad-right fit">Save</button>
+        <button>Cancel</button>
+    </div>
+
+    /*TimeFrame picker*/
+    <div id="edit-container-timeframe"></div>
+}

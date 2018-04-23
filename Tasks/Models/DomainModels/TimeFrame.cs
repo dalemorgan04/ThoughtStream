@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using Humanizer;
+using Humanizer.DateTimeHumanizeStrategy;
 using Tasks.Repository.Core;
 
 namespace Tasks.Models.DomainModels
@@ -7,46 +10,42 @@ namespace Tasks.Models.DomainModels
     public class TimeFrame
     {
         private readonly TimeFrameType timeFrameType;
-        private readonly DateTime dateTime;
+        private readonly DateTime timeFrameDateTime;
 
         public TimeFrameType TimeFrameType => timeFrameType;
-        public DateTime DateTime => dateTime;
-        public DateTime Date => dateTime.Date;
-        public TimeSpan Time => dateTime.TimeOfDay;
+        public DateTime TimeFrameDateTime => timeFrameDateTime;
+        public DateTime Date => timeFrameDateTime.Date;
+        public TimeSpan Time => timeFrameDateTime.TimeOfDay;
         public string WeekString => getWeekString();
         public String DueString => getDueString();
 
 
-        public TimeFrame(TimeFrameType timeFrameType)
+        public TimeFrame()
         {
-            if (timeFrameType != TimeFrameType.Open)
-            {
-                throw new System.ArgumentNullException("Missing DateTime when creating TimeFrame object");
-            }
-            this.timeFrameType = timeFrameType;
-            this.dateTime = new DateTime(2050,1,1); //Set date due to far off into the future
+            this.timeFrameType = TimeFrameType.Open;
+            this.timeFrameDateTime = new DateTime(2050,1,1); //Set date due to far off into the future
         }
 
-        public TimeFrame(TimeFrameType timeFrameType, DateTime dateTime)
+        public TimeFrame(TimeFrameType timeFrameType, DateTime timeFrameDateTime)
         {
             this.timeFrameType = timeFrameType;
-            this.dateTime = dateTime;
+            this.timeFrameDateTime = timeFrameDateTime;
         }
 
         private string getDueString()
         {
             switch (TimeFrameType)
             {
+                case TimeFrameType.Open:
+                    return "";
                 case TimeFrameType.Time:
-                    return DateTime.Humanize();
+                    return TimeFrameDateTime.Humanize();
                 case TimeFrameType.Date:
                     return Date.Humanize();
                 case TimeFrameType.Week:
                     return getWeekString();
                 case TimeFrameType.Month:
-                    return Date.Month.ToString("MMMM");
-                case TimeFrameType.Open:
-                    return "";
+                    return Date.ToString("MMMM yy");
                 default:
                     return "";
             }
@@ -59,27 +58,31 @@ namespace Tasks.Models.DomainModels
             }
             else
             {
-                DateTime from = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
-                DateTime to = new DateTime(dateTime.AddDays(7).Year, dateTime.AddDays(7).Month, dateTime.AddDays(7).Day);
+                
+                DateTime from = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day);
+                DateTime to = new DateTime(timeFrameDateTime.AddDays(7).Year, timeFrameDateTime.AddDays(7).Month, timeFrameDateTime.AddDays(7).Day);
+                var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+                int weekNo = cal.GetWeekOfYear(from, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
                 string fromString;
-                string toString = to.ToShortDateString();
+                string toString = to.ToString("d/M/yy");
                 if (from.Year == to.Year)
                 {
                     if (from.Month == to.Month)
                     {
-                        fromString = from.Day.ToString();
+                        fromString = from.ToString("d");
                     }
                     else
                     {
-                        fromString = $"{from.Day}/{from.Month}";
+                        fromString = from.ToString("d/M");
                     }
                 }
                 else
                 {
-                    fromString = from.ToShortDateString();
+                    fromString = from.ToString("d/M/yy");
                 }
-                return $"Week {fromString} - {toString}";
+                return $"W{weekNo} ({fromString} - {toString})";
             }
         }
+
     }
 }

@@ -30,26 +30,40 @@ namespace Tasks.Controllers
         // GET: Inbox
         public ActionResult Index()
         {
-            List<ThoughtDto> thoughtList = thoughtService.GetThoughts().ToList();
-
-            int userId = 1;
-            if (userId == 0)
-                throw new ArgumentNullException("value");
-
-            UserDto user = userService.GetUser(userId);
-            ThoughtEditViewModel editThoughtViewModel = new ThoughtEditViewModel();
-            ThoughtsViewModel viewModel = new ThoughtsViewModel {ThoughtList = thoughtList, User = user, EditThought = editThoughtViewModel};
+            List<ThoughtDto> thoughtDtoList = thoughtService.GetThoughts().ToList();
+            UserDto user = userService.GetUser(1);
+            ThoughtsViewModel viewModel = new ThoughtsViewModel()
+            {
+                ThoughtsList = new List<ThoughtViewModel>()
+            };
+            foreach (var thought in thoughtDtoList)
+            {
+                viewModel.ThoughtsList.Add( new ThoughtViewModel()
+                {
+                    Id = thought.Id,
+                    UserId = thought.User.Id,
+                    Description = thought.Description,
+                    CreatedDateTime = thought.CreatedDateTime,
+                    SortId = thought.SortId,
+                    PriorityId = thought.Priority ? .Id ?? 0,
+                    TimeFrameId = (int)thought.TimeFrame.TimeFrameType,
+                    TimeFrameDate = thought.TimeFrame.Date,
+                    TimeFrameTime = thought.TimeFrame.Time,
+                    TimeFrameWeekString = thought.TimeFrame.WeekString,
+                    TimeFrameDueString = thought.TimeFrame.DueString
+                });
+            }
             return View(viewModel);
         }
 
         [HttpPost]
-        public bool Create(AddThoughtViewModel viewModel)
+        public bool Create(ThoughtViewModel viewModel)
         {
+            DateTime dateTime = new DateTime(viewModel.TimeFrameDate.Year, viewModel.TimeFrameDate.Month, viewModel.TimeFrameDate.Day, viewModel.TimeFrameDate.Hour, viewModel.TimeFrameDate.Minute, 0);
             ThoughtDto thought = new ThoughtDto
             {
                 Description = viewModel.Description,
-                DateCreated = DateTime.Now,
-                User = Mapper.Map<UserDto, User>(userService.GetUser(1))
+                TimeFrame = new TimeFrame( (TimeFrameType)viewModel.TimeFrameId, dateTime)
             };
             thoughtService.Save(thought);
             return true;
@@ -58,26 +72,59 @@ namespace Tasks.Controllers
         [HttpPost]
         public ActionResult GetThoughtsTable()
         {
-            List<ThoughtDto> thoughtList = thoughtService.GetThoughts().ToList();
-            ThoughtsViewModel viewModel = new ThoughtsViewModel { ThoughtList = thoughtList };
+            List<ThoughtDto> thoughtDtoList = thoughtService.GetThoughts().ToList();
+            UserDto user = userService.GetUser(1);
+            ThoughtsViewModel viewModel = new ThoughtsViewModel()
+            {
+                ThoughtsList = new List<ThoughtViewModel>()
+            };
+            foreach (var thought in thoughtDtoList)
+            {
+                viewModel.ThoughtsList.Add(new ThoughtViewModel()
+                {
+                    Id = thought.Id,
+                    UserId = thought.User.Id,
+                    Description = thought.Description,
+                    CreatedDateTime = thought.CreatedDateTime,
+                    SortId = thought.SortId,
+                    PriorityId = thought.Priority ? .Id ?? 0,
+                    TimeFrameId = (int)thought.TimeFrame.TimeFrameType,
+                    TimeFrameDate = thought.TimeFrame.Date,
+                    TimeFrameTime = thought.TimeFrame.Time,
+                    TimeFrameWeekString = thought.TimeFrame.WeekString,
+                    TimeFrameDueString = thought.TimeFrame.DueString
+                });
+            }
             return PartialView("_ThoughtsTable", viewModel);
         }
 
         [HttpPost]
-        public bool DeleteThought(int thoughtId)
+        public bool Delete(int thoughtId)
         {
             thoughtService.Delete(thoughtId);
             return true;
         }
 
         [HttpPost]
-        public bool MoveThought(int thoughtId, int moveToSortId)
+        public bool Sort(int thoughtId, int moveToSortId)
         {
             thoughtService.UpdateSortId(thoughtId,moveToSortId);
             return true;
         }
+        [HttpPost]
+        public bool Update(ThoughtViewModel viewModel)
+        {
+            ThoughtDto thoughtDto = new ThoughtDto()
+            {
+                Id = viewModel.Id,
+                Description = viewModel.Description,
+                TimeFrame = new TimeFrame((TimeFrameType)viewModel.TimeFrameId,viewModel.TimeFrameDate)
+            };
+            thoughtService.Save(thoughtDto);
+            return true;
+        }
 
-        private bool isValidViewModel(ThoughtEditViewModel viewModel)
+        private bool isValidViewModel(ThoughtViewModel viewModel)
         {
             return true; //TODO
         }
@@ -92,23 +139,41 @@ namespace Tasks.Controllers
 
         public ActionResult GetAsideAddTab()
         {
-            ThoughtEditViewModel viewModel = getDefaultAsideViewModel();
+            ThoughtViewModel viewModel = getDefaultAsideViewModel();
             return PartialView("_AddThought", viewModel);
         }
+        
 
-        public ActionResult GetAsideEditTab()
+        public ActionResult GetAsideEditSelectTab(int thoughtId)
         {
-            return new EmptyResult();
+            ThoughtDto thought = thoughtService.GetThoughtById(thoughtId);
+            ThoughtViewModel viewModel = new ThoughtViewModel()
+            {
+                Id = thought.Id,
+                UserId = thought.User.Id,
+                Description = thought.Description,
+                CreatedDateTime = thought.CreatedDateTime,
+                SortId = thought.SortId,
+                PriorityId = thought.Priority?.Id ?? 0,
+                TimeFrameId = (int)thought.TimeFrame.TimeFrameType,
+                TimeFrameDate = thought.TimeFrame.Date,
+                TimeFrameTime = thought.TimeFrame.Time,
+                TimeFrameWeekString = thought.TimeFrame.WeekString,
+                TimeFrameDueString = thought.TimeFrame.DueString
+            };
+            return PartialView("_EditThoughtSelect", viewModel);
         }
 
-        private ThoughtEditViewModel getDefaultAsideViewModel()
+        private ThoughtViewModel getDefaultAsideViewModel()
         {
-            ThoughtEditViewModel viewModel = new ThoughtEditViewModel()
+            ThoughtViewModel viewModel = new ThoughtViewModel()
             {
                 UserId = 1,
                 Description = "",
                 PriorityId = 1,
-                Due = DateTime.Today
+                TimeFrameId = (int)TimeFrameType.Open,
+                TimeFrameDate = new DateTime(2050,1,1),
+                TimeFrameTime = new TimeSpan(0)
             };
             return viewModel;
         }

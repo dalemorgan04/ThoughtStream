@@ -33,7 +33,7 @@ namespace Tasks.NHibernate
         public void Remove(TIdentity id)
         {
             this.session.Delete(session.Load<TEntity>(id));
-            //TODO this.session.Flush(); see the effect of this
+            this.session.Flush();
         }
     }
 }

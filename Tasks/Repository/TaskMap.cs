@@ -8,7 +8,7 @@ namespace Tasks.Repository
         public TaskMap()
         {
             Table("Tasks");
-            Id(x => x.Id).Column("TaskId").GeneratedBy.Native();
+            Id(x => x.Id).Column("Id").GeneratedBy.Native();
             References(x => x.User).Column("UserId");                
             Map(x => x.Description);
             References(x => x.Priority).Column("PriorityId");

@@ -16,6 +16,7 @@
     --theme-green-light: #30ff9b;
     --theme-green-xlight: #7fffc1;
     --theme-green-dark: #15d87a;
+    --theme-blue-xlight: #7ffff6;
     --theme-blue-light: #00ffed;
     --theme-blue: #00E5D6;
     --theme-blue-dark: #00D8CA;
@@ -43,7 +44,7 @@
     --nav-active-color: var(--theme-blue-light);
     --nav-active-font: var(--theme-font-heading);
     --nav-tab-inactive-bg-color: var(--theme-blue-light);
-    --nav-tab-active-bg-color: var(--theme-blue);
+    --nav-tab-active-bg-color: var(--theme-blue-light);
     --nav-tab-hover-bg-color: var(--theme-blue);
     /*Aside*/
     --aside-bg-color: var(--theme-white);
@@ -352,7 +353,7 @@ aside {
         float: right;
     }
 
-        aside > .aside-container > #aside-content {
+        aside > .aside-container > .aside-content-container {
             z-index: 25;
             grid-column: 2 / 3;
             grid-row: 1;
@@ -364,7 +365,7 @@ aside {
             box-shadow: var(--shadow-side);
         }
 
-            aside > .aside-container > #aside-content > div,
+            aside > .aside-container > .aside-content-container > div,
             #aside-tasks-container {
                 z-index: 29;
             }
@@ -415,6 +416,7 @@ aside {
                     -o-transition: all 0 linear;
                     -webkit-transition: all 0 linear;
                     transition: all 0 linear;
+
                 }
 
                     aside > .aside-container > .aside-tabs > ul > li:not(.active):not(.disabled):hover {
@@ -442,6 +444,17 @@ aside {
                         transition: all 0s linear;
                     }
 
+                    aside > .aside-container > .aside-tabs > ul > li > span {
+                        z-index: inherit;
+                        /* Safari */
+                        -webkit-transform: rotate(270deg);
+                        /* Firefox */
+                        -moz-transform: rotate(270deg);
+                        /* IE */
+                        -ms-transform: rotate(270deg);
+                        /* Opera */
+                        -o-transform: rotate(270deg);
+                    }
 
 /*
 * ---------- Rotatables ----------
