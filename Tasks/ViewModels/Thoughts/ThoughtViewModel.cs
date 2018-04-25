@@ -13,8 +13,8 @@ namespace Tasks.ViewModels.Thoughts
         public int PriorityId { get; set; }
 
         public int TimeFrameId { get; set; }
-        public DateTime TimeFrameDate { get; set; }
-        public TimeSpan TimeFrameTime { get; set; }
+        public string TimeFrameDateString { get; set; }
+        public string TimeFrameTimeString { get; set; }
         public string TimeFrameWeekString { get; set; }
         public string TimeFrameDueString { get; set; }
     }

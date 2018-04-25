@@ -274,8 +274,11 @@ table {
 
     table > tbody > tr {
         border-bottom: 1px solid var(--table-body-border-color);
-        
         cursor: pointer;
+    }
+
+    table > tbody > tr:hover {
+        font-weight: bold;
     }
         table > tbody > tr.selected {
             z-index: 11;

@@ -13,10 +13,16 @@
         <tbody id="thoughtResultsTableBody">
         @foreach (ThoughtViewModel thought in Model.ThoughtsList.OrderBy(x => x.SortId))
         {
-            <tr data-thoughtid="@thought.Id" data-sortid="@thought.SortId">
+            <tr 
+                data-thoughtid="@thought.Id"
+                data-sortid="@thought.SortId"
+                data-timeframeid="@thought.TimeFrameId"
+                data-timeframedate="@thought.TimeFrameDateString"
+                data-timeframetime="@thought.TimeFrameTimeString">
+                
                 <td class="left stretch pad-left">@thought.Description</td>
                 <td class="center fit">@thought.TimeFrameDueString </td>
-                <td class="options pad-right btnDelete"><img src="~/Images/SVG/delete.svg" /></td>
+                <td class="options pad-right btnDelete"><img src="~/Images/SVG/delete.svg"/></td>
             </tr>
         }
         </tbody>

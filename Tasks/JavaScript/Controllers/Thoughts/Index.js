@@ -53,13 +53,13 @@ var thoughtsPubsub = {
                     if (line.startRow < line.rowIndex) {
                         moveToSortId = prevRow.dataset.sortid;
                     } else {
-                        moveToSortId = 1 + (+ prevRow.dataset.sortid);
+                        moveToSortId = 1 + prevRow.dataset.sortid;
                     }
-                };
+                }
                 $.post(thoughtsPubsub.urls.MoveThought,
                     { thoughtId: thoughtId, moveToSortId: moveToSortId },
                     function (result) {
-                        if (result == "True" || result === true) {
+                        if (result === "True" || result == true) {
                             thoughtsPubsub.getTable();
                         }
                     }
@@ -83,10 +83,10 @@ var thoughtsPubsub = {
             TimeFrameId: $('#addThoughtForm .timeframe-container .timeframe-output-type').val(),
             TimeFrameDate: moment($('#addThoughtForm .timeframe-container .timeframe-output-date').val()).format('DD/MM/YYYY'),
             TimeFrameTime: moment($('#addThoughtForm .timeframe-container .timeframe-output-time').val()).format('hh:mm')
-        }
+        };
         $.post(thoughtsPubsub.urls.AddThought, viewModel,
             function(result) {
-                if (result == "True" || result === true) {
+                if (result === "True" || result == true) {
                     thoughtsPubsub.getTable();
                     $(document).trigger('added');
                 }
@@ -117,20 +117,23 @@ var thoughtsPubsub = {
     editThought: function(e) {
         e.preventDefault();
         var viewModel = {
-            Id:            $('#edit_timeFrameId').val(),
-            Description:   $('#edit_description').val(),
-            TimeFrameId:   $('#editThoughtForm .timeframe-container .timeframe-output-type').val(),
-            TimeFrameDate: $('#editThoughtForm .timeframe-container .timeframe-output-date').val(), 
-            TimeFrameTime: $('#editThoughtForm .timeframe-container .timeframe-output-time').val()
-        }
+            Id:                  $('#edit_thoughtId').val(),
+            Description:         $('#edit_description').val(),
+            TimeFrameId:         $('#editThoughtForm .timeframe-container .timeframe-output-type').val(),
+            TimeFrameDateString: $('#editThoughtForm .timeframe-container .timeframe-output-date').val(), 
+            TimeFrameTimeString: $('#editThoughtForm .timeframe-container .timeframe-output-time').val()
+        };
         $.post(thoughtsPubsub.urls.EditThought,
             viewModel,
             function(result) {
-                if (result == "True" || result === true) {
+                if (result === "True" || result == true) {
                     layoutpubsub.closeAside();
                     thoughtsPubsub.getTable();
                     thoughtsPubsub.deselect();
+                } else {
+                    thoughtsPubsub.showError(result);
                 }
+
             }
         );
     },
@@ -140,7 +143,7 @@ var thoughtsPubsub = {
             thoughtsPubsub.urls.DeleteThought,
             { thoughtId: thoughtsPubsub.getThoughtId(e) },
             function(result) {
-                if (result == "True" || result === true) {
+                if (result === "True" || result == true) {
                     $(e.target).closest('tr').velocity('fadeOut',
                         {
                             duration: 300,
@@ -206,12 +209,13 @@ var thoughtsPubsub = {
 
                 var
                     typeId = $('#edit_timeFrameId').val(),
-                    date = $('#edit_date').val();
+                    date = $('#edit_date').val(),
+                    time = $('#edit_time').val();
 
                 $('#edit-container-timeframe').timeFrame({
                     timeFrameId: typeId,
-                    date: moment(date, 'DD/MM/YYYY'),
-                    time: moment(date, 'hh:mm')
+                    date: date,
+                    time: time
                 });
                 layoutpubsub.showAsideTab('aside-edit-container');
             }
@@ -259,6 +263,10 @@ var thoughtsPubsub = {
                     layoutpubsub.openAside();
                 }
             });
+    },
+
+    showError: function(error) {
+        alert(error);
     },
 
     showRowOptions: function(e) {

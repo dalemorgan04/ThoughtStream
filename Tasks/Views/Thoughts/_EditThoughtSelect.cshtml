@@ -4,9 +4,10 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.HiddenFor(model => model.Id, new { @id = "edit_timeFrameId" })    
+    @Html.HiddenFor(model => model.Id, new { @id = "edit_thoughtId" })
     @Html.HiddenFor(model => model.TimeFrameId, new { @id = "edit_timeFrameId" })
-    @Html.HiddenFor(model => model.TimeFrameDate, new { @id = "edit_date" })
+    @Html.HiddenFor(model => model.TimeFrameDateString, new { @id = "edit_date" })
+    @Html.HiddenFor(model => model.TimeFrameTimeString, new { @id = "edit_time" })
 
     <div class="input-group">
         <div class="input-container-text stretch pad-right">

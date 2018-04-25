@@ -23,7 +23,7 @@
                     borderColor: "#1977CC",
                     backgroundColor: "#FFF",
                     textColor: '#555',
-                    focusOut: function () { },
+                    focusOut: function(){},
                     focusClass: ''
                 }, options);
 

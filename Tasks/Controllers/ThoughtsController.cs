@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
@@ -47,8 +48,8 @@ namespace Tasks.Controllers
                     SortId = thought.SortId,
                     PriorityId = thought.Priority ? .Id ?? 0,
                     TimeFrameId = (int)thought.TimeFrame.TimeFrameType,
-                    TimeFrameDate = thought.TimeFrame.Date,
-                    TimeFrameTime = thought.TimeFrame.Time,
+                    TimeFrameDateString = thought.TimeFrame.DateString,
+                    TimeFrameTimeString = thought.TimeFrame.TimeString,
                     TimeFrameWeekString = thought.TimeFrame.WeekString,
                     TimeFrameDueString = thought.TimeFrame.DueString
                 });
@@ -59,7 +60,14 @@ namespace Tasks.Controllers
         [HttpPost]
         public bool Create(ThoughtViewModel viewModel)
         {
-            DateTime dateTime = new DateTime(viewModel.TimeFrameDate.Year, viewModel.TimeFrameDate.Month, viewModel.TimeFrameDate.Day, viewModel.TimeFrameDate.Hour, viewModel.TimeFrameDate.Minute, 0);
+            DateTime dateTime;
+            DateTime.TryParseExact(
+                $"{viewModel.TimeFrameDateString} {viewModel.TimeFrameTimeString}",
+                "dd/MM/yyyy HH:mm",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.AllowWhiteSpaces,
+                out dateTime);
+
             ThoughtDto thought = new ThoughtDto
             {
                 Description = viewModel.Description,
@@ -89,8 +97,8 @@ namespace Tasks.Controllers
                     SortId = thought.SortId,
                     PriorityId = thought.Priority ? .Id ?? 0,
                     TimeFrameId = (int)thought.TimeFrame.TimeFrameType,
-                    TimeFrameDate = thought.TimeFrame.Date,
-                    TimeFrameTime = thought.TimeFrame.Time,
+                    TimeFrameDateString = thought.TimeFrame.DateString,
+                    TimeFrameTimeString = thought.TimeFrame.TimeString,
                     TimeFrameWeekString = thought.TimeFrame.WeekString,
                     TimeFrameDueString = thought.TimeFrame.DueString
                 });
@@ -112,13 +120,28 @@ namespace Tasks.Controllers
             return true;
         }
         [HttpPost]
-        public bool Update(ThoughtViewModel viewModel)
+        public object Update(ThoughtViewModel viewModel)
         {
+            var validationResult = validateViewModel(viewModel);
+            if (validationResult != "") return validationResult;
+
+            DateTime date = DateTime.ParseExact( viewModel.TimeFrameDateString,"dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime dateTime;
+            if ((TimeFrameType)viewModel.TimeFrameId == TimeFrameType.Time)
+            {
+                TimeSpan time = TimeSpan.ParseExact(viewModel.TimeFrameTimeString, "hh\\:mm", CultureInfo.InvariantCulture);
+                dateTime = date.Add(time);
+            }
+            else
+            {
+                dateTime = date;
+            }
+
             ThoughtDto thoughtDto = new ThoughtDto()
             {
                 Id = viewModel.Id,
                 Description = viewModel.Description,
-                TimeFrame = new TimeFrame((TimeFrameType)viewModel.TimeFrameId,viewModel.TimeFrameDate)
+                TimeFrame = new TimeFrame((TimeFrameType)viewModel.TimeFrameId, dateTime)
             };
             thoughtService.Save(thoughtDto);
             return true;
@@ -156,8 +179,8 @@ namespace Tasks.Controllers
                 SortId = thought.SortId,
                 PriorityId = thought.Priority?.Id ?? 0,
                 TimeFrameId = (int)thought.TimeFrame.TimeFrameType,
-                TimeFrameDate = thought.TimeFrame.Date,
-                TimeFrameTime = thought.TimeFrame.Time,
+                TimeFrameDateString = thought.TimeFrame.DateString,
+                TimeFrameTimeString = thought.TimeFrame.TimeString,
                 TimeFrameWeekString = thought.TimeFrame.WeekString,
                 TimeFrameDueString = thought.TimeFrame.DueString
             };
@@ -172,10 +195,40 @@ namespace Tasks.Controllers
                 Description = "",
                 PriorityId = 1,
                 TimeFrameId = (int)TimeFrameType.Open,
-                TimeFrameDate = new DateTime(2050,1,1),
-                TimeFrameTime = new TimeSpan(0)
+                TimeFrameDateString = "01/01/2050",
+                TimeFrameTimeString = "00:00"
             };
             return viewModel;
+        }
+
+        private string validateViewModel(ThoughtViewModel viewModel)
+        {
+            bool isUpdate = viewModel.Id != 0;
+
+            if (string.IsNullOrWhiteSpace(viewModel.Description))
+            {
+                return "The description must not be blank";
+            }
+
+            if (!DateTime.TryParseExact(viewModel.TimeFrameDateString,
+                                        "dd/MM/yyyy",
+                                        CultureInfo.InvariantCulture,
+                                        DateTimeStyles.None,
+                                        out var ds))
+            {
+                return "A date is required";
+            }
+
+            if ((TimeFrameType)viewModel.TimeFrameId == TimeFrameType.Time && 
+                !TimeSpan.TryParseExact( viewModel.TimeFrameTimeString,
+                                        "hh\\:mm",
+                                        CultureInfo.InvariantCulture,
+                                        out var ts))
+            {
+                return "A time is required";
+            }
+
+            return "";
         }
     }
 }
