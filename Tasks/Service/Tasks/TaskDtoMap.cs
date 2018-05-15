@@ -12,11 +12,13 @@ namespace Tasks.Service.Tasks
         {
             CreateMap<Task, TaskDto>()
                 .ForMember(dest => dest.TimeFrame,
-                    input => input.MapFrom(i => new TimeFrame((TimeFrameType) i.TimeFrameId, i.DateTime)));
+                    input => input.MapFrom(i => new TimeFrame((TimeFrameType) i.TimeFrameId, i.TimeFrameDateTime)));
 
             CreateMap<TaskDto, Task>()
                 .ForMember(dest => dest.TimeFrameId,
-                    input => input.MapFrom(t => t.TimeFrame.TimeFrameType));
+                    input => input.MapFrom(t => t.TimeFrame.TimeFrameType))
+                .ForMember(dest => dest.TimeFrameDateTime,
+                    input => input.MapFrom(t => t.TimeFrame.TimeFrameDateTime));
         }
     }
 }

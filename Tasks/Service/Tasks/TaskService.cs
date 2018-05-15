@@ -29,13 +29,26 @@ namespace Tasks.Service.Tasks
         }
         public IList<TaskDto> GetTasks()
         {
+
             List<Task> taskList = taskRepository.GetAll().ToList();
             List<TaskDto> taskDtoList = Mapper.Map<List<Task>, List<TaskDto>>(taskList);
             return taskDtoList;
         }
         public void Save(TaskDto taskDto)
         {
-            Task task = Mapper.Map <TaskDto,Task> (taskDto);
+            Task task;
+            if (taskDto.Id>0)
+            {
+                task = this.taskRepository.Get(taskDto.Id);
+                task.Update(taskDto.Description, taskDto.Priority, (int)taskDto.TimeFrame.TimeFrameType, 
+                            taskDto.TimeFrame.TimeFrameDateTime, taskDto.IsComplete, null);
+                
+            }
+            else
+            {
+                task = Task.
+            }
+
             taskRepository.Add(task);
             this.unitOfWork.Commit();
         }

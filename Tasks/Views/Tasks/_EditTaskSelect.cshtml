@@ -1,0 +1,24 @@
+﻿@using System.Web.Mvc.Html
+@model Tasks.ViewModels.Tasks.TaskViewModel
+
+@using (Html.BeginForm("Update", "Tasks", FormMethod.Post, new { id = "editTaskForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id, new { @id = "edit_taskId" })
+    @Html.HiddenFor(model => model.TimeFrameId, new { @id = "edit_timeFrameId" })
+    @Html.HiddenFor(model => model.TimeFrameDateString, new { @id = "edit_date" })
+    @Html.HiddenFor(model => model.TimeFrameTimeString, new { @id = "edit_time" })
+
+    <div class="input-group">
+        <div class="input-container-text stretch pad-right">
+            @Html.TextBoxFor(model => model.Description, new { @id = "edit_description", PlaceHolder = "What's on your mind?..." })
+            <span class="underline"></span>
+        </div>
+        <button id="btnEdit" class="pad-right fit">Save</button>
+        <button>Cancel</button>
+    </div>
+
+    /*TimeFrame picker*/
+    <div id="edit-container-timeframe"></div>
+}

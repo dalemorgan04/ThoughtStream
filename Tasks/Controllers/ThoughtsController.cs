@@ -35,11 +35,11 @@ namespace Tasks.Controllers
             UserDto user = userService.GetUser(1);
             ThoughtsViewModel viewModel = new ThoughtsViewModel()
             {
-                ThoughtsList = new List<ThoughtViewModel>()
+                ThoughtList = new List<ThoughtViewModel>()
             };
             foreach (var thought in thoughtDtoList)
             {
-                viewModel.ThoughtsList.Add( new ThoughtViewModel()
+                viewModel.ThoughtList.Add( new ThoughtViewModel()
                 {
                     Id = thought.Id,
                     UserId = thought.User.Id,
@@ -84,11 +84,11 @@ namespace Tasks.Controllers
             UserDto user = userService.GetUser(1);
             ThoughtsViewModel viewModel = new ThoughtsViewModel()
             {
-                ThoughtsList = new List<ThoughtViewModel>()
+                ThoughtList = new List<ThoughtViewModel>()
             };
             foreach (var thought in thoughtDtoList)
             {
-                viewModel.ThoughtsList.Add(new ThoughtViewModel()
+                viewModel.ThoughtList.Add(new ThoughtViewModel()
                 {
                     Id = thought.Id,
                     UserId = thought.User.Id,
@@ -203,8 +203,6 @@ namespace Tasks.Controllers
 
         private string validateViewModel(ThoughtViewModel viewModel)
         {
-            bool isUpdate = viewModel.Id != 0;
-
             if (string.IsNullOrWhiteSpace(viewModel.Description))
             {
                 return "The description must not be blank";

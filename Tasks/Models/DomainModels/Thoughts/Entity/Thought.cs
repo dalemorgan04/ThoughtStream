@@ -62,9 +62,9 @@ namespace Tasks.Models.DomainModels.Thoughts.Entity
         public virtual void Update(string description, int timeFrameId, DateTime timeFrameDateTime, Project project)
         {
             Description = description;
-            TimeFrameId = timeFrameId;
             Project = project;
 
+            TimeFrameId = timeFrameId;
             switch ((TimeFrameType)timeFrameId)
             {
                 case TimeFrameType.Open:

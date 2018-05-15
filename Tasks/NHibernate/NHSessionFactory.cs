@@ -7,6 +7,7 @@ using Tasks.Repository;
 using Tasks.Repository.CalendarEvents;
 using Tasks.Repository.Thoughts;
 using Tasks.Repository.Projects;
+using Tasks.Repository.Tasks;
 
 namespace Tasks.NHibernate
 {

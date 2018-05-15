@@ -2,7 +2,6 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Tasks.Models.DomainModels.CalendarEvents.Entity;
 using Tasks.NHibernate;
 using Tasks.Repository.Thoughts;
 using Tasks.Service.Tasks;

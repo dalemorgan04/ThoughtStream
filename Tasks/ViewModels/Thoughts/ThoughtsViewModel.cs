@@ -6,9 +6,8 @@ using Tasks.Service.Users.Dto;
 namespace Tasks.ViewModels.Thoughts
 {
     public class ThoughtsViewModel
-    {        
-        public UserDto User { get; set; }
-        public List<ThoughtViewModel> ThoughtsList { get; set; }  
-        public ThoughtViewModel Thought{ get; set; }
+    {   
+        public List<ThoughtViewModel> ThoughtList { get; set; }  
+        public ThoughtViewModel EditViewModel{ get; set; }
     }
 }

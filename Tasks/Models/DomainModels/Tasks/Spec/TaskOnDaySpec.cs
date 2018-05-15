@@ -16,7 +16,7 @@ namespace Tasks.Models.DomainModels.Tasks.Spec
         }
         public override Expression<Func<Task, bool>> SpecExpression
         {
-            get { return task => task.DateTime.Day == date.Day ; }
+            get { return task => task.TimeFrameDateTime.Day == date.Day ; }
         }
     }
 }

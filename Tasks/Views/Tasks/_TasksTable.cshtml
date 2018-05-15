@@ -1,4 +1,5 @@
 ﻿@using Tasks.Service.Tasks.Dto
+@using Tasks.ViewModels.Tasks
 @model Tasks.ViewModels.Tasks.TasksViewModel
 
 <div class="container-fluid">
@@ -7,13 +8,11 @@
 
             <table class="table">
                 <tbody id="taskResultsTableBody">
-                @foreach (TaskDto task in Model.TaskList)
+                @foreach (TaskViewModel task in Model.TaskList)
                 {
                     <tr data-taskid="@task.Id">
-                        <td>@task.Id</td>
                         <td>@task.Description</td>
-                        <td>@task.TimeFrame.TimeFrameDescription</td>                        
-                        <td>@task.TimeFrame.Due</td>                        
+                        <td>@task.TimeFrameDueString</td>                        
                     </tr>
                 }
                 </tbody>

@@ -8,7 +8,7 @@ namespace Tasks.ViewModels.Tasks
 {
     public class TasksViewModel
     {
-        public List<TaskDto> TaskList { get; set; }
-        public TaskEditViewModel EditViewModel { get; set; }
+        public List<TaskViewModel> TaskList { get; set; }
+        public TaskViewModel EditViewModel { get; set; }
     }
 }
