@@ -152,7 +152,6 @@ namespace Tasks.Controllers
             return true; //TODO
         }
         
-        
         //Aside
 
         public ActionResult GetAside()
@@ -165,7 +164,6 @@ namespace Tasks.Controllers
             ThoughtViewModel viewModel = getDefaultAsideViewModel();
             return PartialView("_AddThought", viewModel);
         }
-        
 
         public ActionResult GetAsideEditSelectTab(int thoughtId)
         {

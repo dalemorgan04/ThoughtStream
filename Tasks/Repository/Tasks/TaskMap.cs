@@ -16,7 +16,7 @@ namespace Tasks.Repository.Tasks
             Map(x => x.TimeFrameId);
             Map( x => x.TimeFrameDateTime);
             References(x => x.Project).Column("ProjectId");
-            Map(x => x.IsComplete).Column("IsComplete");
+            //Map(x => x.IsComplete).Column("IsComplete");
         }
     }
 }

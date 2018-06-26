@@ -57,7 +57,6 @@ namespace Tasks.Controllers
         {
             TasksViewModel viewModel = new TasksViewModel();
             List<TaskDto> taskList = taskService.GetTasks().ToList();
-            viewModel.TaskList = taskList;
             return PartialView("_TasksTable", viewModel);
         }
 

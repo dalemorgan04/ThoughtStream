@@ -94,7 +94,7 @@ namespace Tasks.Models.DomainModels
             }
         }
 
-        public void Update(Project project)
+        public virtual void Update(Project project)
         {
             this.Project = project;
         }
